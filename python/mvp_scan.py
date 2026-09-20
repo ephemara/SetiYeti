@@ -74,6 +74,8 @@ def main():
     work = os.path.join(a.root, 'data', 'mvp_tmp')
     os.makedirs(work, exist_ok=True)
     csvp = os.path.join(a.root, a.out)
+    # unique temp prefix per raw file so parallel scans can't clobber each other
+    tag = re.sub(r'[^A-Za-z0-9]+', '_', os.path.basename(a.raw))[:48]
     new = not os.path.exists(csvp)
     cf = open(csvp, 'a', newline='')
     cw = csv.writer(cf)
@@ -92,7 +94,7 @@ def main():
             if (str(b), str(ch), str(a.pol)) in seen:
                 done += 1
                 continue
-            tmp = os.path.join(work, f'b{b}_ch{ch}.f32')
+            tmp = os.path.join(work, f'{tag}_b{b}_ch{ch}.f32')
             r = run(sl, a.raw, str(ch), tmp, '1', '--pol', str(a.pol), '--start', str(b))
             if r.returncode != 0 or not os.path.exists(tmp) or os.path.getsize(tmp) < 1000000:
                 print(f'[skip] b{b} ch{ch}: no data (short file?)', flush=True)

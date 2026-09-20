@@ -37,3 +37,4 @@ alpha_candidates.txt
 .DS_Store
 Thumbs.db
 desktop.ini
+*.json

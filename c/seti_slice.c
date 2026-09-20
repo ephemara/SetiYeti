@@ -40,6 +40,10 @@ int main(int argc, char** argv) {
     FILE* o = fopen(outpath,"wb");
     if (!o) { perror("fopen out"); fclose(f); return 1; }
 
+    // file size (needed to solve single-block header padding exactly)
+    long filesize = 0;
+    { long cur = ftell(f); if (fseek(f,0,SEEK_END)==0) filesize = ftell(f); fseek(f,cur,SEEK_SET); }
+
     uint8_t* hdrbuf = (uint8_t*)malloc(300*80);
     long total_samples = 0;
     double sum=0, sumsq=0;
@@ -68,16 +72,50 @@ int main(int argc, char** argv) {
             if (card[0]=='E'&&card[1]=='N'&&card[2]=='D') { found_end=1; break; }
         }
         if (!found_end) { fprintf(stderr,"no END at block %d off %ld\n",nblocks,blk_off); break; }
-        int hlen = cards*80 + ((2880-(cards*80)%2880)%2880);
-        // skip pad
-        long after_cards = blk_off + cards*80;
-        long data_off = blk_off + hlen;
-        fseek(f, data_off, SEEK_SET);
-        // get BLOCSIZE from header text
+
+        // BLOCSIZE first: needed to locate the next block's header.
         long blocsize=0;
         char* p=strstr(cards_txt,"BLOCSIZE");
         if (p) blocsize=atol(p+9);
         if (blocsize<=0) { fprintf(stderr,"bad BLOCSIZE block %d\n",nblocks); break; }
+
+        // ---- header padding: DO NOT HARDCODE ----------------------------
+        // GUPPI pads the card region to an alignment that VARIES by era:
+        //   2016 blc2 (M31) : 2880-byte FITS blocks  (header 8640)
+        //   2016+ GUPPI     : 256-byte alignment     (W75N 6400, TRAPPIST 6656)
+        // Guessing wrong misaligns the payload *and* makes the next block's
+        // header search land past its card region ("no END") -> only block 0
+        // ever parses. So solve for it instead:
+        //   1. probe forward from end-of-cards+blocsize for the next "BACKEND"
+        //      card -> hlen = (next_header - blk_off) - blocsize
+        //   2. single complete block -> hlen = filesize - blocsize
+        //   3. otherwise fall back to 256 (modern GUPPI default)
+        long hlen = 0;
+        {
+            static const char MAGIC[16] = "BACKEND = 'GUPPI";
+            long probe = blk_off + (long)cards*80 + blocsize;
+            if (probe < blk_off) probe = blk_off;
+            static uint8_t win[16384];
+            if (fseek(f, probe, SEEK_SET)==0) {
+                size_t got = fread(win,1,sizeof(win),f);
+                for (size_t i=0; i+16<=got; i++) {
+                    if (!memcmp(win+i, MAGIC, 16)) {
+                        long next = probe + (long)i;
+                        hlen = (next - blk_off) - blocsize;
+                        break;
+                    }
+                }
+            }
+            if (hlen <= 0 || hlen > 65536) hlen = 0;
+            if (hlen == 0 && filesize > blocsize) {
+                long c = filesize - blocsize;   // exact for a single complete block
+                if (c > 0 && c <= 65536) hlen = c;
+            }
+            if (hlen == 0)
+                hlen = (long)cards*80 + ((256 - ((long)cards*80)%256)%256);
+        }
+        long data_off = blk_off + hlen;
+        fseek(f, data_off, SEEK_SET);
         long bidx = nblocks; // blocks read so far (including skipped)
         nblocks++;
         if (bidx < start_block || bidx >= start_block + max_blocks) {
