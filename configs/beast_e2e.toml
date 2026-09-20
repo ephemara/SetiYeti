@@ -1,0 +1,23 @@
+# configs/beast_e2e.toml — bounded END-TO-END proving run (no slop).
+# 2 blocks x 64 chans x 4 pols x ON+OFF = 1024 real slices through the WHOLE
+# chain: scans -> structure -> evidence -> veto -> burst -> fold/DM -> cadence.
+# Full 128-block longhaul is hours; this proves the wiring on real data first.
+fam_trig = 3.0
+spec_line = 5.0
+spec_hump = 2.5
+sparkle_max = 25
+seg = 32768
+topk = 15
+comb_min_members = 3
+comb_min_score = 6.0
+frame_sigma = 40.0
+fold_fmin = 1.0
+fold_fmax = 2000.0
+fold_sigma = 16.0
+pulse_sigma = 14.0
+persist_min = 2
+multichan_min = 3
+workers = 4
+pol_list = [0, 1, 2, 3]
+blocks = "0-1"
+line_exclude = [0]

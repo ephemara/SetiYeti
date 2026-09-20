@@ -1,0 +1,2 @@
+[evidence] 15 rows -> runs\beast_e2e\evidence.csv
+$ C:\scoop\apps\python\current\python.exe python/build_evidence.py --target E2E --out runs\beast_e2e\evidence.csv --persist-min 2 --scan runs\beast_e2e\struct_off_p0.csv --scan runs\beast_e2e\struct_off_p1.csv --scan runs\beast_e2e\struct_off_p2.csv --scan runs\beast_e2e\struct_off_p3.csv --scan runs\beast_e2e\struct_on_p0.csv --scan runs\beast_e2e\struct_on_p1.csv --scan runs\beast_e2e\struct_on_p2.csv --scan runs\beast_e2e\struct_on_p3.csv

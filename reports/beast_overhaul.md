@@ -37,6 +37,26 @@
 - "Single tone never combs" selftest used a 200-amplitude fantasy tone whose
   sidelobes genuinely comb — now the realistic ch0 proxy (A=4, Y2 ~5×).
 
+## Formal verification (`z3/`, z3-solver 5.1.0, one pip dep)
+- `smt2/comb_rule.smt2` — single peak can never reach 3 members (UNSAT);
+  Kepler family fires at b0=4 (SAT). `smt2/veto_disposition.smt2` — P1–P4
+  safety (UNSAT-of-violation) + all dispositions reachable (SAT).
+  `smt2/pack_bits.smt2` — pack injectivity (UNSAT-of-collision). 10/10 pass.
+- `verify_c_median.py` — **FULL PROOF**: unrolled Lomuto quickselect N=5 ==
+  sorted median over ALL 1024 inputs (UNSAT, caught+fixed an off-by-one in
+  the *model*, code was right) + compiled C header vs statistics.median.
+- `verify_c_comb.py` — rule semantics vs shipped code, 2000/2000 agree.
+- `verify_veto.py` — disposition transcription vs real `score_slice`,
+  3000/3000 agree, P1/P2/P3 zero violations (backs every SMT2 property).
+- `verify_pack.py` — shipped `pack_bits` roundtrip, exhaustive 256 + 500.
+
+## End-to-end (`configs/beast_e2e.toml`, TRAPPIST ON+OFF PART files)
+1024 real slices in 0.9 min: quarantines held (dark lanes), veto with
+  evidence 8 BLOCK / 0 WATCH / 0 CANDIDATE (correct — 2-block sip earns
+  nothing), 13 bursts classified, 10 fold+DM deep passes, cadence 0/26
+  promote (correct). 6 E2E smoke keys purged from catalog after (test
+  pollution is the ratchet); verdicts preserved in `runs/beast_e2e/`.
+
 ## Honest limits
 - Latent patch-mode floor is HIGH (0 dB det 0.16) — ranks texture, doesn't own
   sub-noise; cyclo owns sub-noise.

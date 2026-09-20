@@ -1,0 +1,12 @@
+[mvp] fs=2929687.5 Hz (header TBIN), pol=3, 64 channels, blocks 0-7
+[mvp] layout probe: interleaved
+[mvp] block 0: done 64/512 ok=64 hits=7 quar=7 err=0 drop=0 4.8 sl/s ETA 1.5 min
+[mvp] block 1: done 128/512 ok=64 hits=14 quar=14 err=0 drop=0 4.8 sl/s ETA 1.3 min
+[mvp] block 2: done 192/512 ok=64 hits=21 quar=21 err=0 drop=0 4.8 sl/s ETA 1.1 min
+[mvp] block 3: done 256/512 ok=64 hits=28 quar=28 err=0 drop=0 4.8 sl/s ETA 0.9 min
+[mvp] block 4: done 320/512 ok=64 hits=35 quar=35 err=0 drop=0 4.8 sl/s ETA 0.7 min
+[mvp] block 5: done 384/512 ok=64 hits=41 quar=41 err=0 drop=0 4.8 sl/s ETA 0.4 min
+[mvp] block 6: done 448/512 ok=64 hits=51 quar=47 err=0 drop=0 4.8 sl/s ETA 0.2 min
+[mvp] block 7: done 448/512 ok=0 hits=51 quar=47 err=0 drop=64 4.4 sl/s ETA 0.2 min
+[mvp] DONE blocks 0-7 chans=64 pol=3: 448 slices (51 flagged, 47 quarantined, 0 errors, 64 dropped) in 1.7 min -> E:\SetiYeti\runs/beast_trap_smoke\scan_on_p3.csv
+$ C:\scoop\apps\python\current\python.exe python/mvp_scan.py --raw data/blc04_guppi_57807_75725_DIAG_TRAPPIST1_0015.0000.PART1GB.raw --b0 0 --b1 7 --chans 0-63 --pol 3 --out E:\SetiYeti\runs/beast_trap_smoke\scan_on_p3.csv --fam-trig 3.0 --spec-line 5.0 --spec-hump 2.5 --sparkle-max 25

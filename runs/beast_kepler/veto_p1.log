@@ -1,0 +1,1097 @@
+[veto] band geometry from blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw: 1407.715 MHz centre, -187.500 MHz, 64 chan
+[veto] cadence: ON=147 signatures, OFF=189
+[veto] b0/ch0 Y4:199646Hz E=0.60 S=0.15 net=+0.45 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x3)
+[veto] b0/ch35 Y4:287265Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1397.5MHz [fixed/mobile/radiolocation (L lower)]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b1/ch0 Y2:49531Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b2/ch0 Y4:738770Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b3/ch0 Y2:117213Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x4)
+[veto] b4/ch0 Y4:10550Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b5/ch0 Y4:541806Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b6/ch0 Y2:9388Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b7/ch0 Y2:1223445Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x8)
+[veto] b8/ch0 Y2:1114637Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x6)
+[veto] b9/ch0 Y2:1241058Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x11)
+[veto] b9/ch47 Y2:727057Hz E=1.10 S=0.15 net=+0.95 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1362.3MHz [fixed/mobile/radiolocation (L lower)]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - +0.30 transient (absent over full span)
+         - +0.10 VM noise-like
+[veto] b10/ch0 Y2:995636Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b11/ch0 Y4:414848Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b12/ch0 Y2:290394Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x3)
+[veto] b13/ch0 Y4:140011Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b14/ch0 Y2:333041Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b15/ch0 Y4:37462Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b16/ch0 Y4:421196Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b17/ch0 Y4:268757Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b18/ch0 Y2:557721Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b19/ch0 Y2:91732Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b20/ch0 Y2:655532Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b21/ch0 Y2:1157641Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x4)
+[veto] b21/ch52 Y4:2861Hz E=0.00 S=0.50 net=-0.50 -> CANDIDATE
+         - +0.20 baud comb in SCD plane
+         - +0.15 non-Gaussian tail vs matched noise
+         - +0.15 polarisation coherence
+         - +0.10 band 1347.7MHz [fixed/mobile/radiolocation (L lower)]
+         - -0.30 common-mode BUT ENGINEERED -> not from target (the target class)
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - -0.10 recurring x4 AND structured -> monument-like, NOT auto-blocked
+[veto] b22/ch0 Y2:550926Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b22/ch21 Y4:1231670Hz E=1.10 S=0.15 net=+0.95 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1438.5MHz [fixed/mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - +0.30 transient (absent over full span)
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x6)
+[veto] b22/ch52 Y2:358Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1347.7MHz [fixed/mobile/radiolocation (L lower)]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x4)
+[veto] b23/ch0 Y2:1109183Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x7)
+[veto] b24/ch0 Y4:568718Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b25/ch0 Y4:1036495Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x9)
+[veto] b26/ch0 Y4:1036584Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x10)
+[veto] b27/ch0 Y2:1170605Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x12)
+[veto] b28/ch0 Y4:1129568Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b29/ch0 Y2:1426041Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x5)
+[veto] b30/ch0 Y2:789285Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b31/ch0 Y2:208229Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b32/ch0 Y4:245959Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b32/ch16 Y4:376225Hz E=1.10 S=0.15 net=+0.95 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1453.1MHz [fixed/mobile/broadcasting]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - +0.30 transient (absent over full span)
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x3)
+[veto] b33/ch0 Y4:788391Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b33/ch15 Y4:501305Hz E=1.10 S=0.15 net=+0.95 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1456.1MHz [fixed/mobile/broadcasting]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - +0.30 transient (absent over full span)
+         - +0.10 VM noise-like
+[veto] b34/ch0 Y4:647575Hz E=0.60 S=0.15 net=+0.45 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x4)
+[veto] b35/ch0 Y4:256777Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b35/ch48 Y2:499159Hz E=1.10 S=0.15 net=+0.95 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1359.4MHz [fixed/mobile/radiolocation (L lower)]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - +0.30 transient (absent over full span)
+         - +0.10 VM noise-like
+[veto] b36/ch0 Y4:831485Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b37/ch0 Y4:27269Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b38/ch0 Y2:1022011Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x7)
+[veto] b39/ch0 Y2:74208Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b40/ch0 Y2:836134Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b41/ch0 Y2:354677Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b42/ch0 Y4:114441Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b43/ch0 Y4:1174539Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x13)
+[veto] b43/ch17 Y4:314713Hz E=1.10 S=0.15 net=+0.95 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1450.2MHz [fixed/mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - +0.30 transient (absent over full span)
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x3)
+[veto] b44/ch0 Y2:114709Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b45/ch0 Y2:1007795Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x5)
+[veto] b46/ch0 Y4:1033992Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x8)
+[veto] b47/ch0 Y2:1420051Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x5)
+[veto] b48/ch0 Y2:1325101Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x4)
+[veto] b49/ch0 Y4:1064390Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x6)
+[veto] b50/ch0 Y2:303984Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b51/ch0 Y2:765145Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x3)
+[veto] b52/ch0 Y4:377834Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b52/ch13 Y4:593394Hz E=1.10 S=0.15 net=+0.95 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1461.9MHz [fixed/mobile/broadcasting]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - +0.30 transient (absent over full span)
+         - +0.10 VM noise-like
+[veto] b53/ch0 Y4:527412Hz E=0.60 S=0.15 net=+0.45 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x4)
+[veto] b54/ch0 Y2:1423270Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x6)
+[veto] b55/ch0 Y4:471085Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b56/ch0 Y2:17256Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b57/ch0 Y2:587493Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b58/ch0 Y2:1392603Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x4)
+[veto] b59/ch0 Y2:1165867Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x14)
+[veto] b60/ch0 Y2:703096Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b61/ch0 Y4:1186162Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x8)
+[veto] b62/ch0 Y2:277340Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b63/ch0 Y2:988841Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b64/ch0 Y4:1375794Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x5)
+[veto] b64/ch6 Y2:1237929Hz E=1.10 S=0.15 net=+0.95 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1482.4MHz [fixed/mobile/broadcasting]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - +0.30 transient (absent over full span)
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x12)
+[veto] b65/ch0 Y2:249535Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b66/ch0 Y2:258476Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b67/ch0 Y4:989020Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x3)
+[veto] b67/ch50 Y4:1229346Hz E=1.10 S=0.15 net=+0.95 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1353.5MHz [fixed/mobile/radiolocation (L lower)]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - +0.30 transient (absent over full span)
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x7)
+[veto] b68/ch0 Y2:312388Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b69/ch0 Y2:252664Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b70/ch0 Y4:144929Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b71/ch0 Y4:889063Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b71/ch53 Y2:358Hz E=0.60 S=0.15 net=+0.45 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1344.7MHz [fixed/mobile/radiolocation (L lower)]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x5)
+[veto] b72/ch0 Y4:1295596Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x6)
+[veto] b73/ch0 Y2:262409Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b74/ch0 Y2:1257330Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x7)
+[veto] b75/ch0 Y4:615388Hz E=0.60 S=0.15 net=+0.45 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x5)
+[veto] b76/ch0 Y2:1015037Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x8)
+[veto] b77/ch0 Y2:199914Hz E=0.60 S=0.15 net=+0.45 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x4)
+[veto] b78/ch0 Y2:553876Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b78/ch8 Y2:1412809Hz E=1.10 S=0.15 net=+0.95 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1476.6MHz [fixed/mobile/broadcasting]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - +0.30 transient (absent over full span)
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x4)
+[veto] b79/ch0 Y4:526607Hz E=0.60 S=0.15 net=+0.45 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x5)
+[veto] b80/ch0 Y2:521332Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b81/ch0 Y2:508368Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b82/ch0 Y2:19222Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b83/ch0 Y2:765681Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b84/ch0 Y4:198752Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b84/ch36 Y2:1025409Hz E=0.60 S=0.15 net=+0.45 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1394.5MHz [fixed/mobile/radiolocation (L lower)]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x9)
+[veto] b85/ch0 Y2:1463324Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x10)
+[veto] b85/ch48 Y2:4917Hz E=1.10 S=0.15 net=+0.95 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1359.4MHz [fixed/mobile/radiolocation (L lower)]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - +0.30 transient (absent over full span)
+         - +0.10 VM noise-like
+[veto] b86/ch0 Y4:88066Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b87/ch0 Y2:627100Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x5)
+[veto] b88/ch0 Y4:200003Hz E=0.60 S=0.15 net=+0.45 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x5)
+[veto] b88/ch52 Y4:626Hz E=0.00 S=0.35 net=-0.35 -> CANDIDATE
+         - +0.20 baud comb in SCD plane
+         - +0.15 polarisation coherence
+         - +0.10 band 1347.7MHz [fixed/mobile/radiolocation (L lower)]
+         - -0.30 common-mode BUT ENGINEERED -> not from target (the target class)
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - -0.10 recurring x3 AND structured -> monument-like, NOT auto-blocked
+[veto] b89/ch0 Y4:173986Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b89/ch52 Y4:1431Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1347.7MHz [fixed/mobile/radiolocation (L lower)]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b90/ch0 Y4:635594Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b91/ch0 Y4:630945Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b92/ch0 Y4:397861Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b93/ch0 Y4:1147807Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x4)
+[veto] b94/ch0 Y2:368088Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b95/ch0 Y2:661790Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b96/ch0 Y4:929564Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b97/ch0 Y2:903368Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b98/ch0 Y2:832111Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b99/ch0 Y4:80377Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b100/ch0 Y2:1237035Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x13)
+[veto] b101/ch0 Y2:6706Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b101/ch2 Y2:837922Hz E=1.10 S=0.15 net=+0.95 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1494.1MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - +0.30 transient (absent over full span)
+         - +0.10 VM noise-like
+[veto] b102/ch0 Y2:181407Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b103/ch0 Y2:316143Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b104/ch0 Y4:440598Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b105/ch0 Y4:440240Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b106/ch0 Y4:1464844Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x11)
+[veto] b107/ch0 Y2:424147Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b108/ch0 Y4:177026Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b109/ch0 Y2:546366Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b110/ch0 Y4:587493Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x3)
+[veto] b111/ch0 Y4:463486Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b112/ch0 Y4:764698Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x4)
+[veto] b113/ch0 Y4:837475Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b114/ch0 Y4:1184642Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x3)
+[veto] b115/ch0 Y4:1243651Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x14)
+[veto] b116/ch0 Y2:290573Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x5)
+[veto] b117/ch0 Y2:25660Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b118/ch0 Y2:331163Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b119/ch0 Y4:1353443Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x4)
+[veto] b120/ch0 Y4:657678Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b121/ch0 Y4:615031Hz E=0.60 S=0.15 net=+0.45 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x6)
+[veto] b122/ch0 Y2:204831Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x3)
+[veto] b123/ch0 Y4:269204Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x3)
+[veto] b124/ch0 Y2:583470Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x3)
+[veto] b125/ch0 Y4:151187Hz E=0.60 S=0.15 net=+0.45 -> WATCH
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b126/ch0 Y2:1216024Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x9)
+[veto] b127/ch0 Y2:139654Hz E=0.85 S=0.15 net=+0.70 -> BLOCK:earth-likely
+         - +0.15 polarisation coherence
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x3)
+[veto] BLOCK=118 WATCH=27 CANDIDATE=2 skipped_nonflag=8045 | catalog=1387 classes | run_id=176f59c62a82
+$ C:\scoop\apps\python\current\python.exe python/rfi_veto.py --hits runs\beast_kepler\struct_on_p1.csv --raw data/blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw --evidence runs\beast_kepler\evidence.csv --on runs\beast_kepler\scan_on_p1.csv --off runs\beast_kepler\scan_off_p1.csv --target KEPLER160

@@ -1,0 +1,6 @@
+[mvp] fs=2929687.5 Hz (header TBIN), pol=1, 64 channels, blocks 0-1
+[mvp] layout probe: interleaved
+[mvp] block 0: done 64/128 ok=64 hits=7 quar=7 err=0 drop=0 6.5 sl/s ETA 0.2 min
+[mvp] block 1: done 128/128 ok=64 hits=15 quar=13 err=0 drop=0 6.7 sl/s ETA 0.0 min
+[mvp] DONE blocks 0-1 chans=64 pol=1: 128 slices (15 flagged, 13 quarantined, 0 errors, 0 dropped) in 0.3 min -> E:\SetiYeti\runs/beast_e2e\scan_off_p1.csv
+$ C:\scoop\apps\python\current\python.exe python/mvp_scan.py --raw data/blc04_guppi_57807_75805_DIAG_TRAPPIST1_OFF_0016.0000.PART1GB.raw --b0 0 --b1 1 --chans 0-63 --pol 1 --out E:\SetiYeti\runs/beast_e2e\scan_off_p1.csv --fam-trig 3.0 --spec-line 5.0 --spec-hump 2.5 --sparkle-max 25

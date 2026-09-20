@@ -1,0 +1,2 @@
+[evidence] 371 rows -> runs\beast_kepler\evidence.csv
+$ C:\scoop\apps\python\current\python.exe python/build_evidence.py --target KEPLER160 --out runs\beast_kepler\evidence.csv --persist-min 4 --scan runs\beast_kepler\struct_off_p0.csv --scan runs\beast_kepler\struct_off_p1.csv --scan runs\beast_kepler\struct_off_p2.csv --scan runs\beast_kepler\struct_off_p3.csv --scan runs\beast_kepler\struct_on_p0.csv --scan runs\beast_kepler\struct_on_p1.csv --scan runs\beast_kepler\struct_on_p2.csv --scan runs\beast_kepler\struct_on_p3.csv

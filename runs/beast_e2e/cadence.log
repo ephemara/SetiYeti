@@ -1,0 +1,3 @@
+[cadence] on_flags=26 off_flags=27 promote_eligible=0/26
+[cadence] wrote runs\beast_e2e\cadence.json
+$ C:\scoop\apps\python\current\python.exe python/cadence_pair.py --on runs\beast_e2e\scan_on_p0.csv --off runs\beast_e2e\scan_off_p0.csv --evidence runs\beast_e2e\evidence.csv --target E2E --out runs\beast_e2e\cadence.json

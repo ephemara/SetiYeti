@@ -1,0 +1,140 @@
+[veto] band geometry from blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw: 1407.715 MHz centre, -187.500 MHz, 64 chan
+[veto] cadence: ON=21 signatures, OFF=55
+[veto] b7/ch51 Y2:529915Hz E=1.10 S=0.00 net=+1.10 -> BLOCK:earth-likely
+         - +0.10 band 1350.6MHz [fixed/mobile/radiolocation (L lower)]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - +0.30 transient (absent over full span)
+         - +0.10 VM noise-like
+[veto] b15/ch6 Y4:1464844Hz E=1.10 S=0.00 net=+1.10 -> BLOCK:earth-likely
+         - +0.10 band 1482.4MHz [fixed/mobile/broadcasting]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - +0.30 transient (absent over full span)
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x9)
+[veto] b18/ch54 Y4:569791Hz E=1.10 S=0.00 net=+1.10 -> BLOCK:earth-likely
+         - +0.10 band 1341.8MHz [fixed/mobile/radiolocation (L lower)]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - +0.30 transient (absent over full span)
+         - +0.10 VM noise-like
+[veto] b21/ch52 Y4:2861Hz E=0.60 S=0.20 net=+0.40 -> BLOCK:earth-likely
+         - +0.20 baud comb in SCD plane
+         - +0.10 band 1347.7MHz [fixed/mobile/radiolocation (L lower)]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x3)
+[veto] b34/ch15 Y4:752896Hz E=1.10 S=0.00 net=+1.10 -> BLOCK:earth-likely
+         - +0.10 band 1456.1MHz [fixed/mobile/broadcasting]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - +0.30 transient (absent over full span)
+         - +0.10 VM noise-like
+[veto] b35/ch3 Y2:827283Hz E=1.10 S=0.00 net=+1.10 -> BLOCK:earth-likely
+         - +0.10 band 1491.2MHz [fixed/mobile/broadcasting]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - +0.30 transient (absent over full span)
+         - +0.10 VM noise-like
+[veto] b36/ch20 Y4:897735Hz E=1.10 S=0.00 net=+1.10 -> BLOCK:earth-likely
+         - +0.10 band 1441.4MHz [fixed/mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - +0.30 transient (absent over full span)
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x3)
+[veto] b46/ch35 Y4:1078069Hz E=0.60 S=0.00 net=+0.60 -> BLOCK:earth-likely
+         - +0.10 band 1397.5MHz [fixed/mobile/radiolocation (L lower)]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b50/ch36 Y4:490040Hz E=0.60 S=0.00 net=+0.60 -> BLOCK:earth-likely
+         - +0.10 band 1394.5MHz [fixed/mobile/radiolocation (L lower)]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b58/ch40 Y4:961840Hz E=1.10 S=0.00 net=+1.10 -> BLOCK:earth-likely
+         - +0.10 band 1382.8MHz [fixed/mobile/radiolocation (L lower)]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - +0.30 transient (absent over full span)
+         - +0.10 VM noise-like
+[veto] b69/ch1 Y4:1325905Hz E=1.10 S=0.00 net=+1.10 -> BLOCK:earth-likely
+         - +0.10 band 1497.1MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - +0.30 transient (absent over full span)
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x3)
+[veto] b71/ch53 Y4:358Hz E=0.60 S=0.00 net=+0.60 -> BLOCK:earth-likely
+         - +0.10 band 1344.7MHz [fixed/mobile/radiolocation (L lower)]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x3)
+[veto] b78/ch53 Y2:1337349Hz E=0.60 S=0.00 net=+0.60 -> BLOCK:earth-likely
+         - +0.10 band 1344.7MHz [fixed/mobile/radiolocation (L lower)]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x6)
+[veto] b85/ch2 Y2:443906Hz E=1.10 S=0.00 net=+1.10 -> BLOCK:earth-likely
+         - +0.10 band 1494.1MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - +0.30 transient (absent over full span)
+         - +0.10 VM noise-like
+[veto] b86/ch19 Y2:941545Hz E=1.10 S=0.00 net=+1.10 -> BLOCK:earth-likely
+         - +0.10 band 1444.3MHz [fixed/mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - +0.30 transient (absent over full span)
+         - +0.10 VM noise-like
+[veto] b88/ch52 Y4:626Hz E=0.85 S=0.20 net=+0.65 -> BLOCK:earth-likely
+         - +0.20 baud comb in SCD plane
+         - +0.10 band 1347.7MHz [fixed/mobile/radiolocation (L lower)]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.25 present in ON and OFF, unstructured -> local
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b89/ch27 Y2:27627Hz E=0.90 S=0.00 net=+0.90 -> BLOCK:earth-likely
+         - -0.10 band 1420.9MHz [RADIO ASTRONOMY (protected - quietest band)]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - +0.30 transient (absent over full span)
+         - +0.10 VM noise-like
+[veto] b89/ch52 Y4:1162Hz E=0.60 S=0.00 net=+0.60 -> BLOCK:earth-likely
+         - +0.10 band 1347.7MHz [fixed/mobile/radiolocation (L lower)]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b93/ch8 Y4:1368910Hz E=1.10 S=0.00 net=+1.10 -> BLOCK:earth-likely
+         - +0.10 band 1476.6MHz [fixed/mobile/broadcasting]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - +0.30 transient (absent over full span)
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x3)
+[veto] b93/ch43 Y2:943512Hz E=1.10 S=0.00 net=+1.10 -> BLOCK:earth-likely
+         - +0.10 band 1374.0MHz [fixed/mobile/radiolocation (L lower)]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - +0.30 transient (absent over full span)
+         - +0.10 VM noise-like
+         - HARD-BLOCK recurring known-local signature (seen x3)
+[veto] b121/ch40 Y2:251770Hz E=1.10 S=0.00 net=+1.10 -> BLOCK:earth-likely
+         - +0.10 band 1382.8MHz [fixed/mobile/radiolocation (L lower)]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - +0.30 transient (absent over full span)
+         - +0.10 VM noise-like
+[veto] BLOCK=21 WATCH=0 CANDIDATE=0 skipped_nonflag=8171 | catalog=1387 classes | run_id=a49bd9dd34a7
+$ C:\scoop\apps\python\current\python.exe python/rfi_veto.py --hits runs\beast_kepler\struct_on_p0.csv --raw data/blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw --evidence runs\beast_kepler\evidence.csv --on runs\beast_kepler\scan_on_p0.csv --off runs\beast_kepler\scan_off_p0.csv --target KEPLER160

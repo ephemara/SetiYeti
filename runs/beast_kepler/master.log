@@ -1,0 +1,20 @@
+[20:25:54] === scans (all pols) ===
+[20:48:23] scan ('on', 0): rc=0
+[20:48:29] scan ('on', 1): rc=0
+[20:48:48] scan ('on', 2): rc=0
+[20:48:50] scan ('on', 3): rc=0
+[21:08:21] === scans (all pols) ===
+[21:08:21] scan on p0: cached, skip
+[21:08:21] scan on p1: cached, skip
+[21:08:21] scan on p2: cached, skip
+[21:08:21] scan on p3: cached, skip
+[21:08:57] scan ('off', 0): rc=0
+[21:09:11] scan ('off', 1): rc=0
+[21:09:47] scan ('off', 2): rc=0
+[21:09:48] scan ('off', 3): rc=0
+[21:09:48] === structure → evidence → veto (with evidence, all pols) ===
+[21:10:22] === burst zoom + fold/DM/frame deep pass ===
+[21:10:23] burst zoom: 6 spiky slices classified
+[21:10:30] deep pass: fold+DM on 10 candidates
+[21:10:30] === cadence gate + catalog audit + report ===
+[21:10:31] REPORT.md written

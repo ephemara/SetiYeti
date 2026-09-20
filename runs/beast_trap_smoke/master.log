@@ -1,0 +1,15 @@
+[20:39:27] === scans (all pols) ===
+[20:41:08] scan ('on', 1): rc=0
+[20:41:09] scan ('on', 0): rc=0
+[20:42:51] scan ('on', 3): rc=0
+[20:42:51] scan ('on', 2): rc=0
+[20:44:35] scan ('off', 0): rc=0
+[20:44:36] scan ('off', 1): rc=0
+[20:46:20] scan ('off', 2): rc=0
+[20:46:21] scan ('off', 3): rc=0
+[20:46:21] PHASE structure+evidence+veto FAILED: UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 25: character maps to <undefined>
+[20:46:21] === burst zoom + fold/DM/frame deep pass ===
+[20:46:33] burst zoom: 32 spiky slices classified
+[20:46:47] deep pass: fold+DM on 10 candidates
+[20:46:47] === cadence gate + catalog audit + report ===
+[20:46:47] REPORT.md written

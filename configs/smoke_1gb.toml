@@ -1,0 +1,26 @@
+# configs/smoke_1gb.toml — sip-before-gulp smoke preset.
+#
+# STANDING RULE (bought with the Kepler long-haul): no code change and no new
+# target earns a 5-hour scan until the full chain proves itself on <=1 GB
+# slices (~7 blocks). Same gates as the science preset — a smoke test that
+# uses easier thresholds proves nothing. Only the workload shrinks:
+# blocks, workers, SCD top-k.
+fam_trig = 3.0      # identical to kepler_L: same floor under test
+spec_line = 5.0
+spec_hump = 2.5
+sparkle_max = 25
+seg = 32768
+topk = 10           # fewer SCD follow-ups: small file, fewer flags expected
+comb_min_members = 3
+comb_min_score = 6.0
+frame_sigma = 40.0
+fold_fmin = 1.0
+fold_fmax = 2000.0
+fold_sigma = 16.0
+pulse_sigma = 14.0
+persist_min = 4
+multichan_min = 3
+workers = 2         # light footprint: smokes run alongside long-hauls
+pol_list = [0, 1, 2, 3]
+blocks = "0-7"
+line_exclude = [0]

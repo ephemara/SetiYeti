@@ -30,7 +30,7 @@ PY = sys.executable
 
 
 def sh(cmd, logp, timeout=7200, cwd=None):
-    with open(logp, 'w') as lf:
+    with open(logp, 'w', encoding='utf-8', errors='replace') as lf:
         lf.write('$ ' + ' '.join(cmd) + '\n')
         try:
             r = subprocess.run(cmd, stdout=lf, stderr=subprocess.STDOUT,
@@ -63,7 +63,8 @@ class Beast:
         os.makedirs(self.out, exist_ok=True)
         self.tmp = os.path.join(self.root, 'data', 'beast_tmp')
         os.makedirs(self.tmp, exist_ok=True)
-        self.logf = open(os.path.join(self.out, 'master.log'), 'a')
+        self.logf = open(os.path.join(self.out, 'master.log'), 'a',
+                         encoding='utf-8', errors='replace')
         self.t0 = time.time()
 
     def log(self, m):
@@ -226,13 +227,15 @@ class Beast:
             if os.path.exists(lp):
                 tail = [l for l in open(lp, errors='replace').read().splitlines() if 'BLOCK=' in l]
                 lines.append(f'- p{p}: ' + (tail[-1] if tail else 'no summary'))
-        open(os.path.join(self.out, 'REPORT.md'), 'w').write('\n'.join(lines) + '\n')
+        open(os.path.join(self.out, 'REPORT.md'), 'w',
+             encoding='utf-8').write('\n'.join(lines) + '\n')
         SC.write_manifest(os.path.join(self.out, 'REPORT.md'),
                           {'tool': 'pipeline.py', 'preset': self.cfg.get('preset'),
                            'target': self.a.target, 'config': self.cfg})
         self.log('REPORT.md written')
 
     def go(self):
+        self.failed = []
         for name, fn in [('scans', self.phase_scans),
                          ('structure+evidence+veto', self.phase_structure_evidence_veto),
                          ('burst+deep', self.phase_burst_deep),
@@ -240,7 +243,13 @@ class Beast:
             try:
                 fn()
             except Exception as e:
-                self.log(f'PHASE {name} FAILED: {type(e).__name__}: {e}')
+                # LOUD: a swallowed phase failure produced an empty veto
+                # section in a report that still claimed success.
+                self.failed.append(f'{name}: {type(e).__name__}: {e}')
+                self.log(f'*** PHASE {name} FAILED: {type(e).__name__}: {e} ***')
+        if self.failed:
+            self.log('*** RUN INCOMPLETE - failed phases: '
+                     + ' | '.join(self.failed) + ' ***')
 
 
 def main():

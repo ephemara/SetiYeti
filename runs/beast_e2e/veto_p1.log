@@ -1,0 +1,4 @@
+[veto] band geometry from blc04_guppi_57807_75725_DIAG_TRAPPIST1_0015.0000.PART1GB.raw: 1407.715 MHz centre, -187.500 MHz, 64 chan
+[veto] cadence: ON=0 signatures, OFF=5
+[veto] BLOCK=0 WATCH=0 CANDIDATE=0 skipped_nonflag=128 | catalog=1462 classes | run_id=2970cd8f4914
+$ C:\scoop\apps\python\current\python.exe python/rfi_veto.py --hits runs\beast_e2e\struct_on_p1.csv --raw data/blc04_guppi_57807_75725_DIAG_TRAPPIST1_0015.0000.PART1GB.raw --evidence runs\beast_e2e\evidence.csv --on runs\beast_e2e\scan_on_p1.csv --off runs\beast_e2e\scan_off_p1.csv --target E2E

@@ -1,0 +1,2 @@
+[structure] 32 slices via comb_scan(C): comb=0 nongauss=0 frame_chans=0 -> runs\beast_kepler\struct_off_p1.csv
+$ C:\scoop\apps\python\current\python.exe python/structure_pass.py --scan runs\beast_kepler\scan_off_p1.csv --raw data/blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw --out runs\beast_kepler\struct_off_p1.csv

@@ -1,0 +1,16 @@
+[veto] band geometry from blc04_guppi_57807_75725_DIAG_TRAPPIST1_0015.0000.PART1GB.raw: 1407.715 MHz centre, -187.500 MHz, 64 chan
+[veto] cadence: ON=2 signatures, OFF=9
+[veto] b0/ch0 Y2:460356Hz E=0.60 S=0.00 net=+0.60 -> BLOCK:earth-likely
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] b1/ch0 Y2:128835Hz E=0.60 S=0.00 net=+0.60 -> BLOCK:earth-likely
+         - +0.10 band 1500.0MHz [mobile]
+         - +0.60 common-mode, unstructured -> backend/local
+         - +0.00 ON-only (classic celestial geometry)
+         - -0.20 persistent across span
+         - +0.10 VM noise-like
+[veto] BLOCK=2 WATCH=0 CANDIDATE=0 skipped_nonflag=126 | catalog=1468 classes | run_id=c591d2071199
+$ C:\scoop\apps\python\current\python.exe python/rfi_veto.py --hits runs\beast_e2e\struct_on_p3.csv --raw data/blc04_guppi_57807_75725_DIAG_TRAPPIST1_0015.0000.PART1GB.raw --evidence runs\beast_e2e\evidence.csv --on runs\beast_e2e\scan_on_p3.csv --off runs\beast_e2e\scan_off_p3.csv --target E2E
