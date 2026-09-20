@@ -1,0 +1,6 @@
+block,chan,pol,spec_ratio,spec_bin,fam_best,fam_hz,fam_tag,vm_sign,vm_diff,spikes,rms,verdict
+20,4,0,0,-1,0,0,-,,,68,18.441,QUARANTINE:sparkle n=68
+20,12,0,0,-1,0,0,-,,,95,18.064,QUARANTINE:sparkle n=95
+20,20,0,0,-1,0,0,-,,,87,16.047,QUARANTINE:sparkle n=87
+20,44,0,0,-1,0,0,-,,,229,14.056,QUARANTINE:sparkle n=229
+20,60,0,0,-1,0,0,-,,,333,4.462,QUARANTINE:sparkle n=333

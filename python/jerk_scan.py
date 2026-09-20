@@ -65,7 +65,22 @@ def fit_motion(fbins, nfft, hop, fs):
             'quad_res': r2, 'lin_res': r1,
             'curve_gain_db': 10*np.log10(max(r1,1e-9)/max(r2,1e-9))}
 
-def scan(x, nfft=32768, hop=16384, k=2, fs=FS, thresh=0.0, tag=''):
+def sidereal_check(mo, freq_mhz=1407.7):
+    """M5 Doppler-anomaly screen: is the fitted drift consistent with an
+    Earth-bound transmitter? Max rotational Doppler rate ~ w^2*R*f/c:
+    (7.27e-5)^2 * 6.4e6 * f / 3e8 ~= 0.16 Hz/s at L-band; bound 0.35 Hz/s
+    scaled by frequency leaves margin for orbital + telescope motion.
+    A transmitter OFF Earth (third-party link endpoints, orbiters) can sit
+    far outside this. Screening only - attribution stays with the veto."""
+    bound = 0.35 * (freq_mhz / 1407.7)
+    v = mo['drift_hz_s']
+    if abs(v) <= bound:
+        return 'OK'
+    return f'ANOMALOUS(|v|={v:+.1f}>bound {bound:.2f})'
+
+
+def scan(x, nfft=32768, hop=16384, k=2, fs=FS, thresh=0.0, tag='',
+         freq_mhz=1407.7):
     t0 = time.time()
     P = stft_power(x, nfft, hop)
     Z = robust_z(P)
@@ -73,11 +88,13 @@ def scan(x, nfft=32768, hop=16384, k=2, fs=FS, thresh=0.0, tag=''):
     f, score = viterbi(Z, k)
     mo = fit_motion(f, nfft, hop, fs)
     dt = time.time()-t0
+    sid = sidereal_check(mo, freq_mhz)
     verdict = 'CANDIDATE-track' if (thresh and score >= thresh) else ('clean' if thresh else 'scored')
     print(f'[{tag}] rows={Z.shape[0]} bins={Z.shape[1]} rowmax_z={rowmax:.2f} '
           f'track_score={score:.3f} v={mo["drift_hz_s"]:+.1f}Hz/s a={mo["jerk_hz_s2"]:+.2f}Hz/s^2 '
-          f'curve_gain={mo["curve_gain_db"]:.1f}dB t={dt:.1f}s -> {verdict}', flush=True)
-    return {'score': score, 'motion': mo, 'rowmax': rowmax, 'path': f}
+          f'curve_gain={mo["curve_gain_db"]:.1f}dB sidereal={sid} t={dt:.1f}s -> {verdict}', flush=True)
+    return {'score': score, 'motion': mo, 'rowmax': rowmax, 'path': f,
+            'sidereal': sid}
 
 def synth_chirp(N, fs, f0, v, a, A, rng):
     t = np.arange(N)/fs
@@ -92,26 +109,26 @@ def quantize(x):
     q[x >= 1.667] = 3.3359
     return q.astype(np.float32)
 
-def prove():
+def prove(fs=FS, save_thresh=None):
     rng = np.random.default_rng(11)
     N = 16*1024*1024  # ~5.7 s
     nfft, hop = 32768, 16384
     A = 0.05  # per-row sub-noise; tune once from output
     print(f'[prove] N={N} A={A} (~{20*np.log10(A/np.sqrt(2)/2.07):.0f}dB total)')
     xn = quantize(rng.normal(0, 2.07, N).astype(np.float32))
-    n = scan(xn, nfft, hop, fs=FS, tag='noise-only')
+    n = scan(xn, nfft, hop, fs=fs, tag='noise-only')
     # extra noise realizations: threshold must clear the max, not one draw
     nmax = n['score']
     for s in range(2):
         xn2 = quantize(rng.normal(0, 2.07, N).astype(np.float32))
-        r2 = scan(xn2, nfft, hop, fs=FS, tag=f'noise-cal{s}')
+        r2 = scan(xn2, nfft, hop, fs=fs, tag=f'noise-cal{s}')
         nmax = max(nmax, r2['score'])
     xl = quantize(rng.normal(0, 2.07, N).astype(np.float32)
-                  + synth_chirp(N, FS, 500e3, 40.0, 0.0, A, rng))
-    L = scan(xl, nfft, hop, fs=FS, tag='linear 40Hz/s')
+                  + synth_chirp(N, fs, 500e3, 40.0, 0.0, A, rng))
+    L = scan(xl, nfft, hop, fs=fs, tag='linear 40Hz/s')
     xp = quantize(rng.normal(0, 2.07, N).astype(np.float32)
-                  + synth_chirp(N, FS, 700e3, 10.0, 18.0, A, rng))
-    P = scan(xp, nfft, hop, fs=FS, tag='parabolic a=18')
+                  + synth_chirp(N, fs, 700e3, 10.0, 18.0, A, rng))
+    P = scan(xp, nfft, hop, fs=fs, tag='parabolic a=18')
     th = nmax*1.25
     print(f'[prove] noise_max={nmax:.3f} thresh={th:.3f} | '
           f'linear={L["score"]:.3f} (v_fit={L["motion"]["drift_hz_s"]:+.1f}) | '
@@ -120,6 +137,13 @@ def prove():
         and abs(P['motion']['jerk_hz_s2']-18) < 12
     print('[prove] ' + ('PASS: sub-row-noise drift+parabola recovered, params agree'
                         if ok else 'TUNE: adjust A/thresh'))
+    if save_thresh:
+        try:
+            with open(save_thresh, 'w') as f:
+                f.write(f'{th:.4f}\n')
+            print(f'[prove] threshold {th:.4f} saved -> {save_thresh}')
+        except OSError as e:
+            print(f'[prove] WARNING: could not save threshold ({e})')
     return th
 
 def main():
@@ -130,14 +154,32 @@ def main():
     ap.add_argument('--hop', type=int, default=16384)
     ap.add_argument('--k', type=int, default=2)
     ap.add_argument('--thresh', type=float, default=0.0)
+    ap.add_argument('--load-thresh', default='',
+                    help='file holding a prove threshold (written by --save-thresh); '
+                         'beats the default 0.0 only when --thresh is unset')
+    ap.add_argument('--save-thresh', default='',
+                    help='prove mode: persist the calibrated threshold here')
+    ap.add_argument('--fs', type=float, default=None,
+                    help='sample rate Hz (default: 2929687.5)')
+    ap.add_argument('--freq-mhz', type=float, default=1407.7,
+                    help='channel sky frequency for the sidereal-drift screen')
     ap.add_argument('--root', default=os.getcwd())
     a = ap.parse_args()
+    fs = a.fs if a.fs else FS
+    thresh = a.thresh
+    if not thresh and a.load_thresh:
+        try:
+            thresh = float(open(a.load_thresh).read().strip().split()[0])
+            print(f'[thresh] loaded {thresh:.4f} from {a.load_thresh}')
+        except (OSError, ValueError) as e:
+            print(f'[thresh] WARNING: {e}; running unscored')
     if a.prove:
-        prove()
+        prove(fs=fs, save_thresh=a.save_thresh or None)
     else:
         x = np.fromfile(a.f32, dtype=np.float32)
-        print(f'[in] n={len(x)} ({len(x)/FS:.2f}s)', flush=True)
-        scan(x, a.nfft, a.hop, a.k, FS, a.thresh, tag=os.path.basename(a.f32))
+        print(f'[in] n={len(x)} ({len(x)/fs:.2f}s)', flush=True)
+        scan(x, a.nfft, a.hop, a.k, fs, thresh, tag=os.path.basename(a.f32),
+             freq_mhz=a.freq_mhz)
 
 if __name__ == '__main__':
     main()

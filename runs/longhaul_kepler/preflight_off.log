@@ -1,0 +1,12 @@
+(layout probe: ac1=0.0017 ac4=0.0662 -> interleaved)
+(layout: chan-major, pol-interleaved [chan][time][pol])
+(8-bit range -70..70)
+blocks=1 samples=524288 chan=32 pol=0
+mean=-0.2067 rms=14.3998 hist00=524288 hist01=0 hist10=0 hist11=0
+Rxx lag 1      norm=0.06636
+Rxx lag 7      norm=0.00122
+Rxx lag 64     norm=-0.00022
+Rxx lag 256    norm=0.00201
+Rxx lag 1024   norm=0.00540
+Rxx lag 4096   norm=0.00098
+Rxx lag 16384  norm=0.00071

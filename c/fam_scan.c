@@ -2,14 +2,25 @@
 // Finds hidden baud/periodicities under noise: Y2=x^2 (BPSK/DSSS chip rate, 2x carrier),
 // Y4=(x^2-m)^2 (QPSK energy). Peaks in |FFT(Y)| = cyclic frequencies alpha.
 // This is the f=0 slice of S_x^alpha(f): cheap, robust, no carrier knowledge needed.
-// Usage: fam_scan <in.f32> [fs_Hz=2929687.5] [seg=131072] [topK=15]
+// Usage: fam_scan <in.f32> [fs_Hz=2929687.5] [seg=131072] [topK=15] [candpath]
+//   candpath: where to write ratio>3.0 candidates (default alpha_candidates.txt,
+//             "-" disables - batch scanners pass "-"; the old unconditional CWD
+//             rewrite raced under parallel scans and measured 0 bytes anyway).
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
 #include <math.h>
+#include "vendor/sy_fft.h"   /* BEAST: cached-twiddle FFT core */
+#include "vendor/sy_stats.h" /* BEAST: quickselect median */
 
+/* fft_mag2 now routes through the vendored core (same math, no per-butterfly
+   trig). Local median helper kept for the accumulation floor. */
 static void fft_mag2(double* re, double* im, int n, double* out_pwr) {
+    sy_fft_mag2(re, im, n, out_pwr);
+}
+
+static void fft_mag2_old(double* re, double* im, int n, double* out_pwr) {
     for (int i=1,j=0;i<n;i++){
         int bit=n>>1;
         for(;j&bit;bit>>=1) j&=~bit;
@@ -36,7 +47,7 @@ static void fft_mag2(double* re, double* im, int n, double* out_pwr) {
 }
 
 static int cmp_d(const void*a,const void*b){double x=*(double*)a,y=*(double*)b;return(x<y?-1:x>y?1:0);}
-static double median(double*v,int n){double*t=malloc(n*sizeof(double));memcpy(t,v,n*sizeof(double));qsort(t,n,8,cmp_d);double m=t[n/2];free(t);return m;}
+static double median(double*v,int n){ return sy_median(v,n); }
 
 static void scan_feature(float* x, int nx, double fs, int SEG, int topK, const char* tag, FILE* cand) {
     double* re=malloc(SEG*sizeof(double));
@@ -81,7 +92,7 @@ static void scan_feature(float* x, int nx, double fs, int SEG, int topK, const c
 }
 
 int main(int argc,char**argv){
-    if(argc<2){fprintf(stderr,"usage: %s <in.f32> [fs] [seg] [topK]\n",argv[0]);return 2;}
+    if(argc<2){fprintf(stderr,"usage: %s <in.f32> [fs] [seg] [topK] [candpath|-]\n",argv[0]);return 2;}
     double fs=argc>2?atof(argv[2]):2929687.5;
     int SEG=argc>3?atoi(argv[3]):32768;
     int topK=argc>4?atoi(argv[4]):15;
@@ -90,11 +101,13 @@ int main(int argc,char**argv){
     int nx=nb/4;
     float* x=malloc(nb); fread(x,1,nb,f); fclose(f);
     printf("samples=%d fs=%.1f seg=%d\n",nx,fs,SEG);
-    FILE*cand=fopen("alpha_candidates.txt","w");
+    const char* candpath=argc>5?argv[5]:"alpha_candidates.txt";
+    FILE*cand=NULL;
+    if(strcmp(candpath,"-")!=0) cand=fopen(candpath,"w");
     scan_feature(x,nx,fs,SEG,topK,"Y2",cand);
     scan_feature(x,nx,fs,SEG,topK,"Y4",cand);
     if(cand) fclose(cand);
-    printf("[cand] alpha_candidates.txt written (ratio>3.0)\n");
+    if(cand) printf("[cand] %s written (ratio>3.0)\n",candpath);
     free(x);
     return 0;
 }

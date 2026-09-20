@@ -1,0 +1,449 @@
+block,chan,pol,spec_ratio,spec_bin,fam_best,fam_hz,fam_tag,vm_sign,vm_diff,verdict
+0,0,0,5.37,1,2.52,315249,Y4,0.24/noise-like,0.00/noise-like,SPECTRAL-LINE
+0,1,0,1.47,845,2.22,745207,Y2,,,clean
+0,2,0,1.42,1,171.98,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,3,0,1.48,1,77.85,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,4,0,1.53,1,55.39,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,5,0,1.73,1,93.91,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,6,0,1.38,1760,146.75,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,7,0,1.49,1,169.62,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,8,0,1.73,1,148.63,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,9,0,1.55,1,171.00,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,10,0,1.79,1,175.58,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,11,0,1.38,1,188.07,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,12,0,1.38,664,2.36,130713,Y2,,,clean
+0,13,0,1.60,1,2.45,651419,Y2,,,clean
+0,14,0,1.73,1,236.20,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,15,0,1.76,1,230.13,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,16,0,1.29,1,2.46,177473,Y2,,,clean
+0,17,0,1.64,1,2.50,463039,Y4,,,clean
+0,18,0,1.56,247,2.52,595540,Y4,,,clean
+0,19,0,1.69,1,2.30,1120448,Y2,,,clean
+0,20,0,1.70,1,131.83,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,21,0,1.63,1,77.92,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,22,0,1.44,1,83.05,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,23,0,1.69,1,157.76,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,24,0,1.64,1,2.66,137866,Y2,,,clean
+0,25,0,1.47,1,2.31,1443923,Y2,,,clean
+0,26,0,1.80,1,197.16,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,27,0,1.58,1,160.70,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,28,0,1.92,1,184.58,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,29,0,1.46,1,2.42,487626,Y4,,,clean
+0,30,0,1.76,1,2.48,1039624,Y2,,,clean
+0,31,0,1.45,1,2.25,1003057,Y4,,,clean
+0,32,0,3.06,1,2.28,622630,Y2,0.24/noise-like,0.00/noise-like,hump-note
+0,33,0,1.82,1,2.41,258833,Y2,,,clean
+0,34,0,1.65,1,215.39,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,35,0,1.72,1,2.30,947803,Y4,,,clean
+0,36,0,1.65,1,2.42,151902,Y4,,,clean
+0,37,0,1.92,1,2.41,542343,Y2,,,clean
+0,38,0,1.69,1,2.81,36567,Y4,,,clean
+0,39,0,2.02,1,188.65,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,40,0,2.11,1,65.72,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,41,0,1.72,1,70.25,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,42,0,1.85,1,139.89,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,43,0,1.86,1,213.79,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,44,0,1.68,1,2.63,468940,Y2,,,clean
+0,45,0,1.77,1,2.37,370860,Y2,,,clean
+0,46,0,1.93,1,153.93,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,47,0,1.97,1,133.70,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,48,0,2.52,1,2.40,1224250,Y4,0.00/noise-like,0.24/noise-like,hump-note
+0,49,0,1.80,1,2.36,754237,Y2,,,clean
+0,50,0,1.89,1,2.38,138491,Y4,,,clean
+0,51,0,2.64,1,169.92,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,52,0,2.54,1,80.07,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,53,0,2.98,1,53.84,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,54,0,2.84,1,36.99,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,55,0,2.69,1,14.23,179,Y4,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,56,0,3.30,1,3.09,732422,Y2,0.42/WATCH,0.42/WATCH,FAM-HIT
+0,57,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=60 distinct=59
+0,58,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=48 distinct=47
+0,59,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=38 distinct=38
+0,60,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=37 distinct=35
+0,61,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=29 distinct=30
+0,62,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=23 distinct=24
+0,63,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=20 distinct=21
+1,0,0,5.11,1,2.36,1013249,Y2,0.00/noise-like,0.00/noise-like,SPECTRAL-LINE
+1,1,0,1.49,1,2.76,527501,Y2,,,clean
+1,2,0,1.41,231,171.57,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+1,3,0,1.45,1,76.39,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+1,4,0,1.35,1784,58.71,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+1,5,0,1.38,68,92.43,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+1,6,0,1.77,1,142.89,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+1,7,0,1.50,1,164.99,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+1,8,0,1.45,1,157.36,732422,Y2,0.24/noise-like,0.24/noise-like,FAM-HIT
+1,9,0,1.45,1977,172.01,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+1,10,0,1.43,1,175.84,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+1,11,0,1.45,1,195.98,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+1,12,0,1.50,1,2.41,762641,Y4,,,clean
+1,13,0,1.49,1,2.21,232548,Y2,,,clean
+1,14,0,1.43,1,236.40,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+1,15,0,1.90,1,227.21,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+1,16,0,1.41,1,2.33,813961,Y2,,,clean
+1,17,0,1.43,1,2.42,1261443,Y2,,,clean
+1,18,0,1.55,367,2.58,207782,Y2,,,clean
+1,19,0,1.61,1,229.23,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+1,20,0,1.90,1,139.43,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+1,21,0,1.49,1,76.23,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+1,22,0,1.61,1,84.58,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+1,23,0,1.80,1,151.91,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+1,24,0,1.38,1,2.27,93162,Y4,,,clean
+1,25,0,1.69,1,2.38,69112,Y2,,,clean
+1,26,0,1.63,1,199.55,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+1,27,0,1.66,859,171.19,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+1,28,0,1.78,1,184.60,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+1,29,0,1.53,1,231.62,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+1,30,0,1.41,1,2.41,667155,Y4,,,clean
+1,31,0,1.51,1,2.33,892729,Y2,,,clean
+1,32,0,3.08,1,2.48,35852,Y4,0.00/noise-like,0.24/noise-like,hump-note
+1,33,0,1.71,1,2.37,1353443,Y4,,,clean
+1,34,0,2.01,1,213.73,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+1,35,0,1.91,1,2.43,334561,Y2,,,clean
+1,36,0,1.75,1,2.33,1009315,Y4,,,clean
+1,37,0,1.83,1,2.28,121415,Y4,,,clean
+1,38,0,1.73,1,2.48,54896,Y2,,,clean
+1,39,0,1.94,1,185.90,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+1,40,0,1.88,1,66.23,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+1,41,0,2.16,1,70.74,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+1,42,0,1.77,1,135.89,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+1,43,0,2.11,1,227.92,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+1,44,0,1.96,1,263.53,732422,Y2,0.24/noise-like,0.24/noise-like,FAM-HIT
+1,45,0,2.44,1,242.90,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+1,46,0,2.07,1,155.00,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+1,47,0,1.90,1,129.64,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+1,48,0,2.67,1,201.06,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+1,49,0,1.88,1,2.34,660807,Y2,,,clean
+1,50,0,1.89,1,2.32,521421,Y4,,,clean
+1,51,0,2.36,1,179.36,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+1,52,0,2.31,1,82.81,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+1,53,0,2.51,1,55.15,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+1,54,0,2.54,1,37.14,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+1,55,0,2.97,1,18.33,179,Y4,0.00/noise-like,0.00/noise-like,FAM-HIT
+1,56,0,2.92,1,3.76,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+1,57,0,3.88,1,86.10,179,Y4,0.00/noise-like,0.24/noise-like,FAM-HIT
+1,58,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=47 distinct=47
+1,59,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=53 distinct=49
+1,60,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=32 distinct=33
+1,61,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=27 distinct=28
+1,62,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=25 distinct=26
+1,63,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=20 distinct=20
+2,0,0,4.54,1,2.42,834703,Y4,0.24/noise-like,0.00/noise-like,hump-note
+2,1,0,1.40,1,2.41,1041502,Y2,,,clean
+2,2,0,1.44,1,173.34,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+2,3,0,1.39,355,75.25,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+2,4,0,1.49,1,53.53,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+2,5,0,1.58,1,100.92,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+2,6,0,1.52,1,146.88,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+2,7,0,1.49,1,168.13,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+2,8,0,1.36,1328,153.40,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+2,9,0,1.75,1,174.89,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+2,10,0,1.70,1,177.76,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+2,11,0,1.47,1,190.84,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+2,12,0,1.48,1,2.70,798494,Y4,,,clean
+2,13,0,1.39,1,2.43,1329213,Y4,,,clean
+2,14,0,1.38,1,248.54,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+2,15,0,1.58,1,2.49,1135200,Y2,,,clean
+2,16,0,1.35,1304,2.40,876456,Y2,,,clean
+2,17,0,1.71,1,2.36,314534,Y2,,,clean
+2,18,0,1.72,371,2.44,239432,Y2,,,clean
+2,19,0,1.85,1,232.52,732422,Y2,0.24/noise-like,0.24/noise-like,FAM-HIT
+2,20,0,1.39,1270,145.99,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+2,21,0,1.68,1,80.00,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+2,22,0,1.57,1,88.96,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+2,23,0,1.84,1,172.16,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+2,24,0,1.56,1,2.49,1238823,Y4,,,clean
+2,25,0,1.66,1,2.54,1432389,Y4,,,clean
+2,26,0,1.92,1,184.98,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+2,27,0,1.79,1,177.52,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+2,28,0,1.65,1,186.34,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+2,29,0,1.68,1,2.42,214934,Y2,,,clean
+2,30,0,1.38,1,2.25,646770,Y4,,,clean
+2,31,0,1.89,1,2.52,764966,Y4,,,clean
+2,32,0,3.34,1,2.33,162274,Y4,0.00/noise-like,0.00/noise-like,hump-note
+2,33,0,1.84,1,261.03,732422,Y2,0.24/noise-like,0.24/noise-like,FAM-HIT
+2,34,0,1.82,1,212.66,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+2,35,0,1.80,1,2.41,992149,Y2,,,clean
+2,36,0,1.79,1,2.33,1334935,Y4,,,clean
+2,37,0,1.70,1,2.25,1250446,Y2,,,clean
+2,38,0,1.75,1,2.44,230044,Y4,,,clean
+2,39,0,1.87,1,202.87,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+2,40,0,2.12,1,67.40,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+2,41,0,2.10,1,65.05,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+2,42,0,1.93,1,143.40,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+2,43,0,1.90,1,228.53,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+2,44,0,1.97,1,258.42,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+2,45,0,2.17,1,232.95,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+2,46,0,2.02,1,160.68,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+2,47,0,2.17,1,130.39,732422,Y2,0.24/noise-like,0.24/noise-like,FAM-HIT
+2,48,0,2.69,1,212.78,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+2,49,0,1.71,1,2.35,895143,Y4,,,clean
+2,50,0,1.69,1,2.50,805020,Y2,,,clean
+2,51,0,2.42,1,180.50,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+2,52,0,2.58,1,69.27,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+2,53,0,2.36,1,57.97,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+2,54,0,2.65,1,36.74,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+2,55,0,3.00,1,14.44,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+2,56,0,2.87,1,4.63,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+2,57,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=58 distinct=58
+2,58,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=55 distinct=49
+2,59,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=39 distinct=40
+2,60,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=35 distinct=35
+2,61,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=29 distinct=30
+2,62,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=25 distinct=25
+2,63,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=19 distinct=20
+3,0,0,4.78,1,2.38,433981,Y4,0.24/noise-like,0.24/noise-like,hump-note
+3,1,0,1.40,1,2.22,906676,Y4,,,clean
+3,2,0,1.42,1,165.28,732422,Y2,0.42/WATCH,0.00/noise-like,FAM-HIT
+3,3,0,1.36,1216,75.03,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+3,4,0,1.42,1,53.17,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+3,5,0,1.42,1,94.51,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+3,6,0,1.37,1,136.95,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+3,7,0,1.61,1,159.25,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+3,8,0,1.44,1,150.10,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+3,9,0,1.66,1,159.05,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+3,10,0,1.68,1,172.66,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+3,11,0,1.53,1,181.14,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+3,12,0,1.58,1,241.03,732422,Y2,0.42/WATCH,0.00/noise-like,FAM-HIT
+3,13,0,1.72,1,2.59,491470,Y2,,,clean
+3,14,0,1.56,1,236.80,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+3,15,0,1.71,1,2.22,1208872,Y2,,,clean
+3,16,0,1.55,1,2.49,157267,Y2,,,clean
+3,17,0,1.61,1,2.51,838101,Y2,,,clean
+3,18,0,1.67,1,2.40,587136,Y2,,,clean
+3,19,0,1.50,1,2.23,1414955,Y4,,,clean
+3,20,0,1.51,1,140.35,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+3,21,0,1.46,1,73.02,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+3,22,0,1.54,1,78.67,732422,Y2,0.24/noise-like,0.24/noise-like,FAM-HIT
+3,23,0,1.60,1,150.16,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+3,24,0,1.47,1,276.97,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+3,25,0,1.43,1,2.34,193745,Y2,,,clean
+3,26,0,1.92,1,198.42,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+3,27,0,1.88,858,166.34,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+3,28,0,1.84,1,179.97,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+3,29,0,1.76,1,237.85,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+3,30,0,1.55,1,2.55,885397,Y4,,,clean
+3,31,0,1.56,1,2.45,1289606,Y2,,,clean
+3,32,0,3.07,1,2.37,1048028,Y2,0.00/noise-like,0.00/noise-like,hump-note
+3,33,0,1.52,1,2.26,850439,Y4,,,clean
+3,34,0,2.09,1,193.75,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+3,35,0,1.95,1,256.93,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+3,36,0,1.71,1,2.36,21994,Y2,,,clean
+3,37,0,1.62,1,2.37,140458,Y2,,,clean
+3,38,0,1.60,1,2.38,13679,Y2,,,clean
+3,39,0,2.07,1,187.02,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+3,40,0,2.14,1,63.09,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+3,41,0,1.89,1,61.77,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+3,42,0,2.02,1,147.09,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+3,43,0,1.93,1,207.90,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+3,44,0,1.80,1,2.53,1268685,Y2,,,clean
+3,45,0,2.41,1,212.87,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+3,46,0,1.99,1,136.93,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+3,47,0,2.12,1,123.29,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+3,48,0,2.56,1,191.90,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+3,49,0,1.91,1,2.65,143319,Y2,,,clean
+3,50,0,2.01,1,2.39,1006365,Y2,,,clean
+3,51,0,2.12,1,176.45,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+3,52,0,2.68,1,79.45,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+3,53,0,2.41,1,54.25,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+3,54,0,2.88,1,38.00,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+3,55,0,2.98,1,15.27,626,Y4,0.00/noise-like,0.00/noise-like,FAM-HIT
+3,56,0,3.29,1,4.49,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+3,57,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=61 distinct=58
+3,58,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=49 distinct=47
+3,59,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=40 distinct=40
+3,60,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=35 distinct=33
+3,61,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=29 distinct=30
+3,62,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=26 distinct=26
+3,63,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=20 distinct=21
+4,0,0,4.69,1,2.37,1122504,Y4,0.00/noise-like,0.00/noise-like,hump-note
+4,1,0,1.44,1,255.58,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+4,2,0,1.51,1,169.53,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+4,3,0,1.52,1,79.86,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+4,4,0,1.56,1,56.21,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+4,5,0,1.47,1,90.36,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+4,6,0,1.65,1,154.45,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+4,7,0,1.47,1,169.54,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+4,8,0,1.60,1,153.16,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+4,9,0,1.56,1,169.78,732422,Y2,0.24/noise-like,0.24/noise-like,FAM-HIT
+4,10,0,1.70,1,174.56,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+4,11,0,1.88,1,196.43,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+4,12,0,1.57,1,248.12,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+4,13,0,1.36,1,2.79,1370966,Y4,,,clean
+4,14,0,1.55,1,239.39,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+4,15,0,1.94,1,236.13,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+4,16,0,1.38,1,2.48,1150578,Y2,,,clean
+4,17,0,1.40,184,2.56,1267880,Y2,,,clean
+4,18,0,1.63,1,2.42,143945,Y2,,,clean
+4,19,0,1.73,1,228.14,732422,Y2,0.24/noise-like,0.24/noise-like,FAM-HIT
+4,20,0,1.77,1,148.28,732422,Y2,0.24/noise-like,0.24/noise-like,FAM-HIT
+4,21,0,1.81,1,80.42,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+4,22,0,1.99,1,81.59,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+4,23,0,1.89,1,165.08,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+4,24,0,1.89,1,2.38,551105,Y2,,,clean
+4,25,0,1.40,1,2.53,76801,Y2,,,clean
+4,26,0,1.75,1,204.40,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+4,27,0,1.66,1,174.44,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+4,28,0,2.08,1,180.71,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+4,29,0,1.72,1,2.54,221282,Y4,,,clean
+4,30,0,1.72,1,2.48,898451,Y4,,,clean
+4,31,0,1.60,1,2.32,395089,Y2,,,clean
+4,32,0,2.94,1,2.45,88871,Y4,0.00/noise-like,0.00/noise-like,hump-note
+4,33,0,1.85,1,256.32,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+4,34,0,1.89,1,210.52,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+4,35,0,1.78,1,267.04,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+4,36,0,1.59,1,2.50,104696,Y4,,,clean
+4,37,0,1.79,1,2.38,574976,Y2,,,clean
+4,38,0,1.80,1,2.56,501215,Y4,,,clean
+4,39,0,2.00,1,208.21,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+4,40,0,2.01,1,72.71,732422,Y2,0.24/noise-like,0.24/noise-like,FAM-HIT
+4,41,0,1.87,1,72.92,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+4,42,0,2.05,1,140.22,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+4,43,0,2.05,1,232.86,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+4,44,0,1.92,1,260.34,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+4,45,0,2.06,1,221.29,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+4,46,0,1.99,1,157.20,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+4,47,0,1.66,1,133.91,732422,Y2,0.24/noise-like,0.24/noise-like,FAM-HIT
+4,48,0,2.57,1,199.16,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+4,49,0,1.75,1,2.38,698984,Y2,,,clean
+4,50,0,1.93,1,2.39,174075,Y2,,,clean
+4,51,0,2.15,1,173.90,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+4,52,0,2.11,1,88.74,732422,Y2,0.24/noise-like,0.24/noise-like,FAM-HIT
+4,53,0,2.81,1,63.21,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+4,54,0,2.80,1,43.47,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+4,55,0,3.00,1,17.87,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+4,56,0,3.25,1,5.89,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+4,57,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=56 distinct=57
+4,58,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=47 distinct=46
+4,59,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=38 distinct=39
+4,60,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=32 distinct=33
+4,61,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=27 distinct=28
+4,62,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=23 distinct=24
+4,63,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=19 distinct=20
+5,0,0,10.23,1024,237.93,732422,Y2,0.00/noise-like,0.00/noise-like,SPECTRAL-LINE
+5,1,0,1.43,1,2.59,1344770,Y2,,,clean
+5,2,0,1.62,1,170.41,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+5,3,0,1.43,1,78.87,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+5,4,0,1.60,1,53.81,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+5,5,0,1.68,1,98.49,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+5,6,0,1.64,1,150.61,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+5,7,0,1.36,1,163.60,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+5,8,0,1.69,1,156.24,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+5,9,0,1.61,1,174.53,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+5,10,0,1.42,1,181.60,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+5,11,0,1.46,1,2.34,85920,Y4,,,clean
+5,12,0,1.61,1,243.52,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+5,13,0,1.38,1,2.36,65625,Y2,,,clean
+5,14,0,1.44,1,2.36,986159,Y2,,,clean
+5,15,0,1.44,1,223.14,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+5,16,0,1.45,1,2.28,690043,Y4,,,clean
+5,17,0,1.78,1,2.51,1353532,Y4,,,clean
+5,18,0,1.75,1,2.42,907481,Y4,,,clean
+5,19,0,1.67,1,219.69,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+5,20,0,1.69,1,138.89,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+5,21,0,1.64,1,82.58,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+5,22,0,1.51,1,85.12,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+5,23,0,1.79,1,163.87,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+5,24,0,1.75,1,2.42,327587,Y4,,,clean
+5,25,0,1.67,1,2.39,161380,Y2,,,clean
+5,26,0,1.72,1,189.36,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+5,27,0,1.78,854,171.52,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+5,28,0,1.78,1,189.77,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+5,29,0,1.70,1,248.23,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+5,30,0,1.78,1,2.40,992954,Y2,,,clean
+5,31,0,1.74,1,2.31,314713,Y4,,,clean
+5,32,0,3.27,1,2.50,60439,Y2,0.00/noise-like,0.00/noise-like,hump-note
+5,33,0,1.67,1,2.24,643909,Y4,,,clean
+5,34,0,1.88,1,210.20,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+5,35,0,1.87,1,2.29,315875,Y4,,,clean
+5,36,0,1.76,1,2.40,1270384,Y2,,,clean
+5,37,0,1.79,1,2.46,1168460,Y2,,,clean
+5,38,0,1.74,1,2.43,887454,Y4,,,clean
+5,39,0,1.82,1,203.19,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+5,40,0,1.78,1,66.72,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+5,41,0,1.98,1,68.46,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+5,42,0,1.92,1,146.69,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+5,43,0,1.58,1,2.23,1349151,Y4,,,clean
+5,44,0,1.68,1,254.61,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+5,45,0,2.07,1,226.56,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+5,46,0,2.46,1,152.41,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+5,47,0,1.82,1,129.25,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+5,48,0,2.30,1,198.22,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+5,49,0,1.84,1,2.48,1281828,Y4,,,clean
+5,50,0,1.76,1,2.49,543594,Y4,,,clean
+5,51,0,2.01,1,184.75,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+5,52,0,2.38,1,89.28,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+5,53,0,2.55,1,60.62,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+5,54,0,3.06,1,37.78,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+5,55,0,2.80,1,15.04,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+5,56,0,3.31,1,4.87,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+5,57,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=59 distinct=60
+5,58,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=49 distinct=46
+5,59,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=40 distinct=41
+5,60,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=33 distinct=34
+5,61,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=28 distinct=29
+5,62,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=24 distinct=25
+5,63,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=21 distinct=22
+6,0,0,4.97,1,2.36,627637,Y4,0.24/noise-like,0.00/noise-like,hump-note
+6,1,0,1.63,1,261.07,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+6,2,0,1.38,1944,174.96,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+6,3,0,1.34,1,80.25,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+6,4,0,1.55,1,57.50,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+6,5,0,1.65,1,98.01,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+6,6,0,1.60,1,156.38,732422,Y2,0.24/noise-like,0.24/noise-like,FAM-HIT
+6,7,0,1.45,1,173.51,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+6,8,0,1.43,1,160.60,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+6,9,0,1.51,1,176.16,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+6,10,0,1.89,1,185.54,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+6,11,0,1.43,1,195.22,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+6,12,0,1.69,1,2.25,1449734,Y2,,,clean
+6,13,0,1.50,1,2.37,1454830,Y2,,,clean
+6,14,0,1.56,1,2.20,115067,Y2,,,clean
+6,15,0,1.75,1,242.27,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+6,16,0,1.43,1302,2.38,939310,Y2,,,clean
+6,17,0,1.66,1,2.86,954330,Y4,,,clean
+6,18,0,1.69,408,2.27,832736,Y2,,,clean
+6,19,0,1.89,1,230.84,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+6,20,0,1.70,1,148.58,732422,Y2,0.42/WATCH,0.24/noise-like,FAM-HIT
+6,21,0,1.61,1,80.31,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+6,22,0,1.83,1,88.97,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+6,23,0,1.61,1,161.79,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+6,24,0,1.64,1,2.28,2503,Y4,,,clean
+6,25,0,1.40,1,2.73,135273,Y2,,,clean
+6,26,0,1.82,1,199.73,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+6,27,0,1.84,858,171.14,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+6,28,0,1.57,1,186.77,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+6,29,0,1.61,1,235.78,732422,Y2,0.00/noise-like,0.42/WATCH,FAM-HIT
+6,30,0,1.47,1,2.44,758439,Y4,,,clean
+6,31,0,1.61,1,2.53,1356661,Y4,,,clean
+6,32,0,2.97,1,2.42,261873,Y2,0.00/noise-like,0.00/noise-like,hump-note
+6,33,0,1.99,1,2.39,1336277,Y4,,,clean
+6,34,0,2.01,1,202.60,732422,Y2,0.24/noise-like,0.24/noise-like,FAM-HIT
+6,35,0,1.94,1,2.38,1277804,Y2,,,clean
+6,36,0,1.78,1,2.69,118732,Y4,,,clean
+6,37,0,1.66,1,2.30,669569,Y2,,,clean
+6,38,0,1.52,1,2.67,1372397,Y4,,,clean
+6,39,0,1.88,1,194.01,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+6,40,0,1.78,1,75.08,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+6,41,0,1.80,1,68.39,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+6,42,0,1.92,1,152.31,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+6,43,0,2.10,1,234.53,732422,Y2,0.24/noise-like,0.42/WATCH,FAM-HIT
+6,44,0,2.00,1,2.50,6527,Y2,,,clean
+6,45,0,2.33,1,229.57,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+6,46,0,2.17,1,155.47,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+6,47,0,1.97,1,133.39,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+6,48,0,2.48,1,202.33,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+6,49,0,1.95,1,2.34,722766,Y2,,,clean
+6,50,0,2.03,1,2.42,1218796,Y4,,,clean
+6,51,0,2.49,1,179.52,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+6,52,0,2.98,1,84.55,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+6,53,0,2.67,1,61.25,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+6,54,0,2.91,1,36.68,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT
+6,55,0,2.83,1,15.11,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+6,56,0,3.43,1,5.06,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+6,57,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=60 distinct=61
+6,58,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=48 distinct=46
+6,59,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=40 distinct=39
+6,60,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=34 distinct=33
+6,61,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=28 distinct=29
+6,62,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=23 distinct=24
+6,63,0,0,-1,0,0,-,,,QUARANTINE:dark-lane range=22 distinct=23

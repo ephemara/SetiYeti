@@ -1,0 +1,3 @@
+block,chan,pol,spec_ratio,spec_bin,fam_best,fam_hz,fam_tag,vm_sign,vm_diff,spikes,rms,verdict
+2,12,0,1.49,1,7.56,2593,Y4,0.00/noise-like,0.00/noise-like,18,17.363,FAM-HIT
+2,44,0,0,-1,0,0,-,,,52,13.468,QUARANTINE:sparkle n=52

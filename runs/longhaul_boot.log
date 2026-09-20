@@ -1,0 +1,624 @@
+[2026-09-20 12:32:57] =========== LONGHAUL START ===========
+[2026-09-20 12:32:57] === PHASE 1: preflight ===
+[2026-09-20 12:32:57] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 32 pf_on.f32 1 --pol 0
+[2026-09-20 12:32:57] on: layout = chan-major, pol-interleaved [chan][time][pol]
+[2026-09-20 12:32:57] run: python.exe mvp_scan.py --raw blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw --b0 0 --b1 0 --chans 0-63 --pol 0 --out smoke_on.csv
+[2026-09-20 12:32:58] on: smoke rows=64 quarantined=7
+[2026-09-20 12:32:58] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 32 pf_off.f32 1 --pol 0
+[2026-09-20 12:32:58] off: layout = chan-major, pol-interleaved [chan][time][pol]
+[2026-09-20 12:32:58] run: python.exe mvp_scan.py --raw blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw --b0 0 --b1 0 --chans 0-63 --pol 0 --out smoke_off.csv
+[2026-09-20 12:33:04] off: smoke rows=64 quarantined=7
+[2026-09-20 12:33:04] === PHASE 2: full scans (all chans x all blocks x pols) ===
+[2026-09-20 12:33:04] run: python.exe mvp_scan.py --raw blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw --b0 0 --b1 127 --chans 0-63 --pol 0 --out scan_on_p0.csv --workers 1
+[2026-09-20 12:33:04] run: python.exe mvp_scan.py --raw blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw --b0 0 --b1 127 --chans 0-63 --pol 1 --out scan_on_p1.csv --workers 1
+[2026-09-20 12:33:04] run: python.exe mvp_scan.py --raw blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw --b0 0 --b1 127 --chans 0-63 --pol 3 --out scan_on_p3.csv --workers 1
+[2026-09-20 12:33:04] run: python.exe mvp_scan.py --raw blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw --b0 0 --b1 127 --chans 0-63 --pol 2 --out scan_on_p2.csv --workers 1
+[2026-09-20 12:54:38] run: python.exe mvp_scan.py --raw blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw --b0 0 --b1 127 --chans 0-63 --pol 0 --out scan_off_p0.csv --workers 1
+[2026-09-20 12:54:38] scan on p0: rc=0
+[2026-09-20 12:54:57] run: python.exe mvp_scan.py --raw blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw --b0 0 --b1 127 --chans 0-63 --pol 1 --out scan_off_p1.csv --workers 1
+[2026-09-20 12:54:57] scan on p1: rc=0
+[2026-09-20 12:55:16] run: python.exe mvp_scan.py --raw blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw --b0 0 --b1 127 --chans 0-63 --pol 2 --out scan_off_p2.csv --workers 1
+[2026-09-20 12:55:16] scan on p2: rc=0
+[2026-09-20 12:55:26] run: python.exe mvp_scan.py --raw blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw --b0 0 --b1 127 --chans 0-63 --pol 3 --out scan_off_p3.csv --workers 1
+[2026-09-20 12:55:26] scan on p3: rc=0
+[2026-09-20 13:16:28] scan off p0: rc=0
+[2026-09-20 13:17:01] scan off p1: rc=0
+[2026-09-20 13:17:28] scan off p2: rc=0
+[2026-09-20 13:17:43] scan off p3: rc=0
+[2026-09-20 13:17:43] === PHASE 3: veto (ON/OFF cadence) ===
+[2026-09-20 13:17:43] run: python.exe rfi_veto.py --hits scan_on_p0.csv --raw blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw --on scan_on_p0.csv --off scan_off_p0.csv --target KEPLER160 --quiet
+[2026-09-20 13:17:44] veto p0: [veto] BLOCK=1289 WATCH=2 CANDIDATE=0 | catalog=1128 classes
+[2026-09-20 13:17:44] run: python.exe rfi_veto.py --hits scan_on_p1.csv --raw blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw --on scan_on_p1.csv --off scan_off_p1.csv --target KEPLER160 --quiet
+[2026-09-20 13:17:44] veto p1: [veto] BLOCK=1413 WATCH=1 CANDIDATE=0 | catalog=1387 classes
+[2026-09-20 13:17:44] === PHASE 4: latent PCA triage ===
+[2026-09-20 13:17:44] run: python.exe latent_pca.py --slices scan_on_p0.csv
+[2026-09-20 13:17:44] pca on p0: done
+[2026-09-20 13:17:44] run: python.exe latent_pca.py --slices scan_on_p1.csv
+[2026-09-20 13:17:44] pca on p1: done
+[2026-09-20 13:17:44] run: python.exe latent_pca.py --slices scan_off_p0.csv
+[2026-09-20 13:17:44] pca off p0: done
+[2026-09-20 13:17:44] run: python.exe latent_pca.py --slices scan_off_p1.csv
+[2026-09-20 13:17:44] pca off p1: done
+[2026-09-20 13:17:44] === PHASE 5: per-channel time-series Viterbi (jerk_scan) ===
+[2026-09-20 13:17:44] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 0 on_p0_ch0.f32 128 --pol 0
+[2026-09-20 13:18:27] run: python.exe jerk_scan.py --f32 on_p0_ch0.f32
+[2026-09-20 13:18:32] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 1 on_p0_ch1.f32 128 --pol 0
+[2026-09-20 13:19:15] run: python.exe jerk_scan.py --f32 on_p0_ch1.f32
+[2026-09-20 13:19:21] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 2 on_p0_ch2.f32 128 --pol 0
+[2026-09-20 13:20:04] run: python.exe jerk_scan.py --f32 on_p0_ch2.f32
+[2026-09-20 13:20:09] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 3 on_p0_ch3.f32 128 --pol 0
+[2026-09-20 13:20:51] run: python.exe jerk_scan.py --f32 on_p0_ch3.f32
+[2026-09-20 13:20:56] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 4 on_p0_ch4.f32 128 --pol 0
+[2026-09-20 13:21:39] run: python.exe jerk_scan.py --f32 on_p0_ch4.f32
+[2026-09-20 13:21:44] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 5 on_p0_ch5.f32 128 --pol 0
+[2026-09-20 13:22:27] run: python.exe jerk_scan.py --f32 on_p0_ch5.f32
+[2026-09-20 13:22:32] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 6 on_p0_ch6.f32 128 --pol 0
+[2026-09-20 13:23:15] run: python.exe jerk_scan.py --f32 on_p0_ch6.f32
+[2026-09-20 13:23:20] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 7 on_p0_ch7.f32 128 --pol 0
+[2026-09-20 13:24:03] run: python.exe jerk_scan.py --f32 on_p0_ch7.f32
+[2026-09-20 13:24:08] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 8 on_p0_ch8.f32 128 --pol 0
+[2026-09-20 13:24:51] run: python.exe jerk_scan.py --f32 on_p0_ch8.f32
+[2026-09-20 13:24:56] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 9 on_p0_ch9.f32 128 --pol 0
+[2026-09-20 13:25:39] run: python.exe jerk_scan.py --f32 on_p0_ch9.f32
+[2026-09-20 13:25:44] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 10 on_p0_ch10.f32 128 --pol 0
+[2026-09-20 13:26:26] run: python.exe jerk_scan.py --f32 on_p0_ch10.f32
+[2026-09-20 13:26:31] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 11 on_p0_ch11.f32 128 --pol 0
+[2026-09-20 13:27:14] run: python.exe jerk_scan.py --f32 on_p0_ch11.f32
+[2026-09-20 13:27:19] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 12 on_p0_ch12.f32 128 --pol 0
+[2026-09-20 13:28:02] run: python.exe jerk_scan.py --f32 on_p0_ch12.f32
+[2026-09-20 13:28:07] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 13 on_p0_ch13.f32 128 --pol 0
+[2026-09-20 13:28:50] run: python.exe jerk_scan.py --f32 on_p0_ch13.f32
+[2026-09-20 13:28:55] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 14 on_p0_ch14.f32 128 --pol 0
+[2026-09-20 13:29:38] run: python.exe jerk_scan.py --f32 on_p0_ch14.f32
+[2026-09-20 13:29:43] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 15 on_p0_ch15.f32 128 --pol 0
+[2026-09-20 13:30:26] run: python.exe jerk_scan.py --f32 on_p0_ch15.f32
+[2026-09-20 13:30:31] jerk progress 16/256
+[2026-09-20 13:30:31] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 16 on_p0_ch16.f32 128 --pol 0
+[2026-09-20 13:31:14] run: python.exe jerk_scan.py --f32 on_p0_ch16.f32
+[2026-09-20 13:31:19] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 17 on_p0_ch17.f32 128 --pol 0
+[2026-09-20 13:32:02] run: python.exe jerk_scan.py --f32 on_p0_ch17.f32
+[2026-09-20 13:32:07] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 18 on_p0_ch18.f32 128 --pol 0
+[2026-09-20 13:32:50] run: python.exe jerk_scan.py --f32 on_p0_ch18.f32
+[2026-09-20 13:32:55] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 19 on_p0_ch19.f32 128 --pol 0
+[2026-09-20 13:33:37] run: python.exe jerk_scan.py --f32 on_p0_ch19.f32
+[2026-09-20 13:33:42] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 20 on_p0_ch20.f32 128 --pol 0
+[2026-09-20 13:34:25] run: python.exe jerk_scan.py --f32 on_p0_ch20.f32
+[2026-09-20 13:34:30] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 21 on_p0_ch21.f32 128 --pol 0
+[2026-09-20 13:35:13] run: python.exe jerk_scan.py --f32 on_p0_ch21.f32
+[2026-09-20 13:35:18] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 22 on_p0_ch22.f32 128 --pol 0
+[2026-09-20 13:36:01] run: python.exe jerk_scan.py --f32 on_p0_ch22.f32
+[2026-09-20 13:36:05] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 23 on_p0_ch23.f32 128 --pol 0
+[2026-09-20 13:36:48] run: python.exe jerk_scan.py --f32 on_p0_ch23.f32
+[2026-09-20 13:36:53] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 24 on_p0_ch24.f32 128 --pol 0
+[2026-09-20 13:37:36] run: python.exe jerk_scan.py --f32 on_p0_ch24.f32
+[2026-09-20 13:37:41] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 25 on_p0_ch25.f32 128 --pol 0
+[2026-09-20 13:38:24] run: python.exe jerk_scan.py --f32 on_p0_ch25.f32
+[2026-09-20 13:38:29] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 26 on_p0_ch26.f32 128 --pol 0
+[2026-09-20 13:39:12] run: python.exe jerk_scan.py --f32 on_p0_ch26.f32
+[2026-09-20 13:39:17] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 27 on_p0_ch27.f32 128 --pol 0
+[2026-09-20 13:40:00] run: python.exe jerk_scan.py --f32 on_p0_ch27.f32
+[2026-09-20 13:40:05] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 28 on_p0_ch28.f32 128 --pol 0
+[2026-09-20 13:40:48] run: python.exe jerk_scan.py --f32 on_p0_ch28.f32
+[2026-09-20 13:40:53] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 29 on_p0_ch29.f32 128 --pol 0
+[2026-09-20 13:41:36] run: python.exe jerk_scan.py --f32 on_p0_ch29.f32
+[2026-09-20 13:41:41] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 30 on_p0_ch30.f32 128 --pol 0
+[2026-09-20 13:42:24] run: python.exe jerk_scan.py --f32 on_p0_ch30.f32
+[2026-09-20 13:42:29] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 31 on_p0_ch31.f32 128 --pol 0
+[2026-09-20 13:43:12] run: python.exe jerk_scan.py --f32 on_p0_ch31.f32
+[2026-09-20 13:43:16] jerk progress 32/256
+[2026-09-20 13:43:16] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 32 on_p0_ch32.f32 128 --pol 0
+[2026-09-20 13:43:59] run: python.exe jerk_scan.py --f32 on_p0_ch32.f32
+[2026-09-20 13:44:04] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 33 on_p0_ch33.f32 128 --pol 0
+[2026-09-20 13:44:47] run: python.exe jerk_scan.py --f32 on_p0_ch33.f32
+[2026-09-20 13:44:52] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 34 on_p0_ch34.f32 128 --pol 0
+[2026-09-20 13:45:35] run: python.exe jerk_scan.py --f32 on_p0_ch34.f32
+[2026-09-20 13:45:40] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 35 on_p0_ch35.f32 128 --pol 0
+[2026-09-20 13:46:23] run: python.exe jerk_scan.py --f32 on_p0_ch35.f32
+[2026-09-20 13:46:28] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 36 on_p0_ch36.f32 128 --pol 0
+[2026-09-20 13:47:11] run: python.exe jerk_scan.py --f32 on_p0_ch36.f32
+[2026-09-20 13:47:16] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 37 on_p0_ch37.f32 128 --pol 0
+[2026-09-20 13:47:59] run: python.exe jerk_scan.py --f32 on_p0_ch37.f32
+[2026-09-20 13:48:04] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 38 on_p0_ch38.f32 128 --pol 0
+[2026-09-20 13:48:47] run: python.exe jerk_scan.py --f32 on_p0_ch38.f32
+[2026-09-20 13:48:52] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 39 on_p0_ch39.f32 128 --pol 0
+[2026-09-20 13:49:35] run: python.exe jerk_scan.py --f32 on_p0_ch39.f32
+[2026-09-20 13:49:40] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 40 on_p0_ch40.f32 128 --pol 0
+[2026-09-20 13:50:23] run: python.exe jerk_scan.py --f32 on_p0_ch40.f32
+[2026-09-20 13:50:28] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 41 on_p0_ch41.f32 128 --pol 0
+[2026-09-20 13:51:10] run: python.exe jerk_scan.py --f32 on_p0_ch41.f32
+[2026-09-20 13:51:16] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 42 on_p0_ch42.f32 128 --pol 0
+[2026-09-20 13:51:59] run: python.exe jerk_scan.py --f32 on_p0_ch42.f32
+[2026-09-20 13:52:03] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 43 on_p0_ch43.f32 128 --pol 0
+[2026-09-20 13:52:46] run: python.exe jerk_scan.py --f32 on_p0_ch43.f32
+[2026-09-20 13:52:52] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 44 on_p0_ch44.f32 128 --pol 0
+[2026-09-20 13:53:34] run: python.exe jerk_scan.py --f32 on_p0_ch44.f32
+[2026-09-20 13:53:39] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 45 on_p0_ch45.f32 128 --pol 0
+[2026-09-20 13:54:23] run: python.exe jerk_scan.py --f32 on_p0_ch45.f32
+[2026-09-20 13:54:28] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 46 on_p0_ch46.f32 128 --pol 0
+[2026-09-20 13:55:11] run: python.exe jerk_scan.py --f32 on_p0_ch46.f32
+[2026-09-20 13:55:16] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 47 on_p0_ch47.f32 128 --pol 0
+[2026-09-20 13:55:58] run: python.exe jerk_scan.py --f32 on_p0_ch47.f32
+[2026-09-20 13:56:03] jerk progress 48/256
+[2026-09-20 13:56:03] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 48 on_p0_ch48.f32 128 --pol 0
+[2026-09-20 13:56:46] run: python.exe jerk_scan.py --f32 on_p0_ch48.f32
+[2026-09-20 13:56:51] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 49 on_p0_ch49.f32 128 --pol 0
+[2026-09-20 13:57:34] run: python.exe jerk_scan.py --f32 on_p0_ch49.f32
+[2026-09-20 13:57:39] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 50 on_p0_ch50.f32 128 --pol 0
+[2026-09-20 13:58:22] run: python.exe jerk_scan.py --f32 on_p0_ch50.f32
+[2026-09-20 13:58:27] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 51 on_p0_ch51.f32 128 --pol 0
+[2026-09-20 13:59:10] run: python.exe jerk_scan.py --f32 on_p0_ch51.f32
+[2026-09-20 13:59:15] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 52 on_p0_ch52.f32 128 --pol 0
+[2026-09-20 13:59:58] run: python.exe jerk_scan.py --f32 on_p0_ch52.f32
+[2026-09-20 14:00:03] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 53 on_p0_ch53.f32 128 --pol 0
+[2026-09-20 14:00:46] run: python.exe jerk_scan.py --f32 on_p0_ch53.f32
+[2026-09-20 14:00:51] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 54 on_p0_ch54.f32 128 --pol 0
+[2026-09-20 14:01:52] run: python.exe jerk_scan.py --f32 on_p0_ch54.f32
+[2026-09-20 14:01:57] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 55 on_p0_ch55.f32 128 --pol 0
+[2026-09-20 14:02:59] run: python.exe jerk_scan.py --f32 on_p0_ch55.f32
+[2026-09-20 14:03:04] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 56 on_p0_ch56.f32 128 --pol 0
+[2026-09-20 14:04:06] run: python.exe jerk_scan.py --f32 on_p0_ch56.f32
+[2026-09-20 14:04:11] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 57 on_p0_ch57.f32 128 --pol 0
+[2026-09-20 14:05:14] run: python.exe jerk_scan.py --f32 on_p0_ch57.f32
+[2026-09-20 14:05:19] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 58 on_p0_ch58.f32 128 --pol 0
+[2026-09-20 14:06:21] run: python.exe jerk_scan.py --f32 on_p0_ch58.f32
+[2026-09-20 14:06:26] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 59 on_p0_ch59.f32 128 --pol 0
+[2026-09-20 14:07:29] run: python.exe jerk_scan.py --f32 on_p0_ch59.f32
+[2026-09-20 14:07:34] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 60 on_p0_ch60.f32 128 --pol 0
+[2026-09-20 14:08:36] run: python.exe jerk_scan.py --f32 on_p0_ch60.f32
+[2026-09-20 14:08:41] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 61 on_p0_ch61.f32 128 --pol 0
+[2026-09-20 14:09:43] run: python.exe jerk_scan.py --f32 on_p0_ch61.f32
+[2026-09-20 14:09:48] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 62 on_p0_ch62.f32 128 --pol 0
+[2026-09-20 14:10:51] run: python.exe jerk_scan.py --f32 on_p0_ch62.f32
+[2026-09-20 14:10:55] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 63 on_p0_ch63.f32 128 --pol 0
+[2026-09-20 14:11:58] run: python.exe jerk_scan.py --f32 on_p0_ch63.f32
+[2026-09-20 14:12:03] jerk progress 64/256
+[2026-09-20 14:12:03] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 0 on_p1_ch0.f32 128 --pol 1
+[2026-09-20 14:13:06] run: python.exe jerk_scan.py --f32 on_p1_ch0.f32
+[2026-09-20 14:13:11] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 1 on_p1_ch1.f32 128 --pol 1
+[2026-09-20 14:14:13] run: python.exe jerk_scan.py --f32 on_p1_ch1.f32
+[2026-09-20 14:14:18] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 2 on_p1_ch2.f32 128 --pol 1
+[2026-09-20 14:15:20] run: python.exe jerk_scan.py --f32 on_p1_ch2.f32
+[2026-09-20 14:15:25] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 3 on_p1_ch3.f32 128 --pol 1
+[2026-09-20 14:16:28] run: python.exe jerk_scan.py --f32 on_p1_ch3.f32
+[2026-09-20 14:16:33] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 4 on_p1_ch4.f32 128 --pol 1
+[2026-09-20 14:17:35] run: python.exe jerk_scan.py --f32 on_p1_ch4.f32
+[2026-09-20 14:17:40] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 5 on_p1_ch5.f32 128 --pol 1
+[2026-09-20 14:18:43] run: python.exe jerk_scan.py --f32 on_p1_ch5.f32
+[2026-09-20 14:18:47] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 6 on_p1_ch6.f32 128 --pol 1
+[2026-09-20 14:19:50] run: python.exe jerk_scan.py --f32 on_p1_ch6.f32
+[2026-09-20 14:19:55] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 7 on_p1_ch7.f32 128 --pol 1
+[2026-09-20 14:20:57] run: python.exe jerk_scan.py --f32 on_p1_ch7.f32
+[2026-09-20 14:21:02] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 8 on_p1_ch8.f32 128 --pol 1
+[2026-09-20 14:22:05] run: python.exe jerk_scan.py --f32 on_p1_ch8.f32
+[2026-09-20 14:22:10] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 9 on_p1_ch9.f32 128 --pol 1
+[2026-09-20 14:23:12] run: python.exe jerk_scan.py --f32 on_p1_ch9.f32
+[2026-09-20 14:23:17] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 10 on_p1_ch10.f32 128 --pol 1
+[2026-09-20 14:24:20] run: python.exe jerk_scan.py --f32 on_p1_ch10.f32
+[2026-09-20 14:24:25] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 11 on_p1_ch11.f32 128 --pol 1
+[2026-09-20 14:25:27] run: python.exe jerk_scan.py --f32 on_p1_ch11.f32
+[2026-09-20 14:25:32] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 12 on_p1_ch12.f32 128 --pol 1
+[2026-09-20 14:26:34] run: python.exe jerk_scan.py --f32 on_p1_ch12.f32
+[2026-09-20 14:26:39] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 13 on_p1_ch13.f32 128 --pol 1
+[2026-09-20 14:27:42] run: python.exe jerk_scan.py --f32 on_p1_ch13.f32
+[2026-09-20 14:27:47] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 14 on_p1_ch14.f32 128 --pol 1
+[2026-09-20 14:28:49] run: python.exe jerk_scan.py --f32 on_p1_ch14.f32
+[2026-09-20 14:28:54] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 15 on_p1_ch15.f32 128 --pol 1
+[2026-09-20 14:29:57] run: python.exe jerk_scan.py --f32 on_p1_ch15.f32
+[2026-09-20 14:30:02] jerk progress 80/256
+[2026-09-20 14:30:02] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 16 on_p1_ch16.f32 128 --pol 1
+[2026-09-20 14:31:04] run: python.exe jerk_scan.py --f32 on_p1_ch16.f32
+[2026-09-20 14:31:09] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 17 on_p1_ch17.f32 128 --pol 1
+[2026-09-20 14:32:12] run: python.exe jerk_scan.py --f32 on_p1_ch17.f32
+[2026-09-20 14:32:17] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 18 on_p1_ch18.f32 128 --pol 1
+[2026-09-20 14:33:19] run: python.exe jerk_scan.py --f32 on_p1_ch18.f32
+[2026-09-20 14:33:24] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 19 on_p1_ch19.f32 128 --pol 1
+[2026-09-20 14:34:26] run: python.exe jerk_scan.py --f32 on_p1_ch19.f32
+[2026-09-20 14:34:32] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 20 on_p1_ch20.f32 128 --pol 1
+[2026-09-20 14:35:34] run: python.exe jerk_scan.py --f32 on_p1_ch20.f32
+[2026-09-20 14:35:39] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 21 on_p1_ch21.f32 128 --pol 1
+[2026-09-20 14:36:41] run: python.exe jerk_scan.py --f32 on_p1_ch21.f32
+[2026-09-20 14:36:46] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 22 on_p1_ch22.f32 128 --pol 1
+[2026-09-20 14:37:48] run: python.exe jerk_scan.py --f32 on_p1_ch22.f32
+[2026-09-20 14:37:54] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 23 on_p1_ch23.f32 128 --pol 1
+[2026-09-20 14:38:56] run: python.exe jerk_scan.py --f32 on_p1_ch23.f32
+[2026-09-20 14:39:01] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 24 on_p1_ch24.f32 128 --pol 1
+[2026-09-20 14:40:03] run: python.exe jerk_scan.py --f32 on_p1_ch24.f32
+[2026-09-20 14:40:08] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 25 on_p1_ch25.f32 128 --pol 1
+[2026-09-20 14:41:11] run: python.exe jerk_scan.py --f32 on_p1_ch25.f32
+[2026-09-20 14:41:16] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 26 on_p1_ch26.f32 128 --pol 1
+[2026-09-20 14:42:18] run: python.exe jerk_scan.py --f32 on_p1_ch26.f32
+[2026-09-20 14:42:23] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 27 on_p1_ch27.f32 128 --pol 1
+[2026-09-20 14:43:25] run: python.exe jerk_scan.py --f32 on_p1_ch27.f32
+[2026-09-20 14:43:31] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 28 on_p1_ch28.f32 128 --pol 1
+[2026-09-20 14:44:33] run: python.exe jerk_scan.py --f32 on_p1_ch28.f32
+[2026-09-20 14:44:38] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 29 on_p1_ch29.f32 128 --pol 1
+[2026-09-20 14:45:40] run: python.exe jerk_scan.py --f32 on_p1_ch29.f32
+[2026-09-20 14:45:45] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 30 on_p1_ch30.f32 128 --pol 1
+[2026-09-20 14:46:48] run: python.exe jerk_scan.py --f32 on_p1_ch30.f32
+[2026-09-20 14:46:53] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 31 on_p1_ch31.f32 128 --pol 1
+[2026-09-20 14:47:55] run: python.exe jerk_scan.py --f32 on_p1_ch31.f32
+[2026-09-20 14:48:00] jerk progress 96/256
+[2026-09-20 14:48:00] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 32 on_p1_ch32.f32 128 --pol 1
+[2026-09-20 14:49:03] run: python.exe jerk_scan.py --f32 on_p1_ch32.f32
+[2026-09-20 14:49:08] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 33 on_p1_ch33.f32 128 --pol 1
+[2026-09-20 14:50:10] run: python.exe jerk_scan.py --f32 on_p1_ch33.f32
+[2026-09-20 14:50:15] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 34 on_p1_ch34.f32 128 --pol 1
+[2026-09-20 14:51:18] run: python.exe jerk_scan.py --f32 on_p1_ch34.f32
+[2026-09-20 14:51:23] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 35 on_p1_ch35.f32 128 --pol 1
+[2026-09-20 14:52:25] run: python.exe jerk_scan.py --f32 on_p1_ch35.f32
+[2026-09-20 14:52:31] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 36 on_p1_ch36.f32 128 --pol 1
+[2026-09-20 14:53:33] run: python.exe jerk_scan.py --f32 on_p1_ch36.f32
+[2026-09-20 14:53:38] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 37 on_p1_ch37.f32 128 --pol 1
+[2026-09-20 14:54:40] run: python.exe jerk_scan.py --f32 on_p1_ch37.f32
+[2026-09-20 14:54:46] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 38 on_p1_ch38.f32 128 --pol 1
+[2026-09-20 14:55:48] run: python.exe jerk_scan.py --f32 on_p1_ch38.f32
+[2026-09-20 14:55:53] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 39 on_p1_ch39.f32 128 --pol 1
+[2026-09-20 14:56:55] run: python.exe jerk_scan.py --f32 on_p1_ch39.f32
+[2026-09-20 14:57:01] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 40 on_p1_ch40.f32 128 --pol 1
+[2026-09-20 14:58:03] run: python.exe jerk_scan.py --f32 on_p1_ch40.f32
+[2026-09-20 14:58:08] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 41 on_p1_ch41.f32 128 --pol 1
+[2026-09-20 14:59:10] run: python.exe jerk_scan.py --f32 on_p1_ch41.f32
+[2026-09-20 14:59:16] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 42 on_p1_ch42.f32 128 --pol 1
+[2026-09-20 15:00:18] run: python.exe jerk_scan.py --f32 on_p1_ch42.f32
+[2026-09-20 15:00:23] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 43 on_p1_ch43.f32 128 --pol 1
+[2026-09-20 15:01:25] run: python.exe jerk_scan.py --f32 on_p1_ch43.f32
+[2026-09-20 15:01:30] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 44 on_p1_ch44.f32 128 --pol 1
+[2026-09-20 15:02:32] run: python.exe jerk_scan.py --f32 on_p1_ch44.f32
+[2026-09-20 15:02:37] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 45 on_p1_ch45.f32 128 --pol 1
+[2026-09-20 15:03:40] run: python.exe jerk_scan.py --f32 on_p1_ch45.f32
+[2026-09-20 15:03:45] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 46 on_p1_ch46.f32 128 --pol 1
+[2026-09-20 15:04:47] run: python.exe jerk_scan.py --f32 on_p1_ch46.f32
+[2026-09-20 15:04:52] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 47 on_p1_ch47.f32 128 --pol 1
+[2026-09-20 15:05:55] run: python.exe jerk_scan.py --f32 on_p1_ch47.f32
+[2026-09-20 15:06:00] jerk progress 112/256
+[2026-09-20 15:06:00] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 48 on_p1_ch48.f32 128 --pol 1
+[2026-09-20 15:07:02] run: python.exe jerk_scan.py --f32 on_p1_ch48.f32
+[2026-09-20 15:07:07] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 49 on_p1_ch49.f32 128 --pol 1
+[2026-09-20 15:08:09] run: python.exe jerk_scan.py --f32 on_p1_ch49.f32
+[2026-09-20 15:08:15] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 50 on_p1_ch50.f32 128 --pol 1
+[2026-09-20 15:09:17] run: python.exe jerk_scan.py --f32 on_p1_ch50.f32
+[2026-09-20 15:09:22] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 51 on_p1_ch51.f32 128 --pol 1
+[2026-09-20 15:10:24] run: python.exe jerk_scan.py --f32 on_p1_ch51.f32
+[2026-09-20 15:10:29] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 52 on_p1_ch52.f32 128 --pol 1
+[2026-09-20 15:11:31] run: python.exe jerk_scan.py --f32 on_p1_ch52.f32
+[2026-09-20 15:11:37] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 53 on_p1_ch53.f32 128 --pol 1
+[2026-09-20 15:12:39] run: python.exe jerk_scan.py --f32 on_p1_ch53.f32
+[2026-09-20 15:12:44] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 54 on_p1_ch54.f32 128 --pol 1
+[2026-09-20 15:13:46] run: python.exe jerk_scan.py --f32 on_p1_ch54.f32
+[2026-09-20 15:13:51] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 55 on_p1_ch55.f32 128 --pol 1
+[2026-09-20 15:14:54] run: python.exe jerk_scan.py --f32 on_p1_ch55.f32
+[2026-09-20 15:14:59] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 56 on_p1_ch56.f32 128 --pol 1
+[2026-09-20 15:16:01] run: python.exe jerk_scan.py --f32 on_p1_ch56.f32
+[2026-09-20 15:16:07] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 57 on_p1_ch57.f32 128 --pol 1
+[2026-09-20 15:17:08] run: python.exe jerk_scan.py --f32 on_p1_ch57.f32
+[2026-09-20 15:17:14] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 58 on_p1_ch58.f32 128 --pol 1
+[2026-09-20 15:18:16] run: python.exe jerk_scan.py --f32 on_p1_ch58.f32
+[2026-09-20 15:18:21] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 59 on_p1_ch59.f32 128 --pol 1
+[2026-09-20 15:19:23] run: python.exe jerk_scan.py --f32 on_p1_ch59.f32
+[2026-09-20 15:19:28] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 60 on_p1_ch60.f32 128 --pol 1
+[2026-09-20 15:20:31] run: python.exe jerk_scan.py --f32 on_p1_ch60.f32
+[2026-09-20 15:20:36] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 61 on_p1_ch61.f32 128 --pol 1
+[2026-09-20 15:21:38] run: python.exe jerk_scan.py --f32 on_p1_ch61.f32
+[2026-09-20 15:21:44] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 62 on_p1_ch62.f32 128 --pol 1
+[2026-09-20 15:22:45] run: python.exe jerk_scan.py --f32 on_p1_ch62.f32
+[2026-09-20 15:22:51] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 63 on_p1_ch63.f32 128 --pol 1
+[2026-09-20 15:23:53] run: python.exe jerk_scan.py --f32 on_p1_ch63.f32
+[2026-09-20 15:23:58] jerk progress 128/256
+[2026-09-20 15:23:58] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 0 off_p0_ch0.f32 128 --pol 0
+[2026-09-20 15:25:00] run: python.exe jerk_scan.py --f32 off_p0_ch0.f32
+[2026-09-20 15:25:05] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 1 off_p0_ch1.f32 128 --pol 0
+[2026-09-20 15:26:07] run: python.exe jerk_scan.py --f32 off_p0_ch1.f32
+[2026-09-20 15:26:13] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 2 off_p0_ch2.f32 128 --pol 0
+[2026-09-20 15:27:15] run: python.exe jerk_scan.py --f32 off_p0_ch2.f32
+[2026-09-20 15:27:20] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 3 off_p0_ch3.f32 128 --pol 0
+[2026-09-20 15:28:22] run: python.exe jerk_scan.py --f32 off_p0_ch3.f32
+[2026-09-20 15:28:28] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 4 off_p0_ch4.f32 128 --pol 0
+[2026-09-20 15:29:30] run: python.exe jerk_scan.py --f32 off_p0_ch4.f32
+[2026-09-20 15:29:35] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 5 off_p0_ch5.f32 128 --pol 0
+[2026-09-20 15:30:37] run: python.exe jerk_scan.py --f32 off_p0_ch5.f32
+[2026-09-20 15:30:43] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 6 off_p0_ch6.f32 128 --pol 0
+[2026-09-20 15:31:45] run: python.exe jerk_scan.py --f32 off_p0_ch6.f32
+[2026-09-20 15:31:50] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 7 off_p0_ch7.f32 128 --pol 0
+[2026-09-20 15:32:52] run: python.exe jerk_scan.py --f32 off_p0_ch7.f32
+[2026-09-20 15:32:57] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 8 off_p0_ch8.f32 128 --pol 0
+[2026-09-20 15:34:00] run: python.exe jerk_scan.py --f32 off_p0_ch8.f32
+[2026-09-20 15:34:05] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 9 off_p0_ch9.f32 128 --pol 0
+[2026-09-20 15:35:07] run: python.exe jerk_scan.py --f32 off_p0_ch9.f32
+[2026-09-20 15:35:13] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 10 off_p0_ch10.f32 128 --pol 0
+[2026-09-20 15:36:14] run: python.exe jerk_scan.py --f32 off_p0_ch10.f32
+[2026-09-20 15:36:20] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 11 off_p0_ch11.f32 128 --pol 0
+[2026-09-20 15:37:22] run: python.exe jerk_scan.py --f32 off_p0_ch11.f32
+[2026-09-20 15:37:27] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 12 off_p0_ch12.f32 128 --pol 0
+[2026-09-20 15:38:29] run: python.exe jerk_scan.py --f32 off_p0_ch12.f32
+[2026-09-20 15:38:34] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 13 off_p0_ch13.f32 128 --pol 0
+[2026-09-20 15:39:36] run: python.exe jerk_scan.py --f32 off_p0_ch13.f32
+[2026-09-20 15:39:42] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 14 off_p0_ch14.f32 128 --pol 0
+[2026-09-20 15:40:44] run: python.exe jerk_scan.py --f32 off_p0_ch14.f32
+[2026-09-20 15:40:49] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 15 off_p0_ch15.f32 128 --pol 0
+[2026-09-20 15:41:51] run: python.exe jerk_scan.py --f32 off_p0_ch15.f32
+[2026-09-20 15:41:56] jerk progress 144/256
+[2026-09-20 15:41:56] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 16 off_p0_ch16.f32 128 --pol 0
+[2026-09-20 15:42:59] run: python.exe jerk_scan.py --f32 off_p0_ch16.f32
+[2026-09-20 15:43:04] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 17 off_p0_ch17.f32 128 --pol 0
+[2026-09-20 15:44:06] run: python.exe jerk_scan.py --f32 off_p0_ch17.f32
+[2026-09-20 15:44:12] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 18 off_p0_ch18.f32 128 --pol 0
+[2026-09-20 15:45:14] run: python.exe jerk_scan.py --f32 off_p0_ch18.f32
+[2026-09-20 15:45:19] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 19 off_p0_ch19.f32 128 --pol 0
+[2026-09-20 15:46:21] run: python.exe jerk_scan.py --f32 off_p0_ch19.f32
+[2026-09-20 15:46:26] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 20 off_p0_ch20.f32 128 --pol 0
+[2026-09-20 15:47:29] run: python.exe jerk_scan.py --f32 off_p0_ch20.f32
+[2026-09-20 15:47:34] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 21 off_p0_ch21.f32 128 --pol 0
+[2026-09-20 15:48:36] run: python.exe jerk_scan.py --f32 off_p0_ch21.f32
+[2026-09-20 15:48:41] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 22 off_p0_ch22.f32 128 --pol 0
+[2026-09-20 15:49:43] run: python.exe jerk_scan.py --f32 off_p0_ch22.f32
+[2026-09-20 15:49:49] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 23 off_p0_ch23.f32 128 --pol 0
+[2026-09-20 15:50:51] run: python.exe jerk_scan.py --f32 off_p0_ch23.f32
+[2026-09-20 15:50:56] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 24 off_p0_ch24.f32 128 --pol 0
+[2026-09-20 15:51:39] run: python.exe jerk_scan.py --f32 off_p0_ch24.f32
+[2026-09-20 15:51:44] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 25 off_p0_ch25.f32 128 --pol 0
+[2026-09-20 15:52:27] run: python.exe jerk_scan.py --f32 off_p0_ch25.f32
+[2026-09-20 15:52:32] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 26 off_p0_ch26.f32 128 --pol 0
+[2026-09-20 15:53:15] run: python.exe jerk_scan.py --f32 off_p0_ch26.f32
+[2026-09-20 15:53:20] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 27 off_p0_ch27.f32 128 --pol 0
+[2026-09-20 15:54:03] run: python.exe jerk_scan.py --f32 off_p0_ch27.f32
+[2026-09-20 15:54:08] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 28 off_p0_ch28.f32 128 --pol 0
+[2026-09-20 15:54:51] run: python.exe jerk_scan.py --f32 off_p0_ch28.f32
+[2026-09-20 15:54:57] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 29 off_p0_ch29.f32 128 --pol 0
+[2026-09-20 15:55:40] run: python.exe jerk_scan.py --f32 off_p0_ch29.f32
+[2026-09-20 15:55:45] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 30 off_p0_ch30.f32 128 --pol 0
+[2026-09-20 15:56:28] run: python.exe jerk_scan.py --f32 off_p0_ch30.f32
+[2026-09-20 15:56:34] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 31 off_p0_ch31.f32 128 --pol 0
+[2026-09-20 15:57:16] run: python.exe jerk_scan.py --f32 off_p0_ch31.f32
+[2026-09-20 15:57:22] jerk progress 160/256
+[2026-09-20 15:57:22] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 32 off_p0_ch32.f32 128 --pol 0
+[2026-09-20 15:58:05] run: python.exe jerk_scan.py --f32 off_p0_ch32.f32
+[2026-09-20 15:58:10] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 33 off_p0_ch33.f32 128 --pol 0
+[2026-09-20 15:58:53] run: python.exe jerk_scan.py --f32 off_p0_ch33.f32
+[2026-09-20 15:58:58] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 34 off_p0_ch34.f32 128 --pol 0
+[2026-09-20 15:59:41] run: python.exe jerk_scan.py --f32 off_p0_ch34.f32
+[2026-09-20 15:59:46] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 35 off_p0_ch35.f32 128 --pol 0
+[2026-09-20 16:00:29] run: python.exe jerk_scan.py --f32 off_p0_ch35.f32
+[2026-09-20 16:00:34] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 36 off_p0_ch36.f32 128 --pol 0
+[2026-09-20 16:01:17] run: python.exe jerk_scan.py --f32 off_p0_ch36.f32
+[2026-09-20 16:01:22] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 37 off_p0_ch37.f32 128 --pol 0
+[2026-09-20 16:02:05] run: python.exe jerk_scan.py --f32 off_p0_ch37.f32
+[2026-09-20 16:02:10] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 38 off_p0_ch38.f32 128 --pol 0
+[2026-09-20 16:02:53] run: python.exe jerk_scan.py --f32 off_p0_ch38.f32
+[2026-09-20 16:02:58] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 39 off_p0_ch39.f32 128 --pol 0
+[2026-09-20 16:03:41] run: python.exe jerk_scan.py --f32 off_p0_ch39.f32
+[2026-09-20 16:03:47] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 40 off_p0_ch40.f32 128 --pol 0
+[2026-09-20 16:04:30] run: python.exe jerk_scan.py --f32 off_p0_ch40.f32
+[2026-09-20 16:04:35] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 41 off_p0_ch41.f32 128 --pol 0
+[2026-09-20 16:05:18] run: python.exe jerk_scan.py --f32 off_p0_ch41.f32
+[2026-09-20 16:05:23] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 42 off_p0_ch42.f32 128 --pol 0
+[2026-09-20 16:06:06] run: python.exe jerk_scan.py --f32 off_p0_ch42.f32
+[2026-09-20 16:06:11] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 43 off_p0_ch43.f32 128 --pol 0
+[2026-09-20 16:06:54] run: python.exe jerk_scan.py --f32 off_p0_ch43.f32
+[2026-09-20 16:06:59] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 44 off_p0_ch44.f32 128 --pol 0
+[2026-09-20 16:07:42] run: python.exe jerk_scan.py --f32 off_p0_ch44.f32
+[2026-09-20 16:07:47] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 45 off_p0_ch45.f32 128 --pol 0
+[2026-09-20 16:08:30] run: python.exe jerk_scan.py --f32 off_p0_ch45.f32
+[2026-09-20 16:08:35] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 46 off_p0_ch46.f32 128 --pol 0
+[2026-09-20 16:09:18] run: python.exe jerk_scan.py --f32 off_p0_ch46.f32
+[2026-09-20 16:09:23] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 47 off_p0_ch47.f32 128 --pol 0
+[2026-09-20 16:10:06] run: python.exe jerk_scan.py --f32 off_p0_ch47.f32
+[2026-09-20 16:10:11] jerk progress 176/256
+[2026-09-20 16:10:11] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 48 off_p0_ch48.f32 128 --pol 0
+[2026-09-20 16:10:54] run: python.exe jerk_scan.py --f32 off_p0_ch48.f32
+[2026-09-20 16:10:59] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 49 off_p0_ch49.f32 128 --pol 0
+[2026-09-20 16:11:42] run: python.exe jerk_scan.py --f32 off_p0_ch49.f32
+[2026-09-20 16:11:47] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 50 off_p0_ch50.f32 128 --pol 0
+[2026-09-20 16:12:30] run: python.exe jerk_scan.py --f32 off_p0_ch50.f32
+[2026-09-20 16:12:35] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 51 off_p0_ch51.f32 128 --pol 0
+[2026-09-20 16:13:18] run: python.exe jerk_scan.py --f32 off_p0_ch51.f32
+[2026-09-20 16:13:24] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 52 off_p0_ch52.f32 128 --pol 0
+[2026-09-20 16:14:07] run: python.exe jerk_scan.py --f32 off_p0_ch52.f32
+[2026-09-20 16:14:12] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 53 off_p0_ch53.f32 128 --pol 0
+[2026-09-20 16:14:55] run: python.exe jerk_scan.py --f32 off_p0_ch53.f32
+[2026-09-20 16:15:00] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 54 off_p0_ch54.f32 128 --pol 0
+[2026-09-20 16:15:42] run: python.exe jerk_scan.py --f32 off_p0_ch54.f32
+[2026-09-20 16:15:47] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 55 off_p0_ch55.f32 128 --pol 0
+[2026-09-20 16:16:30] run: python.exe jerk_scan.py --f32 off_p0_ch55.f32
+[2026-09-20 16:16:35] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 56 off_p0_ch56.f32 128 --pol 0
+[2026-09-20 16:17:18] run: python.exe jerk_scan.py --f32 off_p0_ch56.f32
+[2026-09-20 16:17:23] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 57 off_p0_ch57.f32 128 --pol 0
+[2026-09-20 16:18:06] run: python.exe jerk_scan.py --f32 off_p0_ch57.f32
+[2026-09-20 16:18:11] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 58 off_p0_ch58.f32 128 --pol 0
+[2026-09-20 16:18:54] run: python.exe jerk_scan.py --f32 off_p0_ch58.f32
+[2026-09-20 16:18:59] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 59 off_p0_ch59.f32 128 --pol 0
+[2026-09-20 16:19:42] run: python.exe jerk_scan.py --f32 off_p0_ch59.f32
+[2026-09-20 16:19:47] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 60 off_p0_ch60.f32 128 --pol 0
+[2026-09-20 16:20:30] run: python.exe jerk_scan.py --f32 off_p0_ch60.f32
+[2026-09-20 16:20:35] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 61 off_p0_ch61.f32 128 --pol 0
+[2026-09-20 16:21:17] run: python.exe jerk_scan.py --f32 off_p0_ch61.f32
+[2026-09-20 16:21:22] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 62 off_p0_ch62.f32 128 --pol 0
+[2026-09-20 16:22:05] run: python.exe jerk_scan.py --f32 off_p0_ch62.f32
+[2026-09-20 16:22:11] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 63 off_p0_ch63.f32 128 --pol 0
+[2026-09-20 16:22:54] run: python.exe jerk_scan.py --f32 off_p0_ch63.f32
+[2026-09-20 16:22:59] jerk progress 192/256
+[2026-09-20 16:22:59] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 0 off_p1_ch0.f32 128 --pol 1
+[2026-09-20 16:23:42] run: python.exe jerk_scan.py --f32 off_p1_ch0.f32
+[2026-09-20 16:23:47] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 1 off_p1_ch1.f32 128 --pol 1
+[2026-09-20 16:24:30] run: python.exe jerk_scan.py --f32 off_p1_ch1.f32
+[2026-09-20 16:24:35] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 2 off_p1_ch2.f32 128 --pol 1
+[2026-09-20 16:25:18] run: python.exe jerk_scan.py --f32 off_p1_ch2.f32
+[2026-09-20 16:25:23] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 3 off_p1_ch3.f32 128 --pol 1
+[2026-09-20 16:26:06] run: python.exe jerk_scan.py --f32 off_p1_ch3.f32
+[2026-09-20 16:26:11] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 4 off_p1_ch4.f32 128 --pol 1
+[2026-09-20 16:26:53] run: python.exe jerk_scan.py --f32 off_p1_ch4.f32
+[2026-09-20 16:26:58] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 5 off_p1_ch5.f32 128 --pol 1
+[2026-09-20 16:27:41] run: python.exe jerk_scan.py --f32 off_p1_ch5.f32
+[2026-09-20 16:27:46] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 6 off_p1_ch6.f32 128 --pol 1
+[2026-09-20 16:28:29] run: python.exe jerk_scan.py --f32 off_p1_ch6.f32
+[2026-09-20 16:28:34] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 7 off_p1_ch7.f32 128 --pol 1
+[2026-09-20 16:29:17] run: python.exe jerk_scan.py --f32 off_p1_ch7.f32
+[2026-09-20 16:29:22] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 8 off_p1_ch8.f32 128 --pol 1
+[2026-09-20 16:30:05] run: python.exe jerk_scan.py --f32 off_p1_ch8.f32
+[2026-09-20 16:30:10] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 9 off_p1_ch9.f32 128 --pol 1
+[2026-09-20 16:30:53] run: python.exe jerk_scan.py --f32 off_p1_ch9.f32
+[2026-09-20 16:30:57] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 10 off_p1_ch10.f32 128 --pol 1
+[2026-09-20 16:31:40] run: python.exe jerk_scan.py --f32 off_p1_ch10.f32
+[2026-09-20 16:31:46] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 11 off_p1_ch11.f32 128 --pol 1
+[2026-09-20 16:32:29] run: python.exe jerk_scan.py --f32 off_p1_ch11.f32
+[2026-09-20 16:32:33] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 12 off_p1_ch12.f32 128 --pol 1
+[2026-09-20 16:33:16] run: python.exe jerk_scan.py --f32 off_p1_ch12.f32
+[2026-09-20 16:33:21] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 13 off_p1_ch13.f32 128 --pol 1
+[2026-09-20 16:34:04] run: python.exe jerk_scan.py --f32 off_p1_ch13.f32
+[2026-09-20 16:34:09] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 14 off_p1_ch14.f32 128 --pol 1
+[2026-09-20 16:35:00] run: python.exe jerk_scan.py --f32 off_p1_ch14.f32
+[2026-09-20 16:35:05] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 15 off_p1_ch15.f32 128 --pol 1
+[2026-09-20 16:36:07] run: python.exe jerk_scan.py --f32 off_p1_ch15.f32
+[2026-09-20 16:36:12] jerk progress 208/256
+[2026-09-20 16:36:12] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 16 off_p1_ch16.f32 128 --pol 1
+[2026-09-20 16:37:14] run: python.exe jerk_scan.py --f32 off_p1_ch16.f32
+[2026-09-20 16:37:19] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 17 off_p1_ch17.f32 128 --pol 1
+[2026-09-20 16:38:22] run: python.exe jerk_scan.py --f32 off_p1_ch17.f32
+[2026-09-20 16:38:27] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 18 off_p1_ch18.f32 128 --pol 1
+[2026-09-20 16:39:29] run: python.exe jerk_scan.py --f32 off_p1_ch18.f32
+[2026-09-20 16:39:34] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 19 off_p1_ch19.f32 128 --pol 1
+[2026-09-20 16:40:36] run: python.exe jerk_scan.py --f32 off_p1_ch19.f32
+[2026-09-20 16:40:41] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 20 off_p1_ch20.f32 128 --pol 1
+[2026-09-20 16:41:44] run: python.exe jerk_scan.py --f32 off_p1_ch20.f32
+[2026-09-20 16:41:49] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 21 off_p1_ch21.f32 128 --pol 1
+[2026-09-20 16:42:51] run: python.exe jerk_scan.py --f32 off_p1_ch21.f32
+[2026-09-20 16:42:56] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 22 off_p1_ch22.f32 128 --pol 1
+[2026-09-20 16:43:59] run: python.exe jerk_scan.py --f32 off_p1_ch22.f32
+[2026-09-20 16:44:03] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 23 off_p1_ch23.f32 128 --pol 1
+[2026-09-20 16:45:06] run: python.exe jerk_scan.py --f32 off_p1_ch23.f32
+[2026-09-20 16:45:11] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 24 off_p1_ch24.f32 128 --pol 1
+[2026-09-20 16:46:13] run: python.exe jerk_scan.py --f32 off_p1_ch24.f32
+[2026-09-20 16:46:18] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 25 off_p1_ch25.f32 128 --pol 1
+[2026-09-20 16:47:21] run: python.exe jerk_scan.py --f32 off_p1_ch25.f32
+[2026-09-20 16:47:26] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 26 off_p1_ch26.f32 128 --pol 1
+[2026-09-20 16:48:28] run: python.exe jerk_scan.py --f32 off_p1_ch26.f32
+[2026-09-20 16:48:33] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 27 off_p1_ch27.f32 128 --pol 1
+[2026-09-20 16:49:36] run: python.exe jerk_scan.py --f32 off_p1_ch27.f32
+[2026-09-20 16:49:41] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 28 off_p1_ch28.f32 128 --pol 1
+[2026-09-20 16:50:43] run: python.exe jerk_scan.py --f32 off_p1_ch28.f32
+[2026-09-20 16:50:48] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 29 off_p1_ch29.f32 128 --pol 1
+[2026-09-20 16:51:51] run: python.exe jerk_scan.py --f32 off_p1_ch29.f32
+[2026-09-20 16:51:56] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 30 off_p1_ch30.f32 128 --pol 1
+[2026-09-20 16:52:59] run: python.exe jerk_scan.py --f32 off_p1_ch30.f32
+[2026-09-20 16:53:04] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 31 off_p1_ch31.f32 128 --pol 1
+[2026-09-20 16:54:06] run: python.exe jerk_scan.py --f32 off_p1_ch31.f32
+[2026-09-20 16:54:11] jerk progress 224/256
+[2026-09-20 16:54:11] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 32 off_p1_ch32.f32 128 --pol 1
+[2026-09-20 16:55:14] run: python.exe jerk_scan.py --f32 off_p1_ch32.f32
+[2026-09-20 16:55:19] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 33 off_p1_ch33.f32 128 --pol 1
+[2026-09-20 16:56:22] run: python.exe jerk_scan.py --f32 off_p1_ch33.f32
+[2026-09-20 16:56:27] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 34 off_p1_ch34.f32 128 --pol 1
+[2026-09-20 16:57:30] run: python.exe jerk_scan.py --f32 off_p1_ch34.f32
+[2026-09-20 16:57:35] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 35 off_p1_ch35.f32 128 --pol 1
+[2026-09-20 16:58:37] run: python.exe jerk_scan.py --f32 off_p1_ch35.f32
+[2026-09-20 16:58:42] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 36 off_p1_ch36.f32 128 --pol 1
+[2026-09-20 16:59:44] run: python.exe jerk_scan.py --f32 off_p1_ch36.f32
+[2026-09-20 16:59:49] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 37 off_p1_ch37.f32 128 --pol 1
+[2026-09-20 17:00:52] run: python.exe jerk_scan.py --f32 off_p1_ch37.f32
+[2026-09-20 17:00:57] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 38 off_p1_ch38.f32 128 --pol 1
+[2026-09-20 17:01:59] run: python.exe jerk_scan.py --f32 off_p1_ch38.f32
+[2026-09-20 17:02:04] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 39 off_p1_ch39.f32 128 --pol 1
+[2026-09-20 17:03:07] run: python.exe jerk_scan.py --f32 off_p1_ch39.f32
+[2026-09-20 17:03:12] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 40 off_p1_ch40.f32 128 --pol 1
+[2026-09-20 17:04:14] run: python.exe jerk_scan.py --f32 off_p1_ch40.f32
+[2026-09-20 17:04:19] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 41 off_p1_ch41.f32 128 --pol 1
+[2026-09-20 17:05:21] run: python.exe jerk_scan.py --f32 off_p1_ch41.f32
+[2026-09-20 17:05:26] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 42 off_p1_ch42.f32 128 --pol 1
+[2026-09-20 17:06:29] run: python.exe jerk_scan.py --f32 off_p1_ch42.f32
+[2026-09-20 17:06:34] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 43 off_p1_ch43.f32 128 --pol 1
+[2026-09-20 17:07:36] run: python.exe jerk_scan.py --f32 off_p1_ch43.f32
+[2026-09-20 17:07:41] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 44 off_p1_ch44.f32 128 --pol 1
+[2026-09-20 17:08:44] run: python.exe jerk_scan.py --f32 off_p1_ch44.f32
+[2026-09-20 17:08:48] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 45 off_p1_ch45.f32 128 --pol 1
+[2026-09-20 17:09:51] run: python.exe jerk_scan.py --f32 off_p1_ch45.f32
+[2026-09-20 17:09:56] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 46 off_p1_ch46.f32 128 --pol 1
+[2026-09-20 17:10:58] run: python.exe jerk_scan.py --f32 off_p1_ch46.f32
+[2026-09-20 17:11:03] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 47 off_p1_ch47.f32 128 --pol 1
+[2026-09-20 17:12:06] run: python.exe jerk_scan.py --f32 off_p1_ch47.f32
+[2026-09-20 17:12:11] jerk progress 240/256
+[2026-09-20 17:12:11] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 48 off_p1_ch48.f32 128 --pol 1
+[2026-09-20 17:13:13] run: python.exe jerk_scan.py --f32 off_p1_ch48.f32
+[2026-09-20 17:13:18] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 49 off_p1_ch49.f32 128 --pol 1
+[2026-09-20 17:14:20] run: python.exe jerk_scan.py --f32 off_p1_ch49.f32
+[2026-09-20 17:14:25] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 50 off_p1_ch50.f32 128 --pol 1
+[2026-09-20 17:15:28] run: python.exe jerk_scan.py --f32 off_p1_ch50.f32
+[2026-09-20 17:15:33] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 51 off_p1_ch51.f32 128 --pol 1
+[2026-09-20 17:16:37] run: python.exe jerk_scan.py --f32 off_p1_ch51.f32
+[2026-09-20 17:16:42] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 52 off_p1_ch52.f32 128 --pol 1
+[2026-09-20 17:17:44] run: python.exe jerk_scan.py --f32 off_p1_ch52.f32
+[2026-09-20 17:17:49] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 53 off_p1_ch53.f32 128 --pol 1
+[2026-09-20 17:18:52] run: python.exe jerk_scan.py --f32 off_p1_ch53.f32
+[2026-09-20 17:18:57] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 54 off_p1_ch54.f32 128 --pol 1
+[2026-09-20 17:19:59] run: python.exe jerk_scan.py --f32 off_p1_ch54.f32
+[2026-09-20 17:20:04] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 55 off_p1_ch55.f32 128 --pol 1
+[2026-09-20 17:21:07] run: python.exe jerk_scan.py --f32 off_p1_ch55.f32
+[2026-09-20 17:21:12] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 56 off_p1_ch56.f32 128 --pol 1
+[2026-09-20 17:22:14] run: python.exe jerk_scan.py --f32 off_p1_ch56.f32
+[2026-09-20 17:22:19] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 57 off_p1_ch57.f32 128 --pol 1
+[2026-09-20 17:23:21] run: python.exe jerk_scan.py --f32 off_p1_ch57.f32
+[2026-09-20 17:23:26] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 58 off_p1_ch58.f32 128 --pol 1
+[2026-09-20 17:24:29] run: python.exe jerk_scan.py --f32 off_p1_ch58.f32
+[2026-09-20 17:24:34] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 59 off_p1_ch59.f32 128 --pol 1
+[2026-09-20 17:25:36] run: python.exe jerk_scan.py --f32 off_p1_ch59.f32
+[2026-09-20 17:25:41] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 60 off_p1_ch60.f32 128 --pol 1
+[2026-09-20 17:26:44] run: python.exe jerk_scan.py --f32 off_p1_ch60.f32
+[2026-09-20 17:26:48] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 61 off_p1_ch61.f32 128 --pol 1
+[2026-09-20 17:27:51] run: python.exe jerk_scan.py --f32 off_p1_ch61.f32
+[2026-09-20 17:27:56] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 62 off_p1_ch62.f32 128 --pol 1
+[2026-09-20 17:28:58] run: python.exe jerk_scan.py --f32 off_p1_ch62.f32
+[2026-09-20 17:29:03] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 63 off_p1_ch63.f32 128 --pol 1
+[2026-09-20 17:30:06] run: python.exe jerk_scan.py --f32 off_p1_ch63.f32
+[2026-09-20 17:30:11] jerk progress 256/256
+[2026-09-20 17:30:11] === PHASE 6: full (alpha,f) SCD + dechirp on top candidates ===
+[2026-09-20 17:30:11] candidates selected: 25
+[2026-09-20 17:30:11] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 52 scd_off_p1_b55_ch52.f32 1 --pol 1 --start 55
+[2026-09-20 17:30:11] run: python.exe scd_frf.py --f32 scd_off_p1_b55_ch52.f32
+[2026-09-20 17:30:14] run: seti_slice.exe blc44_guppi_59103_02170_DIAG_KEPLER-160_OFF_0011.0000.raw 52 scd_off_p0_b55_ch52.f32 1 --pol 0 --start 55
+[2026-09-20 17:30:14] run: python.exe scd_frf.py --f32 scd_off_p0_b55_ch52.f32
+[2026-09-20 17:30:17] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 52 scd_on_p0_b21_ch52.f32 1 --pol 0 --start 21
+[2026-09-20 17:30:17] run: python.exe scd_frf.py --f32 scd_on_p0_b21_ch52.f32
+[2026-09-20 17:30:21] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 52 scd_on_p0_b88_ch52.f32 1 --pol 0 --start 88
+[2026-09-20 17:30:21] run: python.exe scd_frf.py --f32 scd_on_p0_b88_ch52.f32
+[2026-09-20 17:30:24] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 52 scd_on_p1_b88_ch52.f32 1 --pol 1 --start 88
+[2026-09-20 17:30:24] run: python.exe scd_frf.py --f32 scd_on_p1_b88_ch52.f32
+[2026-09-20 17:30:28] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 0 scd_on_p1_b100_ch0.f32 1 --pol 1 --start 100
+[2026-09-20 17:30:28] run: python.exe scd_frf.py --f32 scd_on_p1_b100_ch0.f32
+[2026-09-20 17:30:31] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 0 scd_on_p1_b10_ch0.f32 1 --pol 1 --start 10
+[2026-09-20 17:30:31] run: python.exe scd_frf.py --f32 scd_on_p1_b10_ch0.f32
+[2026-09-20 17:30:35] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 0 scd_on_p1_b86_ch0.f32 1 --pol 1 --start 86
+[2026-09-20 17:30:35] run: python.exe scd_frf.py --f32 scd_on_p1_b86_ch0.f32
+[2026-09-20 17:30:38] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 0 scd_on_p1_b93_ch0.f32 1 --pol 1 --start 93
+[2026-09-20 17:30:38] run: python.exe scd_frf.py --f32 scd_on_p1_b93_ch0.f32
+[2026-09-20 17:30:41] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 0 scd_on_p1_b28_ch0.f32 1 --pol 1 --start 28
+[2026-09-20 17:30:42] run: python.exe scd_frf.py --f32 scd_on_p1_b28_ch0.f32
+[2026-09-20 17:30:45] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 0 scd_on_p1_b27_ch0.f32 1 --pol 1 --start 27
+[2026-09-20 17:30:45] run: python.exe scd_frf.py --f32 scd_on_p1_b27_ch0.f32
+[2026-09-20 17:30:48] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 0 scd_on_p1_b56_ch0.f32 1 --pol 1 --start 56
+[2026-09-20 17:30:48] run: python.exe scd_frf.py --f32 scd_on_p1_b56_ch0.f32
+[2026-09-20 17:30:52] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 0 scd_on_p1_b9_ch0.f32 1 --pol 1 --start 9
+[2026-09-20 17:30:52] run: python.exe scd_frf.py --f32 scd_on_p1_b9_ch0.f32
+[2026-09-20 17:30:55] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 0 scd_on_p1_b3_ch0.f32 1 --pol 1 --start 3
+[2026-09-20 17:30:55] run: python.exe scd_frf.py --f32 scd_on_p1_b3_ch0.f32
+[2026-09-20 17:30:58] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 0 scd_on_p1_b31_ch0.f32 1 --pol 1 --start 31
+[2026-09-20 17:30:59] run: python.exe scd_frf.py --f32 scd_on_p1_b31_ch0.f32
+[2026-09-20 17:31:02] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 0 scd_on_p1_b101_ch0.f32 1 --pol 1 --start 101
+[2026-09-20 17:31:02] run: python.exe scd_frf.py --f32 scd_on_p1_b101_ch0.f32
+[2026-09-20 17:31:05] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 0 scd_on_p1_b19_ch0.f32 1 --pol 1 --start 19
+[2026-09-20 17:31:05] run: python.exe scd_frf.py --f32 scd_on_p1_b19_ch0.f32
+[2026-09-20 17:31:09] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 0 scd_on_p1_b60_ch0.f32 1 --pol 1 --start 60
+[2026-09-20 17:31:09] run: python.exe scd_frf.py --f32 scd_on_p1_b60_ch0.f32
+[2026-09-20 17:31:12] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 0 scd_on_p1_b30_ch0.f32 1 --pol 1 --start 30
+[2026-09-20 17:31:12] run: python.exe scd_frf.py --f32 scd_on_p1_b30_ch0.f32
+[2026-09-20 17:31:15] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 0 scd_on_p1_b32_ch0.f32 1 --pol 1 --start 32
+[2026-09-20 17:31:16] run: python.exe scd_frf.py --f32 scd_on_p1_b32_ch0.f32
+[2026-09-20 17:31:19] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 0 scd_on_p1_b2_ch0.f32 1 --pol 1 --start 2
+[2026-09-20 17:31:19] run: python.exe scd_frf.py --f32 scd_on_p1_b2_ch0.f32
+[2026-09-20 17:31:22] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 0 scd_on_p1_b74_ch0.f32 1 --pol 1 --start 74
+[2026-09-20 17:31:23] run: python.exe scd_frf.py --f32 scd_on_p1_b74_ch0.f32
+[2026-09-20 17:31:26] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 0 scd_on_p1_b124_ch0.f32 1 --pol 1 --start 124
+[2026-09-20 17:31:26] run: python.exe scd_frf.py --f32 scd_on_p1_b124_ch0.f32
+[2026-09-20 17:31:29] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 0 scd_on_p1_b125_ch0.f32 1 --pol 1 --start 125
+[2026-09-20 17:31:29] run: python.exe scd_frf.py --f32 scd_on_p1_b125_ch0.f32
+[2026-09-20 17:31:33] run: seti_slice.exe blc44_guppi_59103_01984_DIAG_KEPLER-160_0010.0000.raw 0 scd_on_p1_b94_ch0.f32 1 --pol 1 --start 94
+[2026-09-20 17:31:33] run: python.exe scd_frf.py --f32 scd_on_p1_b94_ch0.f32
+[2026-09-20 17:31:36] report written
+[2026-09-20 17:31:36] =========== LONGHAUL COMPLETE ===========

@@ -43,13 +43,13 @@ def scd_plane(x, Np=4096, hop=4096, a_max_hz=1500000.0, fs=FS):
     S = np.zeros((hmax+1, B))
     S[0] = np.abs(X).mean(axis=0)**2  # stationary power (reference row)
     for h in range(1, hmax+1):
-        Cc = (X[:, h:]*X[:, :-h].conj()).mean(axis=0)  # pairs 2h apart
-        C = np.abs(Cc)
-        if B-2*h > 0:
-            S[h, h:B-h] = C[:B-2*h]
-        else:
-            S[h, :len(C)] = C
-    return S, df
+        # center-k pairing: C[k] = <X[k+h] conj(X[k-h])>, valid h<=k<B-h.
+        # (A prior revision stored a truncated/shifted slice here, which
+        # misregistered every reported f by up to h bins - ~700 kHz.)
+        C = np.zeros(B)
+        if B - 2*h > 0:
+            C[h:B-h] = np.abs((X[:, 2*h:B]*X[:, :B-2*h].conj()).mean(axis=0))
+        S[h] = C
     return S, df
 
 def scd_peaks(S, df, topk=8):
@@ -63,7 +63,8 @@ def scd_peaks(S, df, topk=8):
         h, k = i//B+1, i%B
         if flat.flat[i] <= 0: break
         got.append((2*h*df, (k-B//2)*df, flat.flat[i]/med))  # f centered: +/-fs/2
-        flat[max(0, h-2):h+3, :] = 0  # suppress alpha neighborhood
+        flat[max(0, h-1):h+2, max(0, k-2):k+3] = 0  # suppress the cell only:
+        # the old whole-row wipe deleted harmonic-comb members < ~4 kHz apart
     return got, med
 
 def baud_stack(S, df, Rb, nharm=12):
@@ -100,11 +101,15 @@ def prove():
     N = 1033216
     t = np.arange(N)/FS
     Pn = 2.07**2
-    # noise baseline for both detectors
-    xn = quantize(rng.normal(0, 2.07, N).astype(np.float32))
-    Sn, _ = scd_plane(xn)
-    pn, _ = scd_peaks(Sn, FS/1024, 4)
-    nth = max(p[2] for p in pn)
+    # noise baseline for both detectors (THREE independent draws: a floor
+    # fitted to a single draw lies - AGENTS.md hard-won lesson 5)
+    nth = 0.0
+    for _draw in range(3):
+        xd = quantize(rng.normal(0, 2.07, N).astype(np.float32))
+        Sn, _ = scd_plane(xd)
+        pn, _ = scd_peaks(Sn, FS/1024, 4)
+        nth = max(nth, max(p[2] for p in pn))
+    xn = quantize(rng.normal(0, 2.07, N).astype(np.float32))  # reference draw
     gam = np.arange(-3000, 3001, 250, dtype=float)
     nn = np.arange(N)/FS
     nb = 0.0
@@ -149,15 +154,15 @@ def prove():
                         'concentrated 300x+ by bank with exact rate'
                         if ok else 'TUNE'))
 
-def scan_file(path, a_max=1500000.0):
+def scan_file(path, a_max=1500000.0, fs=FS):
     x = np.fromfile(path, dtype=np.float32)
     print(f'[in] n={len(x)}', flush=True)
-    S, df = scd_plane(x, a_max_hz=a_max)
+    S, df = scd_plane(x, a_max_hz=a_max, fs=fs)
     pk, med = scd_peaks(S, df, 8)
     print(f'[scd] med={med:.3e}')
     for (al, f, r) in pk:
         print(f'  alpha={al:12.0f}Hz f={f:10.0f}Hz ratio={r:6.2f}x')
-    (bp, bg) = dechirp_search(x, FS, np.arange(-3000, 3001, 250, dtype=float))
+    (bp, bg) = dechirp_search(x, fs, np.arange(-3000, 3001, 250, dtype=float))
     print(f'[dechirp] best={bp:.2f}x @ gamma={bg:.0f} Hz/s')
 
 def main():
@@ -165,9 +170,12 @@ def main():
     ap.add_argument('--prove', action='store_true')
     ap.add_argument('--f32', default='')
     ap.add_argument('--a-max', type=float, default=1500000.0)
+    ap.add_argument('--fs', type=float, default=None,
+                    help='sample rate Hz (default: header-derived 2929687.5)')
     a = ap.parse_args()
+    fs = a.fs if a.fs else FS
     if a.prove: prove()
-    else: scan_file(a.f32, a.a_max)
+    else: scan_file(a.f32, a.a_max, fs)
 
 if __name__ == '__main__':
     main()

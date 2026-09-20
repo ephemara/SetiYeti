@@ -1,0 +1,2 @@
+[in] n=67108864 (22.91s)
+[off_p0_ch35.f32] rows=4095 bins=16385 rowmax_z=6.00 track_score=6.000 v=-0.1Hz/s a=+0.01Hz/s^2 curve_gain=0.0dB t=4.9s -> scored

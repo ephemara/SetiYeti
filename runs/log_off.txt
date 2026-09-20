@@ -1,6 +1,8 @@
-[mvp] block 0: done 64/448, hits 64
-[mvp] block 1: done 128/448, hits 128
-[mvp] block 2: done 192/448, hits 192
-[mvp] block 3: done 256/448, hits 256
-[mvp] block 4: done 320/448, hits 320
-[mvp] block 5: done 384/448, hits 384
+[mvp] block 0: done 64/448, hits 36
+[mvp] block 1: done 128/448, hits 77
+[mvp] block 2: done 192/448, hits 116
+[mvp] block 3: done 256/448, hits 156
+[mvp] block 4: done 320/448, hits 199
+[mvp] block 5: done 384/448, hits 237
+[mvp] block 6: done 448/448, hits 276
+[mvp] DONE blocks 0-6 chans [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63]: 448 slices, 276 flagged -> E:\setiyeti\runs/hits_trap_off.csv

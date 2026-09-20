@@ -1,0 +1,3 @@
+block,chan,pol,spec_ratio,spec_bin,fam_best,fam_hz,fam_tag,vm_sign,vm_diff,verdict
+1,55,3,2.86,1,16.01,732422,Y2,0.00/noise-like,0.24/noise-like,FAM-HIT
+1,57,3,0,-1,0,0,-,,,QUARANTINE:dark-lane range=63 distinct=60

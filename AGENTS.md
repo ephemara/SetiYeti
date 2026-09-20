@@ -3,6 +3,17 @@
 Onboarding + operating rules for any AI agent working in this repository.
 Read this before touching code or data.
 
+> **START HERE: `_objective/objective_1.md`** — the mission.
+> This file describes *how to work in this repo*. The objective file describes
+> *what we are hunting and why* (bystander traffic, monuments from extinct
+> civilisations, and payloads). If a task does not serve Objective 1, say so.
+>
+> Key consequence of Objective 1: **a signal present in both ON and OFF
+> pointings is NOT automatically local.** Third-party links and omnidirectional
+> monuments appear in both. `rfi_veto.py` was rewritten (2026-09) to score
+> *engineeredness* rather than auto-blocking common-mode — see the two-axis
+> model (EARTH / STRUCTURE) below.
+
 ---
 
 ## What SetiYeti is
@@ -207,3 +218,21 @@ isolated at the top. Any one is a curiosity; all five have no known natural or
 human explanation.
 
 Until then, the honest output is upper limits with receipts.
+
+
+
+## Critical
+
+If helping the user and or scanning files, don't just run this pipeline and say "all done the csv files are here"!
+Analyze all data critically and report back to the user with what you found. Tell them all the weird shit in the data
+Tell them if anything novel arose, Tell them if anything is worth inspecting and taking a deeper look at. 
+Break down your findings on what they mean on a universal level as well. "Oh we got this data back and it looks like a pulsar spinning"
+"We found this data and this is definitely something not currently present in the current paradigm of astronomy"
+"We found this and believe this could be the definitive answer to interstellar communication"
+
+This is the kind of agentic assistance we need, not boilerplate heres your csv files, you can scan them now. Half of your work here should be 
+mission critical analysis with proof and following up on proof. Try and report back to the user if anything novel was found as well -
+Assume they are an outsider to this field, so they need help understanding if something truly novel was found which is where you come in.
+
+The key of it all is - This pipeline only exist, because the user is an outsider to the field of astronomy. If they were not an outsider, 
+this would be a basic, drab boilerplate linear analysis codebase like everything else out there.

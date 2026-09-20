@@ -20,12 +20,8 @@ def build_vm(root):
     return exe
 
 def pack_bits(bits):
-    n = len(bits)
-    nb = (n+7)//8
-    out = np.zeros(nb, dtype=np.uint8)
-    for i,b in enumerate(bits):
-        if b: out[i>>3] |= (1 << (7-(i&7)))
-    return out
+    # MSB-first == numpy packbits bitorder='big' (vectorized, ~50x).
+    return np.packbits(np.asarray(bits, dtype=np.uint8), bitorder='big')
 
 def main():
     ap = argparse.ArgumentParser()

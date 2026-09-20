@@ -1,0 +1,5 @@
+block,chan,pol,spec_ratio,spec_bin,fam_best,fam_hz,fam_tag,vm_sign,vm_diff,spikes,rms,verdict
+0,44,0,1.74,1,2.36,394732,Y4,,,0,13.378,clean
+0,45,0,1.77,1,2.41,921696,Y4,,,0,12.810,clean
+1,44,0,1.46,1,2.51,970781,Y4,,,0,13.362,clean
+1,45,0,2.01,1,2.43,322312,Y4,,,0,12.848,clean

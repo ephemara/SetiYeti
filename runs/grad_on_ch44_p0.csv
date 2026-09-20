@@ -1,0 +1,17 @@
+block,chan,pol,spec_ratio,spec_bin,fam_best,fam_hz,fam_tag,vm_sign,vm_diff,verdict
+0,44,0,1.74,1,2.36,394732,Y4,,,clean
+1,44,0,1.46,1,2.51,970781,Y4,,,clean
+2,44,0,1.56,1,10.66,2593,Y4,0.24/noise-like,0.00/noise-like,FAM-HIT
+3,44,0,1.85,1,2.63,1042753,Y4,,,clean
+4,44,0,2.06,1,22.86,179,Y4,0.24/noise-like,0.24/noise-like,FAM-HIT
+5,44,0,1.92,1,2.68,767916,Y2,,,clean
+6,44,0,1.72,1,2.30,155479,Y4,,,clean
+7,44,0,1.82,1,2.40,881910,Y4,,,clean
+8,44,0,1.84,1,2.83,1159340,Y2,,,clean
+9,44,0,1.82,1,2.59,1216292,Y4,,,clean
+10,44,0,1.98,1,2.44,233978,Y4,,,clean
+11,44,0,1.77,1,253.45,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+12,44,0,1.63,1,6.11,1341,Y4,0.00/noise-like,0.00/noise-like,FAM-HIT
+13,44,0,1.57,1,5.53,983,Y4,0.00/noise-like,0.00/noise-like,FAM-HIT
+14,44,0,1.77,1,261.77,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+15,44,0,1.89,1,2.45,1464844,Y4,,,clean

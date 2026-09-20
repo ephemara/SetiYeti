@@ -1,0 +1,11 @@
+[in] n=524288
+[scd] med=1.300e+05
+  alpha=      855446Hz f=         0Hz ratio= 35.85x
+  alpha=     1273155Hz f=    636578Hz ratio= 34.72x
+  alpha=     1092911Hz f=    546455Hz ratio= 33.60x
+  alpha=      579357Hz f=    289679Hz ratio= 32.17x
+  alpha=      811100Hz f=         0Hz ratio= 31.11x
+  alpha=      391960Hz f=         0Hz ratio= 30.73x
+  alpha=      460625Hz f=         0Hz ratio= 30.47x
+  alpha=      719547Hz f=         0Hz ratio= 30.27x
+[dechirp] best=21920.14x @ gamma=0 Hz/s

@@ -1,0 +1,5 @@
+block,chan,pol,spec_ratio,spec_bin,fam_best,fam_hz,fam_tag,vm_sign,vm_diff,verdict
+4,8,2,1.57,1,156.32,732422,Y2,0.00/noise-like,0.00/noise-like,FAM-HIT
+4,40,2,2.00,1,75.10,732422,Y2,0.24/noise-like,0.24/noise-like,FAM-HIT
+4,44,2,1.91,1,2.42,1205564,Y2,,,clean
+4,48,2,2.62,1,212.64,732422,Y2,0.24/noise-like,0.00/noise-like,FAM-HIT

@@ -1,0 +1,4 @@
+[mvp] fs=2929687.5 Hz (header TBIN), pol=0, 64 channels, blocks 0-0
+[mvp] layout probe: interleaved
+[mvp] block 0: done 64/64 ok=64 hits=1 quar=7 err=0 9.8 sl/s ETA 0.0 min
+[mvp] DONE blocks 0-0 chans=64 pol=0: 64 slices (1 flagged, 7 quarantined, 0 errors) in 0.1 min -> E:\SetiYeti\runs/longhaul_kepler\smoke_off.csv
