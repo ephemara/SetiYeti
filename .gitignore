@@ -1,0 +1,39 @@
+# ─── Raw + derived signal data (≈2.5 GB, re-downloadable — never commit) ──────
+data/*.raw
+data/*.f32
+data/*.bin
+data/*.png
+data/mvp_tmp/
+
+# ─── Houdini generated output (terrains, EXRs, macro strips) ──────────────────
+houdini/out/
+
+# ─── Compiled C tools — rebuild with gcc, see README ─────────────────────────
+c/*.exe
+c/seti_slice
+c/fam_scan
+c/vm_sandbox
+c/*.o
+
+# ─── Python ──────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# ─── Runtime artifacts (regenerated per run) ─────────────────────────────────
+alpha_candidates.txt
+
+# ─── Houdini sessions — the network is code (houdini/hython_triage.py) ───────
+*.hip
+*.hipnc
+*.hiplc
+*.hiplc
+
+# ─── Editors / OS ────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini

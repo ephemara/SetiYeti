@@ -1,0 +1,51 @@
+// faint_ridge_wrangles.txt - VEX appeal-court filters for SetiYeti terrains.
+// Paste into Attribute Wrangle / Heightfield Wrangle SOPs in H22.
+// These do NOT re-detect. They visualize continuity the 3.0x boolean gate deletes.
+
+// --- A. heightfield curvature: ridge vs. speckle ---------------------------
+// Wrangle class: Points (on scattered terrain points with @height), or
+// Heightfield Wrangle operating on the volume. Laplacian sign separates
+// coherent ridges (one strong negative-curvature axis) from white speckle
+// (curvature random in all directions).
+//
+// Expects: f@height (or volume 'height'). Produces: f@ridge.
+//
+float eps = ch('eps');  // neighbor spacing, default 1.0
+float hC = f@height;
+float hL = point(0, 'height', neighbour(0, @ptnum, -1));  // adapt to HF API
+float hR = point(0, 'height', neighbour(0, @ptnum, 1));
+float lap = (hL + hR - 2.0 * hC) / (eps * eps);
+f@ridge = -lap;  // positive = local crest along this axis
+// Promote + visualize: color ramp f@ridge, threshold ~2 sigma of the frame,
+// NOT a global constant — per-frame calibration, same discipline as fam_scan.
+
+// --- B. temporal continuity score: rows=time --------------------------------
+// For waterfall terrain (rows = time, cols = freq): a real carrier/drifter
+// persists across rows in the same/adjacent column. Speckle doesn't.
+// Runs as a Detail/Point wrangle over ordered rows; N = rows in frame.
+int N = chi('rows');
+int col = i@col; int row = i@row;
+float persist = 0;
+for (int r = max(0, row - 4); r <= min(N - 1, row + 4); r++) {
+    // neighbor lookup by (col, r) via point id map built upstream
+    int nid = r * chi('cols') + col;
+    persist += point(0, 'height', nid);
+}
+f@persist = persist / 9.0;
+// Ridge rule of thumb: high @persist + high @ridge + narrow in col
+// = carrier. High @persist + wide in col = broadband sweep / radar.
+
+// --- C. Takens-cloud density (Phase 2 graveyard asset) ----------------------
+// For delay-embedded point clouds v(t) = [x(t), x(t+tau), ...]:
+// engineered attractors = dense low-volume manifolds inside diffuse noise.
+// Use Point Cloud / Density VOP or this brute-force proxy on downsampled clouds:
+int n = npoints(0);
+int k = chi('k_nearest');  // 16..32
+float d2 = 0;
+for (int i = 0; i < k; i++) {
+    int nb = nearpoint(0, @P, ch('maxdist'), i + 1);
+    if (nb >= 0) d2 += distance(@P, point(0, 'P', nb));
+}
+f@density = k / max(d2, 1e-6);
+// Natural noise: density flat. Attractor: density spikes 10-100x in a compact
+// blob. That blob with no FAM line = non-repeating burst candidate.

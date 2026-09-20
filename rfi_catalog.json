@@ -1,0 +1,494 @@
+{
+ "features": [
+  {
+   "sig": "Y2:481099Hz",
+   "block": "30",
+   "chan": "56",
+   "freq_mhz": 9353.03,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:649810Hz",
+   "block": "0",
+   "chan": "4",
+   "freq_mhz": 9200.68,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:1438469Hz",
+   "block": "24",
+   "chan": "27",
+   "freq_mhz": 9268.07,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:1094878Hz",
+   "block": "8",
+   "chan": "61",
+   "freq_mhz": 9367.68,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:243187Hz",
+   "block": "16",
+   "chan": "26",
+   "freq_mhz": 9265.14,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:1054287Hz",
+   "block": "19",
+   "chan": "13",
+   "freq_mhz": 9227.05,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "0",
+   "freq_mhz": 9188.96,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "1",
+   "freq_mhz": 9191.89,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y4:179Hz",
+   "block": "0",
+   "chan": "2",
+   "freq_mhz": 9194.82,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "3",
+   "freq_mhz": 9197.75,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "4",
+   "freq_mhz": 9200.68,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "5",
+   "freq_mhz": 9203.61,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "6",
+   "freq_mhz": 9206.54,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "7",
+   "freq_mhz": 9209.47,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "8",
+   "freq_mhz": 9212.4,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "9",
+   "freq_mhz": 9215.33,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "10",
+   "freq_mhz": 9218.26,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "11",
+   "freq_mhz": 9221.19,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "12",
+   "freq_mhz": 9224.12,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "13",
+   "freq_mhz": 9227.05,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "14",
+   "freq_mhz": 9229.98,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "15",
+   "freq_mhz": 9232.91,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "16",
+   "freq_mhz": 9235.84,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "17",
+   "freq_mhz": 9238.77,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "18",
+   "freq_mhz": 9241.7,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "19",
+   "freq_mhz": 9244.63,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "20",
+   "freq_mhz": 9247.56,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "21",
+   "freq_mhz": 9250.49,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "22",
+   "freq_mhz": 9253.42,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "23",
+   "freq_mhz": 9256.35,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "24",
+   "freq_mhz": 9259.28,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "25",
+   "freq_mhz": 9262.21,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "26",
+   "freq_mhz": 9265.14,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y4:179Hz",
+   "block": "0",
+   "chan": "27",
+   "freq_mhz": 9268.07,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y4:179Hz",
+   "block": "0",
+   "chan": "28",
+   "freq_mhz": 9271.0,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "29",
+   "freq_mhz": 9273.93,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y4:179Hz",
+   "block": "0",
+   "chan": "30",
+   "freq_mhz": 9276.86,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "31",
+   "freq_mhz": 9279.79,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "32",
+   "freq_mhz": 9282.71,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "33",
+   "freq_mhz": 9285.64,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "34",
+   "freq_mhz": 9288.57,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "35",
+   "freq_mhz": 9291.5,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "36",
+   "freq_mhz": 9294.43,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "37",
+   "freq_mhz": 9297.36,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "38",
+   "freq_mhz": 9300.29,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "39",
+   "freq_mhz": 9303.22,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "40",
+   "freq_mhz": 9306.15,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "41",
+   "freq_mhz": 9309.08,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "42",
+   "freq_mhz": 9312.01,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "43",
+   "freq_mhz": 9314.94,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "44",
+   "freq_mhz": 9317.87,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "45",
+   "freq_mhz": 9320.8,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "46",
+   "freq_mhz": 9323.73,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "47",
+   "freq_mhz": 9326.66,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "48",
+   "freq_mhz": 9329.59,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "49",
+   "freq_mhz": 9332.52,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "50",
+   "freq_mhz": 9335.45,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "51",
+   "freq_mhz": 9338.38,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "52",
+   "freq_mhz": 9341.31,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "53",
+   "freq_mhz": 9344.24,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "54",
+   "freq_mhz": 9347.17,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "55",
+   "freq_mhz": 9350.1,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "56",
+   "freq_mhz": 9353.03,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "57",
+   "freq_mhz": 9355.96,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "58",
+   "freq_mhz": 9358.89,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "59",
+   "freq_mhz": 9361.82,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "60",
+   "freq_mhz": 9364.75,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "61",
+   "freq_mhz": 9367.68,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "62",
+   "freq_mhz": 9370.61,
+   "disp": "BLOCK:earth-likely"
+  },
+  {
+   "sig": "Y2:179Hz",
+   "block": "0",
+   "chan": "63",
+   "freq_mhz": 9373.54,
+   "disp": "BLOCK:earth-likely"
+  }
+ ]
+}

@@ -1,0 +1,26 @@
+# Normalize to LF in the repo. This is cloned onto Linux worker boxes as well as
+# Windows, so a single canonical ending avoids CRLF surprises in shell scripts
+# and Python/C sources.
+* text=auto eol=lf
+
+# Source
+*.py   text eol=lf
+*.c    text eol=lf
+*.h    text eol=lf
+*.md   text eol=lf
+*.txt  text eol=lf
+*.json text eol=lf
+*.csv  text eol=lf
+
+# Binary — never touch (gitignored anyway, defensive here)
+*.raw  -text
+*.f32  -text
+*.bin  -text
+*.exe  -text
+*.png  -text
+*.npy  -text
+*.exr  -text
+*.obj  -text
+
+# Generated scan output: keep diffs readable but don't fight the writer
+hits*.csv   merge=union
