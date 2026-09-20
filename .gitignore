@@ -1,9 +1,19 @@
 # ─── Raw + derived signal data (≈2.5 GB, re-downloadable — never commit) ──────
+# NOTE: patterns must cover subdirs too (data/deep/, data/beast_tmp/, ...).
+# `*` does not cross `/`, so bare `data/*.f32` missed data/deep (2026-09-20).
+data/**/*.raw
+data/**/*.f32
+data/**/*.bin
+data/**/*.png
+data/**/*.npy
 data/*.raw
 data/*.f32
 data/*.bin
 data/*.png
 data/mvp_tmp/
+data/longhaul_tmp/
+data/beast_tmp/
+data/deep/
 
 # ─── Houdini generated output (terrains, EXRs, macro strips) ──────────────────
 houdini/out/
