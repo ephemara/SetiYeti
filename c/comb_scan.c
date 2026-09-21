@@ -131,9 +131,29 @@ static void nongauss_stats(float* x, int nx, double* kurt, double* tailx) {
     *tailx=((double)tail/st)/6.33e-5;
 }
 
+/* Line-density (THICKET) count: bins where max(Y2,Y4) exceeds 10x.
+ * WHY: a dense intermod thicket (measured: 60+ lines at 20-80x in
+ * TRAPPIST OFF b1/ch57 and Kepler ON b21/ch52, same backend family)
+ * games the comb rule - with a line in every bin, 3+ accidental harmonic
+ * alignments are near-certain and the mean member ratio stays high
+ * (measured comb scores 17-60 on pure thicket). A real baud comb puts
+ * energy in a FEW bins (members + sidelobes, <15); a thicket lights up
+ * dozens. The comb rule cannot tell them apart; this count can. */
+#define THICKET_RATIO 10.0
+#define THICKET_MIN 25
+static int thicket_count(double* c2, double* c4, int SEG) {
+    int n = 0, i;
+    for (i = 2; i <= SEG / 2; i++) {
+        double v = c2[i] > c4[i] ? c2[i] : c4[i];
+        if (v >= THICKET_RATIO) n++;
+    }
+    return n;
+}
+
 static int analyze(float* x, int nx, double fs, int SEG,
                    int* members, double* score, double* f0,
-                   int* nongauss, double* kurt, double* tailx) {
+                   int* nongauss, double* kurt, double* tailx,
+                   int* nlines10) {
     double* c2=malloc((SEG/2+1)*sizeof(double));
     double* c4=malloc((SEG/2+1)*sizeof(double));
     feature_spectra(x,nx,SEG,c2,c4);
@@ -144,6 +164,7 @@ static int analyze(float* x, int nx, double fs, int SEG,
     *members=n; *score=s; *f0 = n? f0b*fs/SEG : 0;
     nongauss_stats(x,nx,kurt,tailx);
     *nongauss = (*kurt>1.0 || *tailx>3.0) ? 1 : 0;
+    *nlines10 = thicket_count(c2,c4,SEG);
     free(c2);free(c4);
     return (n>0)?1:0;
 }
@@ -163,15 +184,15 @@ static int selftest(void) {
     const int N=524288, SEG=32768;
     const double fs=2929687.5;
     float* x=malloc(N*sizeof(float));
-    int i, ok=1, members, nongauss; double score,f0,kurt,tailx,comb;
+    int i, ok=1, members, nongauss, nl10; double score,f0,kurt,tailx,comb;
     /* 1. noise only: Gaussian sigma 14 (8-bit-like). comb=0, nongauss=0. */
     rng_s=0x123456789abcdefULL;
     for(i=0;i<N;i++) x[i]=(float)(14.0*rnorm());
-    comb=analyze(x,N,fs,SEG,&members,&score,&f0,&nongauss,&kurt,&tailx);
-    printf("[selftest] noise: comb=%d(score=%.2f) nongauss=%d(kurt=%.2f tailx=%.2f) %s\n",
-           comb!=0,score,nongauss,kurt,tailx,
-           (!comb&&!nongauss)?"PASS":"FAIL");
-    ok = ok && !comb && !nongauss;
+    comb=analyze(x,N,fs,SEG,&members,&score,&f0,&nongauss,&kurt,&tailx,&nl10);
+    printf("[selftest] noise: comb=%d(score=%.2f) nongauss=%d(kurt=%.2f tailx=%.2f) lines10=%d %s\n",
+           comb!=0,score,nongauss,kurt,tailx,nl10,
+           (!comb&&!nongauss&&nl10<THICKET_MIN)?"PASS":"FAIL");
+    ok = ok && !comb && !nongauss && nl10<THICKET_MIN;
     /* 2. AM comb at 1431.3 Hz (=16 FAM bins: exact grid harmonic family).
      * Envelope modulation -> Y2 lines at f0,2f0,... -> comb must fire. */
     rng_s=0xabcdef123456789ULL;
@@ -180,18 +201,19 @@ static int selftest(void) {
         double env=1.0+0.6*(sin(2*M_PI*1431.3*t)>0?1.0:-1.0);
         x[i]=(float)(14.0*rnorm()*env);
     }
-    comb=analyze(x,N,fs,SEG,&members,&score,&f0,&nongauss,&kurt,&tailx);
+    comb=analyze(x,N,fs,SEG,&members,&score,&f0,&nongauss,&kurt,&tailx,&nl10);
     {
-        int f0ok = comb && fabs(f0-1431.3)<120.0;
-        printf("[selftest] am-comb1431: comb=%d(score=%.2f f0=%.0f members=%d) %s\n",
-               comb!=0,score,f0,members, f0ok?"PASS":"FAIL");
+        /* a REAL baud comb lights a few bins: the fence must stay down */
+        int f0ok = comb && fabs(f0-1431.3)<120.0 && nl10<THICKET_MIN;
+        printf("[selftest] am-comb1431: comb=%d(score=%.2f f0=%.0f members=%d) lines10=%d %s\n",
+               comb!=0,score,f0,members,nl10, f0ok?"PASS":"FAIL");
         ok = ok && f0ok;
     }
     /* 3. sparse impulses (20-sigma, 40 hits): nongauss=1, comb=0. */
     rng_s=0x987654321abcdefULL;
     for(i=0;i<N;i++) x[i]=(float)(14.0*rnorm());
     for(i=0;i<40;i++) x[(i*13107+11)%N]=(float)(20.0*14.0);
-    comb=analyze(x,N,fs,SEG,&members,&score,&f0,&nongauss,&kurt,&tailx);
+    comb=analyze(x,N,fs,SEG,&members,&score,&f0,&nongauss,&kurt,&tailx,&nl10);
     printf("[selftest] impulses: comb=%d nongauss=%d(kurt=%.2f tailx=%.2f) %s\n",
            comb!=0,nongauss,kurt,tailx,
            (!comb&&nongauss)?"PASS":"FAIL");
@@ -207,10 +229,29 @@ static int selftest(void) {
         double t=i/fs;
         x[i]=(float)(14.0*rnorm()+4.0*sin(2*M_PI*5000.0*t));
     }
-    comb=analyze(x,N,fs,SEG,&members,&score,&f0,&nongauss,&kurt,&tailx);
-    printf("[selftest] single-tone: comb=%d(score=%.2f members=%d) %s\n",
-           comb!=0,score,members, (!comb)?"PASS":"FAIL");
-    ok = ok && !comb;
+    comb=analyze(x,N,fs,SEG,&members,&score,&f0,&nongauss,&kurt,&tailx,&nl10);
+    printf("[selftest] single-tone: comb=%d(score=%.2f members=%d) lines10=%d %s\n",
+           comb!=0,score,members,nl10, (!comb&&nl10<THICKET_MIN)?"PASS":"FAIL");
+    ok = ok && !comb && nl10<THICKET_MIN;
+    /* 5. intermod thicket: 60 tones ~80 Hz apart (measured: TRAPPIST OFF
+     * b1/ch57 + Kepler ON b21/ch52 carry 60+ lines at 20-80x spaced ~6 Hz
+     * in Y2). A DENSE quasi-regular forest games the comb rule: with a
+     * line in nearly every bin, accidental harmonic alignments are certain
+     * and the mean member ratio stays high (measured comb scores 17-60 on
+     * pure thicket). nlines10 MUST catch what the comb rule cannot. */
+    rng_s=0x5555555555555555ULL;
+    for(i=0;i<N;i++) x[i]=(float)(14.0*rnorm());
+    for(int k=0;k<60;k++){
+        rng_s ^= rng_s>>12; rng_s ^= rng_s<<25; rng_s ^= rng_s>>27;
+        double fk = 300.0 + k*80.0 + ((rng_s>>11)%4000)/100.0 - 20.0;
+        double ph = ((rng_s>>23)%628)/100.0;
+        for(i=0;i<N;i++){ double t=i/fs; x[i]+=(float)(10.0*sin(2*M_PI*fk*t+ph)); }
+    }
+    comb=analyze(x,N,fs,SEG,&members,&score,&f0,&nongauss,&kurt,&tailx,&nl10);
+    printf("[selftest] thicket60: comb=%d(score=%.2f members=%d) thicket=%d %s\n",
+           comb!=0,score,members,nl10>=THICKET_MIN,
+           (comb&&nl10>=THICKET_MIN)?"PASS":"FAIL");
+    ok = ok && comb && nl10>=THICKET_MIN;
     free(x);
     printf("[selftest] %s\n", ok?"ALL PASS":"FAILURES PRESENT");
     return ok?0:1;
@@ -225,12 +266,13 @@ int main(int argc,char**argv){
     fseek(f,0,SEEK_END); long nb=ftell(f); fseek(f,0,SEEK_SET);
     int nx=(int)(nb/4);
     float* x=malloc(nb); if(fread(x,1,nb,f)!=(size_t)nb){perror("fread");return 1;} fclose(f);
-    int members,nongauss; double score,f0,kurt,tailx;
-    int c=analyze(x,nx,fs,SEG,&members,&score,&f0,&nongauss,&kurt,&tailx);
+    int members,nongauss,nl10; double score,f0,kurt,tailx;
+    int c=analyze(x,nx,fs,SEG,&members,&score,&f0,&nongauss,&kurt,&tailx,&nl10);
     printf("comb_peaks=15 segs=%d\n", nx/SEG);
     printf("RESULT comb=%d comb_score=%.2f f0_hz=%.1f members=%d "
-           "nongauss=%d kurt=%.2f tailx=%.2f\n",
-           c,score,f0,members,nongauss,kurt,tailx);
+           "nongauss=%d kurt=%.2f tailx=%.2f nlines10=%d thicket=%d\n",
+           c,score,f0,members,nongauss,kurt,tailx,nl10,
+           (nl10>=THICKET_MIN)?1:0);
     free(x);
     return 0;
 }

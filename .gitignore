@@ -48,3 +48,12 @@ alpha_candidates.txt
 Thumbs.db
 desktop.ini
 *.json
+*.csv
+*.f32
+*.exe
+*.npy
+*.npz
+*.wav
+*.fil
+*.h5
+*.exe

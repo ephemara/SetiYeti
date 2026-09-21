@@ -85,6 +85,24 @@ hits*.csv   per-observation scan results — THIS IS THE SCIENTIFIC RECORD
 rfi_catalog.json   accumulated interference signature catalog
 ```
 
+### Storage tiers
+
+Two drives, deliberately split:
+
+- **`E:/SetiYeti/data/`** — the small working set that lives beside the code.
+  Gitignored, ~2.5 GB.
+- **`D:/data/`** — external **1 TB** overflow tier (added 2026-09), **outside
+  the repo** so nothing there is ever committed. Holds the archive:
+  `D:/data/raw/` (GUPPI downloads), `D:/data/slices/` (`seti_slice` `.f32`
+  extractions + power series), `D:/data/derived/` (`.npz`/`.npy`/`.csv`
+  intermediates). See `D:/data/README.md`.
+
+Rule of thumb: raw downloads land on `D:/data/`; only the current working set
+sits on `E:`. **Never hardcode a `D:/` path in committed code** — take a
+`--data-dir` / `$SETIYETI_DATA` so the repo still runs when the drive is
+unplugged. Disk is not infinite (~58 GUPPI files); prune intermediates after a
+write-up, keep the `.raw`.
+
 ---
 
 ## Build & run
@@ -134,7 +152,8 @@ for waterfall PNGs). C tools are dependency-free.
 5. **`hits.csv` / `evidence.csv` / `rfi_catalog.json` are the scientific
    record.** Treat them as append-only truth. Don't rewrite history; add rows.
 6. **Raw data is never committed.** `.raw/.f32/.bin/.png` are gitignored. S3 is
-   requester-pays — see `data/README.md`.
+   requester-pays — see `data/README.md`. Bulk raw/derived files go on the
+   external **`D:/data/`** tier (1 TB, outside the repo), not on `E:`.
 7. **Don't overclaim.** This is a blind-spot specialist, not a survey. Known
    winners: spread spectrum, jerk/chirp, bit structure. Known losers: stable
    narrowband (turboSETI is better), pulsars/FRBs (not built yet).

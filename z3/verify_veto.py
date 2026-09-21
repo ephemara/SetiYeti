@@ -53,7 +53,8 @@ def main():
         row = {'block': '0', 'chan': str(ch), 'pol': '0', 'spec_ratio': '2.0',
                'spec_bin': '1', 'fam_best': '5.0', 'fam_hz': str(al),
                'fam_tag': 'Y4', 'vm_sign': vm, 'vm_diff': '0.00/noise-like',
-               'verdict': 'FAM-HIT'}
+               'verdict': 'FAM-HIT',
+               'lines10': str(rng.choice([4, 9, 14, 40, 70]))}
         row.update(flags)
         S, _ = V.structure_score(row)
         E = 0.4  # fixed probe offset; disp tail depends on E only via net

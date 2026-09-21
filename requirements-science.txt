@@ -11,6 +11,7 @@ PyYAML>=6
 pandas>=2.0
 scikit-learn>=1.3
 pytest>=8.0
+sgp4>=2.2       # satellite TLE propagation (satpass.py; pure python, tiny)
 # optional accelerators (graceful fallback if absent):
 # numba>=0.59      # JIT for fold/DM hot loops (heavy: llvmlite)
 # pyfftw>=0.13     # FFTW bindings for SCD/stft paths

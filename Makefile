@@ -36,7 +36,7 @@ LDLIBS  ?= -lm
 # `make CFLAGS="-O2 -Wall -Wextra -std=c99 -I c"` for portable binaries.
 
 BIN     := c
-TOOLS   := seti_slice fam_scan vm_sandbox comb_scan
+TOOLS   := seti_slice fam_scan vm_sandbox comb_scan xeno_scan xvm_sandbox
 BINS    := $(addprefix $(BIN)/,$(addsuffix $(EXE),$(TOOLS)))
 
 PY      ?= python

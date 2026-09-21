@@ -120,6 +120,28 @@ def main():
     check('MON recurrence reason present',
           any('monument' in x for x in reasons), True)
 
+    # ---- THICKET: dense forest + comb + common-mode -> BLOCK -------------
+    # the fence for comb-by-density (TRAPPIST OFF b1/ch57 archetype): a real
+    # baud comb (lines10 ~ 9) with engineering still passes; a thicket
+    # (lines10 60+) with a spurious comb does not, even when structured.
+    ev = {('0', '57'): {'persist': '0', 'multichan': '1'}}
+    ctx = make_ctx(target='THICK', evidence=ev, on=[(57, 626.0)], off=[(57, 626.0)])
+    r = make_row(chan=57, fam_hz=626.0,
+                 extra={'comb': '1', 'nongauss': '1', 'lines10': '60'})
+    E, S, net, disp, reasons = verdict_of(r, ctx)
+    check('THICKET intermod forest + spurious comb blocks', disp,
+          'BLOCK:earth-likely', f'E={E:.2f} S={S:.2f} net={net:+.2f}')
+    assert any('thicket' in x for x in reasons), 'missing thicket reason'
+
+    # ---- THICKET GUARD: real comb (few lines) + eng still passes --------
+    ev = {('0', '40'): {'persist': '1', 'multichan': '0'}}
+    ctx = make_ctx(target='REALCOMB', evidence=ev, on=[(40, 900000.0)], off=[])
+    r = make_row(chan=40, fam_hz=900000.0,
+                 extra={'comb': '1', 'frame': '1', 'lines10': '9'})
+    E, S, net, disp, _ = verdict_of(r, ctx)
+    check('THICKET-GUARD real comb (9 lines) + eng still candidate', disp,
+          ('WATCH', 'CANDIDATE'), f'E={E:.2f} S={S:.2f} net={net:+.2f}')
+
     # ---- GUARD: recurring AND unstructured still hard-blocks -------------
     _ck = f"HUM:{V.alpha_bucket(179.0)}:{V.alloc(_cf(32))[1]}"
     cat = {'features': {_ck: {'sig': 'Y2:179Hz', 'alpha': 179.0,

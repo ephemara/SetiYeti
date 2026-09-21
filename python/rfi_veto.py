@@ -241,11 +241,22 @@ def flag(row, name):
 def structure_score(row):
     """Evidence that the signal is engineered. Capped at 1.0."""
     s, why = 0.0, []
+    # Thickey discount FIRST: a comb found inside an intermod thicket is
+    # comb-by-density (proven in-prove: synthetic thicket scores 1940 with
+    # 7 members), not evidence of modulation. Counting it would let the
+    # artifact promote itself. lines10==-1/unknown counts normally.
+    try:
+        _nl = int(row.get('lines10') if row.get('lines10') not in (None, '') else -1)
+    except (ValueError, TypeError):
+        _nl = -1
+    in_thicket = _nl >= 25
     vm = str(row.get('vm_sign', '')) + str(row.get('vm_diff', ''))
     if 'CANDIDATE' in vm:
         s += 0.25; why.append('+0.25 VM sandbox structure flag')
-    if flag(row, 'comb'):
+    if flag(row, 'comb') and not in_thicket:
         s += 0.20; why.append('+0.20 baud comb in SCD plane')
+    elif flag(row, 'comb') and in_thicket:
+        why.append('+0.00 comb DISCOUNTED (inside intermod thicket: comb-by-density)')
     if flag(row, 'frame'):
         s += 0.25; why.append('+0.25 frame period / repetition detected')
     if flag(row, 'nongauss'):
@@ -324,6 +335,21 @@ def score_slice(row, ctx):
         E += 0.30; e_why.append('+0.30 transient (absent over full span)')
     else:
         E -= 0.20; e_why.append('-0.20 persistent across span')
+
+    # THICKET (XENO overhaul): a dense intermod line forest games the comb
+    # rule - with a line in every bin, accidental harmonic alignments are
+    # certain and the mean member ratio stays high (proven in-prove:
+    # synthetic thicket scores comb 1940 with 7 members vs 859 for a real
+    # AM baud comb; the fence is the line count, 9 vs 25+). A real baud
+    # comb lights a few bins; a thicket lights dozens. lines10==-1 means
+    # the numpy fallback ran (unknown) and is ignored, never penalised.
+    try:
+        nl10 = int(row.get('lines10') if row.get('lines10') not in (None, '') else -1)
+    except (ValueError, TypeError):
+        nl10 = -1
+    if nl10 >= 25:
+        E += 0.35
+        e_why.append(f'+0.35 intermod thicket ({nl10} lines>10x: comb-by-density, not modulation)')
 
     vm = str(row.get('vm_sign', '')) + str(row.get('vm_diff', ''))
     if 'noise-like' in vm and not engineered:

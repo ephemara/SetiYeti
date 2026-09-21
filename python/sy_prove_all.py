@@ -17,6 +17,8 @@ import argparse, os, subprocess, sys, time
 PY = sys.executable
 C_PROVES = [
     (['c/comb_scan', '--selftest'], 'comb_scan comb+nongauss'),
+    (['c/xeno_scan', '--selftest'], 'xeno_scan micro+exotic'),
+    (['c/xvm_sandbox', '--selftest'], 'xvm_sandbox 6-machine'),
 ]
 PY_PROVES = [
     (['python/structure_pass.py', '--selftest'], 'structure_pass comb rule'),
@@ -26,6 +28,13 @@ PY_PROVES = [
     (['python/pulsar_fold.py', '--prove'], 'pulsar_fold periodicity'),
     (['python/transient_dm.py', '--prove'], 'transient_dm shots'),
     (['python/raster_hunt.py', '--prove'], 'raster_hunt payload framing'),
+    (['python/scint_pol.py', '--prove'], 'scint_pol ISM+pol'),
+    (['python/exotic_pass.py', '--prove'], 'exotic_pass bizarre-physics'),
+    (['python/xeno_pass.py', '--selftest'], 'xeno_pass grade ladder'),
+    (['z3/verify_xeno.py'], 'verify_xeno grade tie'),
+    (['python/univ_ingest.py', '--prove'], 'univ_ingest round-trips'),
+    (['python/satpass.py', '--prove'], 'satpass conjunction'),
+    (['z3/verify_ingest.py'], 'verify_ingest dispatch tie'),
     (['python/burst_zoom.py', '--prove'], 'burst_zoom morphology'),
     (['python/dsss_prove.py'], 'dsss spread spectrum'),
     (['python/scd_frf.py', '--prove'], 'scd full plane + dechirp'),

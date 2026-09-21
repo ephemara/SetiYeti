@@ -6683,7 +6683,7 @@
   "KEPLER160:1.08e+06:terr": {
    "sig": "Y4:1080662Hz",
    "alpha": 1080662.0,
-   "n_seen": 4,
+   "n_seen": 6,
    "structured": false,
    "freq_mhz": 1338.8671875,
    "disp": "BLOCK:earth-likely"
@@ -6723,7 +6723,7 @@
   "KEPLER160:2.86e+03:terr": {
    "sig": "Y2:2861Hz",
    "alpha": 2861.0,
-   "n_seen": 7,
+   "n_seen": 10,
    "structured": true,
    "freq_mhz": 1335.9375,
    "disp": "BLOCK:earth-likely",
@@ -6805,7 +6805,7 @@
   "KEPLER160:1.34e+06:terr": {
    "sig": "Y2:1342893Hz",
    "alpha": 1342893.0,
-   "n_seen": 8,
+   "n_seen": 10,
    "structured": false,
    "freq_mhz": 1338.8671875,
    "disp": "BLOCK:earth-likely"
@@ -6821,7 +6821,7 @@
   "KEPLER160:5.3e+05:terr": {
    "sig": "Y2:529915Hz",
    "alpha": 529915.0,
-   "n_seen": 3,
+   "n_seen": 5,
    "structured": false,
    "freq_mhz": 1350.5859375,
    "disp": "BLOCK:earth-likely"
@@ -6909,7 +6909,7 @@
   "KEPLER160:9.44e+05:terr": {
    "sig": "Y4:943780Hz",
    "alpha": 943780.0,
-   "n_seen": 4,
+   "n_seen": 6,
    "structured": false,
    "freq_mhz": 1335.9375,
    "disp": "BLOCK:earth-likely"
@@ -6917,7 +6917,7 @@
   "KEPLER160:1.46e+06:terr": {
    "sig": "Y4:1458585Hz",
    "alpha": 1458585.0,
-   "n_seen": 14,
+   "n_seen": 17,
    "structured": false,
    "freq_mhz": 1341.796875,
    "disp": "BLOCK:earth-likely"
@@ -7053,7 +7053,7 @@
   "KEPLER160:5.7e+05:terr": {
    "sig": "Y4:569791Hz",
    "alpha": 569791.0,
-   "n_seen": 2,
+   "n_seen": 4,
    "structured": false,
    "freq_mhz": 1341.796875,
    "disp": "BLOCK:earth-likely"
@@ -7069,7 +7069,7 @@
   "KEPLER160:4.9e+05:terr": {
    "sig": "Y2:490308Hz",
    "alpha": 490308.0,
-   "n_seen": 3,
+   "n_seen": 5,
    "structured": false,
    "freq_mhz": 1335.9375,
    "disp": "BLOCK:earth-likely"
@@ -7437,7 +7437,7 @@
   "KEPLER160:7.53e+05:terr": {
    "sig": "Y4:752896Hz",
    "alpha": 752896.0,
-   "n_seen": 2,
+   "n_seen": 4,
    "structured": false,
    "freq_mhz": 1456.0546875,
    "disp": "BLOCK:earth-likely"
@@ -7461,7 +7461,7 @@
   "KEPLER160:8.27e+05:terr": {
    "sig": "Y2:827283Hz",
    "alpha": 827283.0,
-   "n_seen": 2,
+   "n_seen": 4,
    "structured": false,
    "freq_mhz": 1491.2109375,
    "disp": "BLOCK:earth-likely"
@@ -7485,7 +7485,7 @@
   "KEPLER160:8.98e+05:terr": {
    "sig": "Y4:897735Hz",
    "alpha": 897735.0,
-   "n_seen": 4,
+   "n_seen": 6,
    "structured": false,
    "freq_mhz": 1441.40625,
    "disp": "BLOCK:earth-likely"
@@ -7909,7 +7909,7 @@
   "KEPLER160:9.62e+05:terr": {
    "sig": "Y4:961840Hz",
    "alpha": 961840.0,
-   "n_seen": 2,
+   "n_seen": 4,
    "structured": false,
    "freq_mhz": 1382.8125,
    "disp": "BLOCK:earth-likely"
@@ -7917,7 +7917,7 @@
   "KEPLER160:2.52e+05:terr": {
    "sig": "Y2:252485Hz",
    "alpha": 252485.0,
-   "n_seen": 3,
+   "n_seen": 5,
    "structured": false,
    "freq_mhz": 1344.7265625,
    "disp": "BLOCK:earth-likely"
@@ -8125,7 +8125,7 @@
   "KEPLER160:1.33e+06:terr": {
    "sig": "Y4:1325905Hz",
    "alpha": 1325905.0,
-   "n_seen": 5,
+   "n_seen": 7,
    "structured": false,
    "freq_mhz": 1497.0703125,
    "disp": "BLOCK:earth-likely"
@@ -8157,7 +8157,7 @@
   "KEPLER160:358:terr": {
    "sig": "Y4:358Hz",
    "alpha": 358.0,
-   "n_seen": 9,
+   "n_seen": 11,
    "structured": false,
    "freq_mhz": 1344.7265625,
    "disp": "BLOCK:earth-likely",
@@ -8415,7 +8415,7 @@
   "KEPLER160:4.44e+05:terr": {
    "sig": "Y2:443906Hz",
    "alpha": 443906.0,
-   "n_seen": 2,
+   "n_seen": 4,
    "structured": false,
    "freq_mhz": 1494.140625,
    "disp": "BLOCK:earth-likely"
@@ -8439,7 +8439,7 @@
   "KEPLER160:9.42e+05:terr": {
    "sig": "Y2:941545Hz",
    "alpha": 941545.0,
-   "n_seen": 2,
+   "n_seen": 4,
    "structured": false,
    "freq_mhz": 1444.3359375,
    "disp": "BLOCK:earth-likely"
@@ -8471,10 +8471,10 @@
   "KEPLER160:626:terr": {
    "sig": "Y4:626Hz",
    "alpha": 626.0,
-   "n_seen": 4,
+   "n_seen": 7,
    "structured": true,
    "freq_mhz": 1347.65625,
-   "disp": "CANDIDATE"
+   "disp": "BLOCK:earth-likely"
   },
   "KEPLER160:1.93e+05:terr": {
    "sig": "Y2:193387Hz",
@@ -8495,7 +8495,7 @@
   "KEPLER160:2.76e+04:ra": {
    "sig": "Y2:27627Hz",
    "alpha": 27627.0,
-   "n_seen": 2,
+   "n_seen": 4,
    "structured": false,
    "freq_mhz": 1420.8984375,
    "disp": "BLOCK:earth-likely"
@@ -8503,7 +8503,7 @@
   "KEPLER160:1.16e+03:terr": {
    "sig": "Y4:1162Hz",
    "alpha": 1162.0,
-   "n_seen": 3,
+   "n_seen": 5,
    "structured": false,
    "freq_mhz": 1347.65625,
    "disp": "BLOCK:earth-likely",
@@ -8569,7 +8569,7 @@
   "KEPLER160:1.37e+06:terr": {
    "sig": "Y4:1368910Hz",
    "alpha": 1368910.0,
-   "n_seen": 4,
+   "n_seen": 7,
    "structured": false,
    "freq_mhz": 1476.5625,
    "disp": "BLOCK:earth-likely"
@@ -8873,7 +8873,7 @@
   "KEPLER160:2.56e+05:terr": {
    "sig": "Y4:255525Hz",
    "alpha": 255525.0,
-   "n_seen": 1,
+   "n_seen": 2,
    "structured": false,
    "freq_mhz": 1338.8671875,
    "disp": "BLOCK:earth-likely"
@@ -9569,7 +9569,7 @@
   "KEPLER160:6.93e+05:terr": {
    "sig": "Y2:693262Hz",
    "alpha": 693262.0,
-   "n_seen": 1,
+   "n_seen": 2,
    "structured": false,
    "freq_mhz": 1338.8671875,
    "disp": "BLOCK:earth-likely"
@@ -10297,7 +10297,7 @@
   "KEPLER160:5.54e+05:terr": {
    "sig": "Y2:553876Hz",
    "alpha": 553876.0,
-   "n_seen": 2,
+   "n_seen": 3,
    "structured": false,
    "freq_mhz": 1500.0,
    "disp": "BLOCK:earth-likely"
@@ -10569,10 +10569,10 @@
   "KEPLER160:1.43e+03:terr": {
    "sig": "Y4:1431Hz",
    "alpha": 1431.0,
-   "n_seen": 5,
+   "n_seen": 7,
    "structured": true,
    "freq_mhz": 1347.65625,
-   "disp": "WATCH"
+   "disp": "BLOCK:earth-likely"
   },
   "KEPLER160:1.61e+05:terr": {
    "sig": "Y4:160843Hz",
@@ -11417,10 +11417,10 @@
   "KEPLER160:715:ra": {
    "sig": "Y4:715Hz",
    "alpha": 715.0,
-   "n_seen": 1,
+   "n_seen": 2,
    "structured": false,
    "freq_mhz": 1423.828125,
-   "disp": "BLOCK:earth-likely"
+   "disp": "WATCH"
   },
   "KEPLER160:536:terr": {
    "sig": "Y4:536Hz",
@@ -11685,6 +11685,422 @@
    "structured": false,
    "freq_mhz": 1338.8671875,
    "disp": "BLOCK:earth-likely"
+  },
+  "TRAPPIST1:6.62e+05:terr": {
+   "sig": "Y4:662059Hz",
+   "alpha": 662059.0,
+   "n_seen": 2,
+   "structured": false,
+   "freq_mhz": 1500.0,
+   "disp": "BLOCK:earth-likely"
+  },
+  "TRAPPIST1:1.34e+05:terr": {
+   "sig": "Y2:134200Hz",
+   "alpha": 134200.0,
+   "n_seen": 2,
+   "structured": false,
+   "freq_mhz": 1500.0,
+   "disp": "BLOCK:earth-likely"
+  },
+  "TRAPPIST1:9.01e+05:terr": {
+   "sig": "Y2:900954Hz",
+   "alpha": 900954.0,
+   "n_seen": 2,
+   "structured": false,
+   "freq_mhz": 1500.0,
+   "disp": "BLOCK:earth-likely"
+  },
+  "TRAPPIST1:2.59e+03:terr": {
+   "sig": "Y4:2593Hz",
+   "alpha": 2593.0,
+   "n_seen": 2,
+   "structured": false,
+   "freq_mhz": 1464.84375,
+   "disp": "BLOCK:earth-likely"
+  },
+  "TRAPPIST1:1.48e+04:terr": {
+   "sig": "Y4:14842Hz",
+   "alpha": 14842.0,
+   "n_seen": 2,
+   "structured": false,
+   "freq_mhz": 1500.0,
+   "disp": "BLOCK:earth-likely"
+  },
+  "TRAPPIST1:1.29e+05:terr": {
+   "sig": "Y2:129193Hz",
+   "alpha": 129193.0,
+   "n_seen": 2,
+   "structured": false,
+   "freq_mhz": 1500.0,
+   "disp": "BLOCK:earth-likely"
+  },
+  "TRAPPIST1:1.52e+03:terr": {
+   "sig": "Y4:1520Hz",
+   "alpha": 1520.0,
+   "n_seen": 2,
+   "structured": false,
+   "freq_mhz": 1464.84375,
+   "disp": "BLOCK:earth-likely"
+  },
+  "TRAPPIST1:179:terr": {
+   "sig": "Y4:179Hz",
+   "alpha": 179.0,
+   "n_seen": 2,
+   "structured": false,
+   "freq_mhz": 1371.09375,
+   "disp": "BLOCK:earth-likely"
+  },
+  "TRAPPIST1:7.77e+05:terr": {
+   "sig": "Y2:777304Hz",
+   "alpha": 777304.0,
+   "n_seen": 2,
+   "structured": false,
+   "freq_mhz": 1500.0,
+   "disp": "WATCH"
+  },
+  "TRAPPIST1:7.3e+04:terr": {
+   "sig": "Y4:72956Hz",
+   "alpha": 72956.0,
+   "n_seen": 2,
+   "structured": false,
+   "freq_mhz": 1500.0,
+   "disp": "WATCH"
+  },
+  "TRAPPIST1:3.15e+05:terr": {
+   "sig": "Y4:315249Hz",
+   "alpha": 315249.0,
+   "n_seen": 2,
+   "structured": false,
+   "freq_mhz": 1500.0,
+   "disp": "BLOCK:earth-likely"
+  },
+  "TRAPPIST1:1.01e+06:terr": {
+   "sig": "Y2:1013249Hz",
+   "alpha": 1013249.0,
+   "n_seen": 2,
+   "structured": false,
+   "freq_mhz": 1500.0,
+   "disp": "BLOCK:earth-likely"
+  },
+  "TRAPPIST1:626:terr": {
+   "sig": "Y4:626Hz",
+   "alpha": 626.0,
+   "n_seen": 2,
+   "structured": true,
+   "freq_mhz": 1333.0078125,
+   "disp": "BLOCK:earth-likely"
+  },
+  "TRAPPIST1:5.75e+05:terr": {
+   "sig": "Y2:574887Hz",
+   "alpha": 574887.0,
+   "n_seen": 2,
+   "structured": false,
+   "freq_mhz": 1500.0,
+   "disp": "WATCH"
+  },
+  "KEPLER160:8.12e+04:ra": {
+   "sig": "Y4:81182Hz",
+   "alpha": 81182.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:1.79e+03:ra": {
+   "sig": "Y4:1788Hz",
+   "alpha": 1788.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:7.95e+04:ra": {
+   "sig": "Y4:79483Hz",
+   "alpha": 79483.0,
+   "n_seen": 2,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:6.95e+05:terr": {
+   "sig": "Y2:694692Hz",
+   "alpha": 694692.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1391.6015625,
+   "disp": "BLOCK:earth-likely"
+  },
+  "KEPLER160:7.33e+03:ra": {
+   "sig": "Y4:7331Hz",
+   "alpha": 7331.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:9.86e+05:terr": {
+   "sig": "Y4:985980Hz",
+   "alpha": 985980.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1362.3046875,
+   "disp": "BLOCK:earth-likely"
+  },
+  "KEPLER160:1.19e+04:terr": {
+   "sig": "Y2:11891Hz",
+   "alpha": 11891.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1450.1953125,
+   "disp": "BLOCK:earth-likely"
+  },
+  "KEPLER160:7.3e+04:ra": {
+   "sig": "Y4:73045Hz",
+   "alpha": 73045.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:536:ra": {
+   "sig": "Y4:536Hz",
+   "alpha": 536.0,
+   "n_seen": 3,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:9.92e+03:ra": {
+   "sig": "Y4:9924Hz",
+   "alpha": 9924.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:983:ra": {
+   "sig": "Y4:983Hz",
+   "alpha": 983.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:8.93e+05:terr": {
+   "sig": "Y4:892729Hz",
+   "alpha": 892729.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1464.84375,
+   "disp": "BLOCK:earth-likely"
+  },
+  "KEPLER160:8.82e+04:ra": {
+   "sig": "Y4:88155Hz",
+   "alpha": 88155.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:9.79e+05:ra": {
+   "sig": "Y4:978827Hz",
+   "alpha": 978827.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:2.32e+03:ra": {
+   "sig": "Y4:2325Hz",
+   "alpha": 2325.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:1.07e+03:ra": {
+   "sig": "Y4:1073Hz",
+   "alpha": 1073.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:4.29e+03:terr": {
+   "sig": "Y2:4292Hz",
+   "alpha": 4292.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1333.0078125,
+   "disp": "BLOCK:earth-likely"
+  },
+  "KEPLER160:4.2e+03:ra": {
+   "sig": "Y4:4202Hz",
+   "alpha": 4202.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:7.71e+04:terr": {
+   "sig": "Y2:77069Hz",
+   "alpha": 77069.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1435.546875,
+   "disp": "BLOCK:earth-likely"
+  },
+  "KEPLER160:1.7e+03:ra": {
+   "sig": "Y4:1699Hz",
+   "alpha": 1699.0,
+   "n_seen": 3,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:715:terr": {
+   "sig": "Y4:715Hz",
+   "alpha": 715.0,
+   "n_seen": 1,
+   "structured": true,
+   "freq_mhz": 1333.0078125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:8.14e+04:ra": {
+   "sig": "Y4:81450Hz",
+   "alpha": 81450.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:2.77e+03:ra": {
+   "sig": "Y4:2772Hz",
+   "alpha": 2772.0,
+   "n_seen": 2,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:8.38e+04:ra": {
+   "sig": "Y4:83774Hz",
+   "alpha": 83774.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:3.49e+03:ra": {
+   "sig": "Y4:3487Hz",
+   "alpha": 3487.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:6.71e+03:ra": {
+   "sig": "Y4:6706Hz",
+   "alpha": 6706.0,
+   "n_seen": 2,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:5.9e+03:ra": {
+   "sig": "Y4:5901Hz",
+   "alpha": 5901.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:6.17e+03:ra": {
+   "sig": "Y4:6169Hz",
+   "alpha": 6169.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:3.98e+05:ra": {
+   "sig": "Y4:398487Hz",
+   "alpha": 398487.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:7.89e+04:ra": {
+   "sig": "Y4:78946Hz",
+   "alpha": 78946.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:3.67e+03:ra": {
+   "sig": "Y4:3666Hz",
+   "alpha": 3666.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:8.14e+03:ra": {
+   "sig": "Y4:8136Hz",
+   "alpha": 8136.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:358:ra": {
+   "sig": "Y4:358Hz",
+   "alpha": 358.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:4.38e+03:ra": {
+   "sig": "Y4:4381Hz",
+   "alpha": 4381.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:9.03e+03:ra": {
+   "sig": "Y4:9030Hz",
+   "alpha": 9030.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:4.02e+03:ra": {
+   "sig": "Y4:4023Hz",
+   "alpha": 4023.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:1.43e+03:ra": {
+   "sig": "Y4:1431Hz",
+   "alpha": 1431.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1426.7578125,
+   "disp": "WATCH"
+  },
+  "KEPLER160:1.24e+06:ra": {
+   "sig": "Y4:1239717Hz",
+   "alpha": 1239717.0,
+   "n_seen": 1,
+   "structured": false,
+   "freq_mhz": 1415.0390625,
+   "disp": "BLOCK:earth-likely"
   }
  },
  "runs": {
@@ -11727,6 +12143,41 @@
    "time": "2026-09-20 21:38:55",
    "hits": "runs\\beast_e2e\\struct_on_p2.csv",
    "target": "E2E"
+  },
+  "e4c8b2c4fb51": {
+   "time": "2026-09-20 22:29:03",
+   "hits": "runs/xeno/struct_on_p0.csv",
+   "target": "TRAPPIST1"
+  },
+  "5278cef1d590": {
+   "time": "2026-09-20 22:29:29",
+   "hits": "runs/xeno/struct_off_p0.csv",
+   "target": "TRAPPIST1"
+  },
+  "41bcbfacc501": {
+   "time": "2026-09-20 22:31:41",
+   "hits": "runs/xeno/kstruct_on_p0.csv",
+   "target": "KEPLER160"
+  },
+  "5e063301a4c1": {
+   "time": "2026-09-20 23:55:56",
+   "hits": "runs/xeno/struct_on_p0.csv",
+   "target": "TRAPPIST1"
+  },
+  "003f7b846d1d": {
+   "time": "2026-09-20 23:55:56",
+   "hits": "runs/xeno/struct_off_p0.csv",
+   "target": "TRAPPIST1"
+  },
+  "082cc1bd9725": {
+   "time": "2026-09-20 23:55:56",
+   "hits": "runs/xeno/kstruct_on_p0.csv",
+   "target": "KEPLER160"
+  },
+  "404cf234b5a5": {
+   "time": "2026-09-20 23:57:41",
+   "hits": "runs/xeno/kstruct_off_p0.csv",
+   "target": "KEPLER160"
   }
  }
 }

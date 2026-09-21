@@ -1,0 +1,340 @@
+=== [0] T15-ON b2/ch12 (new 7.6x) ===
+  [slice] n=524288 rms=17.363 mean=-0.4619 maxz=7.3
+  [fam] Y2 peak  0 bin=3       alpha=      268.22 Hz  ratio=  2.72x
+  [fam] Y2 peak  1 bin=9361    alpha=   836938.62 Hz  ratio=  2.52x
+  [fam] Y2 peak  2 bin=26      alpha=     2324.58 Hz  ratio=  2.42x
+  [fam] Y2 peak  3 bin=9849    alpha=   880569.22 Hz  ratio=  2.23x
+  [fam] Y2 peak  4 bin=8       alpha=      715.26 Hz  ratio=  2.22x
+  [fam] Y2 peak  5 bin=7399    alpha=   661522.15 Hz  ratio=  2.18x
+  [fam] Y4 peak  0 bin=29      alpha=     2592.80 Hz  ratio=  7.56x
+  [fam] Y4 peak  1 bin=3       alpha=      268.22 Hz  ratio=  7.34x
+  [fam] Y4 peak  2 bin=33      alpha=     2950.43 Hz  ratio=  6.55x
+  [fam] Y4 peak  3 bin=63      alpha=     5632.64 Hz  ratio=  6.34x
+  [fam] Y4 peak  4 bin=8       alpha=      715.26 Hz  ratio=  6.26x
+  [fam] Y4 peak  5 bin=58      alpha=     5185.60 Hz  ratio=  5.89x
+  [comb] RESULT comb=0 comb_score=5.93 f0_hz=0.0 members=0 nongauss=0 kurt=0.11 tailx=2.95 nlines10=0 thicket=0
+  [xeno] RESULT skdev=1.163 skfrac=0.0024 skflag=0 coh=1.40 cohflag=0 ladder=7.27 ladderq=0 dm_sign=+0 dm_r2=0.281 impuls=0 maxz=7.3 kurt=0.11 tailx=2.95
+  [vm:sign ones=0.476] entropy_gate=pass (ones=0.476 distinct=256) words=6250 steps=23 writes=23 locality=0.000 verdict_score=0.00 noise-like golay best_align=11 win_rate_wt<=2=0.0352 (rand~0.0327) wt<=3=0.1136 (rand~0.1133) golay_flag=noise-l
+  [xvm:sign] entropy_gate=pass (ones=0.476 distinct=256) xvm_sub=0.00 xvm_stk_ops=2 xvm_stk_loops=0 xvm_stk_depth=0 xvm_ca=0.00076 xvm_acf_lag=239 xvm_acf_z=1.6 xvm_ham=0.127 xvm_crc=0 xvm_score=0.00 noise-like
+  [vm:diff ones=0.479] entropy_gate=pass (ones=0.479 distinct=256) words=6250 steps=48 writes=48 locality=0.000 verdict_score=0.00 noise-like golay best_align=11 win_rate_wt<=2=0.0339 (rand~0.0327) wt<=3=0.1145 (rand~0.1133) golay_flag=noise-l
+  [xvm:diff] entropy_gate=pass (ones=0.479 distinct=256) xvm_sub=0.00 xvm_stk_ops=4 xvm_stk_loops=0 xvm_stk_depth=2 xvm_ca=0.00101 xvm_acf_lag=457 xvm_acf_z=3.4 xvm_ham=0.130 xvm_crc=1 xvm_score=0.00 noise-like
+=== [1] T15-ON b4/ch44 179Hz-hum ===
+  [slice] n=524288 rms=13.427 mean=-0.5262 maxz=9.3
+  [fam] Y2 peak  0 bin=56      alpha=     5006.79 Hz  ratio=  3.28x
+  [fam] Y2 peak  1 bin=80      alpha=     7152.56 Hz  ratio=  3.21x
+  [fam] Y2 peak  2 bin=46      alpha=     4112.72 Hz  ratio=  2.98x
+  [fam] Y2 peak  3 bin=62      alpha=     5543.23 Hz  ratio=  2.96x
+  [fam] Y2 peak  4 bin=26      alpha=     2324.58 Hz  ratio=  2.85x
+  [fam] Y2 peak  5 bin=9       alpha=      804.66 Hz  ratio=  2.83x
+  [fam] Y4 peak  0 bin=2       alpha=      178.81 Hz  ratio= 22.86x
+  [fam] Y4 peak  1 bin=7       alpha=      625.85 Hz  ratio= 22.84x
+  [fam] Y4 peak  2 bin=26      alpha=     2324.58 Hz  ratio= 22.67x
+  [fam] Y4 peak  3 bin=21      alpha=     1877.55 Hz  ratio= 22.35x
+  [fam] Y4 peak  4 bin=16      alpha=     1430.51 Hz  ratio= 22.34x
+  [fam] Y4 peak  5 bin=12      alpha=     1072.88 Hz  ratio= 22.11x
+  [comb] RESULT comb=1 comb_score=21.66 f0_hz=447.0 members=6 nongauss=0 kurt=0.13 tailx=1.51 nlines10=108 thicket=1
+  [xeno] RESULT skdev=0.715 skfrac=0.0010 skflag=0 coh=1.40 cohflag=0 ladder=11.35 ladderq=0 dm_sign=+0 dm_r2=0.325 impuls=1 maxz=9.3 kurt=0.13 tailx=1.51
+  [vm:sign ones=0.469] entropy_gate=pass (ones=0.469 distinct=256) words=6250 steps=141 writes=141 locality=0.000 verdict_score=0.40 noise-like golay best_align=22 win_rate_wt<=2=0.0362 (rand~0.0327) wt<=3=0.1144 (rand~0.1133) golay_flag=noise
+  [xvm:sign] entropy_gate=pass (ones=0.469 distinct=256) xvm_sub=0.40 xvm_stk_ops=1 xvm_stk_loops=0 xvm_stk_depth=0 xvm_ca=0.00100 xvm_acf_lag=1259 xvm_acf_z=1.3 xvm_ham=0.129 xvm_crc=0 xvm_score=0.00 noise-like
+  [vm:diff ones=0.478] entropy_gate=pass (ones=0.478 distinct=256) words=6250 steps=146 writes=146 locality=0.014 verdict_score=0.40 noise-like golay best_align=16 win_rate_wt<=2=0.0353 (rand~0.0327) wt<=3=0.1150 (rand~0.1133) golay_flag=noise
+  [xvm:diff] entropy_gate=pass (ones=0.478 distinct=256) xvm_sub=0.40 xvm_stk_ops=1 xvm_stk_loops=0 xvm_stk_depth=0 xvm_ca=0.00081 xvm_acf_lag=151 xvm_acf_z=1.2 xvm_ham=0.129 xvm_crc=0 xvm_score=0.00 noise-like
+=== [2] T15-ON b4/ch44 179Hz-hum p1 ===
+  [slice] n=524288 rms=13.423 mean=-0.5363 maxz=9.4
+  [fam] Y2 peak  0 bin=40      alpha=     3576.28 Hz  ratio=  3.33x
+  [fam] Y2 peak  1 bin=52      alpha=     4649.16 Hz  ratio=  3.21x
+  [fam] Y2 peak  2 bin=63      alpha=     5632.64 Hz  ratio=  2.84x
+  [fam] Y2 peak  3 bin=72      alpha=     6437.30 Hz  ratio=  2.76x
+  [fam] Y2 peak  4 bin=6       alpha=      536.44 Hz  ratio=  2.72x
+  [fam] Y2 peak  5 bin=31      alpha=     2771.62 Hz  ratio=  2.60x
+  [fam] Y4 peak  0 bin=2       alpha=      178.81 Hz  ratio= 18.48x
+  [fam] Y4 peak  1 bin=15      alpha=     1341.10 Hz  ratio= 18.46x
+  [fam] Y4 peak  2 bin=6       alpha=      536.44 Hz  ratio= 17.98x
+  [fam] Y4 peak  3 bin=40      alpha=     3576.28 Hz  ratio= 17.73x
+  [fam] Y4 peak  4 bin=31      alpha=     2771.62 Hz  ratio= 17.68x
+  [fam] Y4 peak  5 bin=20      alpha=     1788.14 Hz  ratio= 17.37x
+  [comb] RESULT comb=1 comb_score=17.69 f0_hz=447.0 members=7 nongauss=0 kurt=0.11 tailx=1.63 nlines10=90 thicket=1
+  [xeno] RESULT skdev=0.943 skfrac=0.0010 skflag=0 coh=1.40 cohflag=0 ladder=8.03 ladderq=0 dm_sign=+0 dm_r2=0.030 impuls=1 maxz=9.4 kurt=0.11 tailx=1.63
+  [vm:sign ones=0.469] entropy_gate=pass (ones=0.469 distinct=256) words=6250 steps=87 writes=87 locality=0.000 verdict_score=0.00 noise-like golay best_align=10 win_rate_wt<=2=0.0370 (rand~0.0327) wt<=3=0.1209 (rand~0.1133) golay_flag=noise-l
+  [xvm:sign] entropy_gate=pass (ones=0.469 distinct=256) xvm_sub=0.00 xvm_stk_ops=1 xvm_stk_loops=0 xvm_stk_depth=0 xvm_ca=0.00065 xvm_acf_lag=71 xvm_acf_z=0.9 xvm_ham=0.125 xvm_crc=0 xvm_score=0.00 noise-like
+  [vm:diff ones=0.478] entropy_gate=pass (ones=0.478 distinct=256) words=6250 steps=13 writes=13 locality=0.000 verdict_score=0.00 noise-like golay best_align=12 win_rate_wt<=2=0.0373 (rand~0.0327) wt<=3=0.1217 (rand~0.1133) golay_flag=noise-l
+  [xvm:diff] entropy_gate=pass (ones=0.478 distinct=256) xvm_sub=0.00 xvm_stk_ops=1 xvm_stk_loops=0 xvm_stk_depth=0 xvm_ca=0.00068 xvm_acf_lag=2286 xvm_acf_z=4.0 xvm_ham=0.129 xvm_crc=0 xvm_score=0.00 noise-like
+=== [3] T15-ON b4/ch12 1520Hz ===
+  [slice] n=524288 rms=17.330 mean=-0.5021 maxz=7.2
+  [fam] Y2 peak  0 bin=27      alpha=     2413.99 Hz  ratio=  2.99x
+  [fam] Y2 peak  1 bin=8857    alpha=   791877.51 Hz  ratio=  2.63x
+  [fam] Y2 peak  2 bin=45      alpha=     4023.31 Hz  ratio=  2.53x
+  [fam] Y2 peak  3 bin=17      alpha=     1519.92 Hz  ratio=  2.43x
+  [fam] Y2 peak  4 bin=9237    alpha=   825852.16 Hz  ratio=  2.35x
+  [fam] Y2 peak  5 bin=58      alpha=     5185.60 Hz  ratio=  2.31x
+  [fam] Y4 peak  0 bin=17      alpha=     1519.92 Hz  ratio= 12.99x
+  [fam] Y4 peak  1 bin=27      alpha=     2413.99 Hz  ratio= 12.81x
+  [fam] Y4 peak  2 bin=6       alpha=      536.44 Hz  ratio= 12.63x
+  [fam] Y4 peak  3 bin=10      alpha=      894.07 Hz  ratio= 11.88x
+  [fam] Y4 peak  4 bin=37      alpha=     3308.06 Hz  ratio= 11.68x
+  [fam] Y4 peak  5 bin=31      alpha=     2771.62 Hz  ratio= 11.06x
+  [comb] RESULT comb=1 comb_score=10.94 f0_hz=804.7 members=8 nongauss=0 kurt=0.05 tailx=1.96 nlines10=36 thicket=1
+  [xeno] RESULT skdev=1.765 skfrac=0.0020 skflag=0 coh=1.40 cohflag=0 ladder=7.88 ladderq=0 dm_sign=+0 dm_r2=0.361 impuls=0 maxz=7.2 kurt=0.05 tailx=1.96
+  [vm:sign ones=0.476] entropy_gate=pass (ones=0.476 distinct=256) words=6250 steps=80 writes=80 locality=0.000 verdict_score=0.00 noise-like golay best_align=12 win_rate_wt<=2=0.0359 (rand~0.0327) wt<=3=0.1193 (rand~0.1133) golay_flag=noise-l
+  [xvm:sign] entropy_gate=pass (ones=0.476 distinct=256) xvm_sub=0.00 xvm_stk_ops=2 xvm_stk_loops=0 xvm_stk_depth=1 xvm_ca=0.00090 xvm_acf_lag=3089 xvm_acf_z=3.6 xvm_ham=0.127 xvm_crc=0 xvm_score=0.00 noise-like
+  [vm:diff ones=0.478] entropy_gate=pass (ones=0.478 distinct=256) words=6250 steps=139 writes=139 locality=0.000 verdict_score=0.40 noise-like golay best_align=8 win_rate_wt<=2=0.0359 (rand~0.0327) wt<=3=0.1129 (rand~0.1133) golay_flag=noise-
+  [xvm:diff] entropy_gate=pass (ones=0.478 distinct=256) xvm_sub=0.40 xvm_stk_ops=2 xvm_stk_loops=0 xvm_stk_depth=1 xvm_ca=0.00080 xvm_acf_lag=2023 xvm_acf_z=3.7 xvm_ham=0.129 xvm_crc=0 xvm_score=0.00 noise-like
+=== [4] T16-OFF b1/ch57 BURST p0 ===
+  [slice] n=524288 rms=6.765 mean=-0.5234 maxz=6.0
+  [fam] Y2 peak  0 bin=7       alpha=      625.85 Hz  ratio= 39.77x
+  [fam] Y2 peak  1 bin=32      alpha=     2861.02 Hz  ratio= 34.35x
+  [fam] Y2 peak  2 bin=25      alpha=     2235.17 Hz  ratio= 27.30x
+  [fam] Y2 peak  3 bin=39      alpha=     3486.87 Hz  ratio= 27.22x
+  [fam] Y2 peak  4 bin=16      alpha=     1430.51 Hz  ratio= 26.77x
+  [fam] Y2 peak  5 bin=21      alpha=     1877.55 Hz  ratio= 23.88x
+  [fam] Y4 peak  0 bin=7       alpha=      625.85 Hz  ratio= 91.09x
+  [fam] Y4 peak  1 bin=32      alpha=     2861.02 Hz  ratio= 81.82x
+  [fam] Y4 peak  2 bin=39      alpha=     3486.87 Hz  ratio= 68.97x
+  [fam] Y4 peak  3 bin=14      alpha=     1251.70 Hz  ratio= 66.46x
+  [fam] Y4 peak  4 bin=25      alpha=     2235.17 Hz  ratio= 61.70x
+  [fam] Y4 peak  5 bin=21      alpha=     1877.55 Hz  ratio= 57.55x
+  [comb] RESULT comb=1 comb_score=59.68 f0_hz=715.3 members=6 nongauss=1 kurt=0.22 tailx=7.11 nlines10=101 thicket=1
+  [xeno] RESULT skdev=1.680 skfrac=0.0059 skflag=0 coh=1.36 cohflag=0 ladder=6.28 ladderq=0 dm_sign=+0 dm_r2=0.431 impuls=1 maxz=6.0 kurt=0.22 tailx=7.11
+  [vm:sign ones=0.440] entropy_gate=pass (ones=0.440 distinct=256) words=6250 steps=17 writes=17 locality=0.000 verdict_score=0.00 noise-like golay best_align=12 win_rate_wt<=2=0.0377 (rand~0.0327) wt<=3=0.1243 (rand~0.1133) golay_flag=noise-l
+  [xvm:sign] entropy_gate=pass (ones=0.440 distinct=256) xvm_sub=0.00 xvm_stk_ops=1 xvm_stk_loops=0 xvm_stk_depth=0 xvm_ca=0.00105 xvm_acf_lag=138 xvm_acf_z=2.9 xvm_ham=0.133 xvm_crc=0 xvm_score=0.00 noise-like
+  [vm:diff ones=0.477] entropy_gate=pass (ones=0.477 distinct=256) words=6250 steps=104 writes=104 locality=0.000 verdict_score=0.40 noise-like golay best_align=6 win_rate_wt<=2=0.0358 (rand~0.0327) wt<=3=0.1200 (rand~0.1133) golay_flag=noise-
+  [xvm:diff] entropy_gate=pass (ones=0.477 distinct=256) xvm_sub=0.40 xvm_stk_ops=1 xvm_stk_loops=0 xvm_stk_depth=0 xvm_ca=0.00088 xvm_acf_lag=979 xvm_acf_z=4.0 xvm_ham=0.131 xvm_crc=0 xvm_score=0.00 noise-like
+=== [5] T16-OFF b1/ch57 BURST p1 ===
+  [slice] n=524288 rms=6.767 mean=-0.4848 maxz=6.1
+  [fam] Y2 peak  0 bin=16      alpha=     1430.51 Hz  ratio= 33.88x
+  [fam] Y2 peak  1 bin=32      alpha=     2861.02 Hz  ratio= 31.42x
+  [fam] Y2 peak  2 bin=7       alpha=      625.85 Hz  ratio= 29.79x
+  [fam] Y2 peak  3 bin=39      alpha=     3486.87 Hz  ratio= 25.66x
+  [fam] Y2 peak  4 bin=3       alpha=      268.22 Hz  ratio= 22.28x
+  [fam] Y2 peak  5 bin=25      alpha=     2235.17 Hz  ratio= 22.13x
+  [fam] Y4 peak  0 bin=32      alpha=     2861.02 Hz  ratio= 71.07x
+  [fam] Y4 peak  1 bin=7       alpha=      625.85 Hz  ratio= 66.95x
+  [fam] Y4 peak  2 bin=16      alpha=     1430.51 Hz  ratio= 65.68x
+  [fam] Y4 peak  3 bin=39      alpha=     3486.87 Hz  ratio= 58.91x
+  [fam] Y4 peak  4 bin=3       alpha=      268.22 Hz  ratio= 51.26x
+  [fam] Y4 peak  5 bin=25      alpha=     2235.17 Hz  ratio= 45.36x
+  [comb] RESULT comb=1 comb_score=52.47 f0_hz=357.6 members=7 nongauss=1 kurt=0.21 tailx=7.17 nlines10=90 thicket=1
+  [xeno] RESULT skdev=0.916 skfrac=0.0034 skflag=0 coh=1.36 cohflag=0 ladder=9.60 ladderq=0 dm_sign=+0 dm_r2=0.400 impuls=1 maxz=6.1 kurt=0.21 tailx=7.17
+  [vm:sign ones=0.443] entropy_gate=pass (ones=0.443 distinct=256) words=6250 steps=96 writes=96 locality=0.000 verdict_score=0.00 noise-like golay best_align=2 win_rate_wt<=2=0.0378 (rand~0.0327) wt<=3=0.1143 (rand~0.1133) golay_flag=noise-li
+  [xvm:sign] entropy_gate=pass (ones=0.443 distinct=256) xvm_sub=0.00 xvm_stk_ops=1 xvm_stk_loops=0 xvm_stk_depth=0 xvm_ca=0.00086 xvm_acf_lag=641 xvm_acf_z=5.9 xvm_ham=0.130 xvm_crc=0 xvm_score=0.00 noise-like
+  [vm:diff ones=0.476] entropy_gate=pass (ones=0.476 distinct=256) words=6250 steps=138 writes=138 locality=0.007 verdict_score=0.40 noise-like golay best_align=18 win_rate_wt<=2=0.0359 (rand~0.0327) wt<=3=0.1163 (rand~0.1133) golay_flag=noise
+  [xvm:diff] entropy_gate=pass (ones=0.476 distinct=256) xvm_sub=0.40 xvm_stk_ops=1 xvm_stk_loops=0 xvm_stk_depth=0 xvm_ca=0.00095 xvm_acf_lag=53 xvm_acf_z=4.3 xvm_ham=0.131 xvm_crc=0 xvm_score=0.00 noise-like
+=== [6] T16-OFF b1/ch57 BURST p2 ===
+  [slice] n=524288 rms=7.120 mean=-0.5016 maxz=15.8
+  [fam] Y2 peak  0 bin=158     alpha=    14126.30 Hz  ratio=  2.80x
+  [fam] Y2 peak  1 bin=1083    alpha=    96827.75 Hz  ratio=  2.72x
+  [fam] Y2 peak  2 bin=1901    alpha=   169962.64 Hz  ratio=  2.58x
+  [fam] Y2 peak  3 bin=2768    alpha=   247478.49 Hz  ratio=  2.54x
+  [fam] Y2 peak  4 bin=2081    alpha=   186055.90 Hz  ratio=  2.53x
+  [fam] Y2 peak  5 bin=1012    alpha=    90479.85 Hz  ratio=  2.51x
+  [fam] Y4 peak  0 bin=15      alpha=     1341.10 Hz  ratio=  3.63x
+  [fam] Y4 peak  1 bin=35      alpha=     3129.24 Hz  ratio=  3.60x
+  [fam] Y4 peak  2 bin=8       alpha=      715.26 Hz  ratio=  3.58x
+  [fam] Y4 peak  3 bin=19      alpha=     1698.73 Hz  ratio=  3.58x
+  [fam] Y4 peak  4 bin=977     alpha=    87350.61 Hz  ratio=  3.58x
+  [fam] Y4 peak  5 bin=942     alpha=    84221.36 Hz  ratio=  3.57x
+  [comb] RESULT comb=0 comb_score=3.59 f0_hz=0.0 members=0 nongauss=0 kurt=0.29 tailx=1.63 nlines10=0 thicket=0
+  [xeno] RESULT skdev=1.212 skfrac=0.0024 skflag=0 coh=1.38 cohflag=0 ladder=6.21 ladderq=0 dm_sign=+0 dm_r2=0.047 impuls=1 maxz=15.8 kurt=0.29 tailx=1.63
+  [vm:sign ones=0.442] entropy_gate=pass (ones=0.442 distinct=256) words=6250 steps=57 writes=57 locality=0.018 verdict_score=0.00 noise-like golay best_align=14 win_rate_wt<=2=0.0363 (rand~0.0327) wt<=3=0.1136 (rand~0.1133) golay_flag=noise-l
+  [xvm:sign] entropy_gate=pass (ones=0.442 distinct=256) xvm_sub=0.00 xvm_stk_ops=2 xvm_stk_loops=0 xvm_stk_depth=1 xvm_ca=0.00076 xvm_acf_lag=1649 xvm_acf_z=6.0 xvm_ham=0.127 xvm_crc=0 xvm_score=0.17 XENO-WATCH
+  [vm:diff ones=0.478] entropy_gate=pass (ones=0.478 distinct=256) words=6250 steps=116 writes=116 locality=0.000 verdict_score=0.40 noise-like golay best_align=15 win_rate_wt<=2=0.0355 (rand~0.0327) wt<=3=0.1193 (rand~0.1133) golay_flag=noise
+  [xvm:diff] entropy_gate=pass (ones=0.478 distinct=256) xvm_sub=0.40 xvm_stk_ops=3 xvm_stk_loops=0 xvm_stk_depth=1 xvm_ca=0.00081 xvm_acf_lag=3293 xvm_acf_z=4.1 xvm_ham=0.130 xvm_crc=0 xvm_score=0.00 noise-like
+=== [7] T16-OFF b1/ch57 BURST p3 ===
+  [slice] n=524288 rms=7.115 mean=-0.5149 maxz=15.0
+  [fam] Y2 peak  0 bin=1806    alpha=   161468.98 Hz  ratio=  2.59x
+  [fam] Y2 peak  1 bin=13570   alpha=  1213252.54 Hz  ratio=  2.43x
+  [fam] Y2 peak  2 bin=1098    alpha=    98168.85 Hz  ratio=  2.36x
+  [fam] Y2 peak  3 bin=42      alpha=     3755.09 Hz  ratio=  2.35x
+  [fam] Y2 peak  4 bin=3710    alpha=   331699.85 Hz  ratio=  2.34x
+  [fam] Y2 peak  5 bin=2128    alpha=   190258.03 Hz  ratio=  2.33x
+  [fam] Y4 peak  0 bin=35      alpha=     3129.24 Hz  ratio=  3.54x
+  [fam] Y4 peak  1 bin=28      alpha=     2503.40 Hz  ratio=  3.52x
+  [fam] Y4 peak  2 bin=45      alpha=     4023.31 Hz  ratio=  3.52x
+  [fam] Y4 peak  3 bin=7       alpha=      625.85 Hz  ratio=  3.51x
+  [fam] Y4 peak  4 bin=67      alpha=     5990.27 Hz  ratio=  3.51x
+  [fam] Y4 peak  5 bin=24      alpha=     2145.77 Hz  ratio=  3.51x
+  [comb] RESULT comb=0 comb_score=3.50 f0_hz=0.0 members=0 nongauss=0 kurt=0.18 tailx=1.99 nlines10=0 thicket=0
+  [xeno] RESULT skdev=1.010 skfrac=0.0015 skflag=0 coh=1.38 cohflag=0 ladder=5.67 ladderq=0 dm_sign=+0 dm_r2=0.027 impuls=1 maxz=15.0 kurt=0.18 tailx=1.99
+  [vm:sign ones=0.444] entropy_gate=pass (ones=0.444 distinct=256) words=6250 steps=54 writes=54 locality=0.019 verdict_score=0.00 noise-like golay best_align=12 win_rate_wt<=2=0.0347 (rand~0.0327) wt<=3=0.1096 (rand~0.1133) golay_flag=noise-l
+  [xvm:sign] entropy_gate=pass (ones=0.444 distinct=256) xvm_sub=0.00 xvm_stk_ops=1 xvm_stk_loops=0 xvm_stk_depth=0 xvm_ca=0.00097 xvm_acf_lag=377 xvm_acf_z=2.8 xvm_ham=0.130 xvm_crc=0 xvm_score=0.00 noise-like
+  [vm:diff ones=0.478] entropy_gate=pass (ones=0.478 distinct=256) words=6250 steps=92 writes=92 locality=0.000 verdict_score=0.00 noise-like golay best_align=19 win_rate_wt<=2=0.0359 (rand~0.0327) wt<=3=0.1082 (rand~0.1133) golay_flag=noise-l
+  [xvm:diff] entropy_gate=pass (ones=0.478 distinct=256) xvm_sub=0.00 xvm_stk_ops=1 xvm_stk_loops=0 xvm_stk_depth=0 xvm_ca=0.00090 xvm_acf_lag=551 xvm_acf_z=3.7 xvm_ham=0.130 xvm_crc=0 xvm_score=0.00 noise-like
+=== [8] T16-OFF b1/ch56 ===
+  [slice] n=524288 rms=7.874 mean=-0.5143 maxz=4.5
+  [fam] Y2 peak  0 bin=675     alpha=    60349.70 Hz  ratio=  2.45x
+  [fam] Y2 peak  1 bin=4941    alpha=   441759.82 Hz  ratio=  2.27x
+  [fam] Y2 peak  2 bin=5613    alpha=   501841.31 Hz  ratio=  2.20x
+  [fam] Y2 peak  3 bin=53      alpha=     4738.57 Hz  ratio=  2.18x
+  [fam] Y2 peak  4 bin=4490    alpha=   401437.28 Hz  ratio=  2.16x
+  [fam] Y2 peak  5 bin=10371   alpha=   927239.66 Hz  ratio=  2.14x
+  [fam] Y4 peak  0 bin=15492   alpha=  1385092.74 Hz  ratio=  3.00x
+  [fam] Y4 peak  1 bin=1655    alpha=   147968.53 Hz  ratio=  2.35x
+  [fam] Y4 peak  2 bin=12353   alpha=  1104444.27 Hz  ratio=  2.28x
+  [fam] Y4 peak  3 bin=2020    alpha=   180602.07 Hz  ratio=  2.24x
+  [fam] Y4 peak  4 bin=4226    alpha=   377833.84 Hz  ratio=  2.21x
+  [fam] Y4 peak  5 bin=9936    alpha=   888347.63 Hz  ratio=  2.14x
+  [comb] RESULT comb=0 comb_score=0.00 f0_hz=0.0 members=0 nongauss=0 kurt=-0.01 tailx=0.84 nlines10=0 thicket=0
+  [xeno] RESULT skdev=2.215 skfrac=0.0039 skflag=0 coh=1.38 cohflag=0 ladder=7.42 ladderq=0 dm_sign=+0 dm_r2=0.042 impuls=0 maxz=4.5 kurt=-0.01 tailx=0.84
+  [vm:sign ones=0.448] entropy_gate=pass (ones=0.448 distinct=256) words=6250 steps=135 writes=135 locality=0.007 verdict_score=0.40 noise-like golay best_align=3 win_rate_wt<=2=0.0357 (rand~0.0327) wt<=3=0.1125 (rand~0.1133) golay_flag=noise-
+  [xvm:sign] entropy_gate=pass (ones=0.448 distinct=256) xvm_sub=0.40 xvm_stk_ops=1 xvm_stk_loops=0 xvm_stk_depth=0 xvm_ca=0.00088 xvm_acf_lag=2698 xvm_acf_z=5.6 xvm_ham=0.127 xvm_crc=0 xvm_score=0.00 noise-like
+  [vm:diff ones=0.479] entropy_gate=pass (ones=0.479 distinct=256) words=6250 steps=68 writes=68 locality=0.000 verdict_score=0.00 noise-like golay best_align=5 win_rate_wt<=2=0.0355 (rand~0.0327) wt<=3=0.1220 (rand~0.1133) golay_flag=noise-li
+  [xvm:diff] entropy_gate=pass (ones=0.479 distinct=256) xvm_sub=0.00 xvm_stk_ops=1 xvm_stk_loops=0 xvm_stk_depth=0 xvm_ca=0.00073 xvm_acf_lag=106 xvm_acf_z=1.7 xvm_ham=0.130 xvm_crc=0 xvm_score=0.00 noise-like
+=== [9] T17-ON b2/ch56 31x@268 ===
+  [slice] n=524288 rms=8.357 mean=-0.5310 maxz=14.4
+  [fam] Y2 peak  0 bin=19      alpha=     1698.73 Hz  ratio=  6.47x
+  [fam] Y2 peak  1 bin=4       alpha=      357.63 Hz  ratio=  6.41x
+  [fam] Y2 peak  2 bin=92      alpha=     8225.44 Hz  ratio=  5.52x
+  [fam] Y2 peak  3 bin=67      alpha=     5990.27 Hz  ratio=  5.47x
+  [fam] Y2 peak  4 bin=102     alpha=     9119.51 Hz  ratio=  5.36x
+  [fam] Y2 peak  5 bin=10      alpha=      894.07 Hz  ratio=  5.34x
+  [fam] Y4 peak  0 bin=3       alpha=      268.22 Hz  ratio= 31.54x
+  [fam] Y4 peak  1 bin=10      alpha=      894.07 Hz  ratio= 31.47x
+  [fam] Y4 peak  2 bin=19      alpha=     1698.73 Hz  ratio= 31.42x
+  [fam] Y4 peak  3 bin=29      alpha=     2592.80 Hz  ratio= 31.22x
+  [fam] Y4 peak  4 bin=23      alpha=     2056.36 Hz  ratio= 31.13x
+  [fam] Y4 peak  5 bin=15      alpha=     1341.10 Hz  ratio= 31.12x
+  [comb] RESULT comb=1 comb_score=31.26 f0_hz=357.6 members=6 nongauss=0 kurt=0.59 tailx=1.93 nlines10=871 thicket=1
+  [xeno] RESULT skdev=0.960 skfrac=0.0049 skflag=0 coh=1.39 cohflag=0 ladder=6.44 ladderq=0 dm_sign=+0 dm_r2=0.003 impuls=1 maxz=14.4 kurt=0.59 tailx=1.93
+  [vm:sign ones=0.451] entropy_gate=pass (ones=0.451 distinct=256) words=6250 steps=60 writes=60 locality=0.000 verdict_score=0.00 noise-like golay best_align=20 win_rate_wt<=2=0.0365 (rand~0.0327) wt<=3=0.1166 (rand~0.1133) golay_flag=noise-l
+  [xvm:sign] entropy_gate=pass (ones=0.451 distinct=256) xvm_sub=0.00 xvm_stk_ops=512 xvm_stk_loops=85 xvm_stk_depth=256 xvm_ca=0.00084 xvm_acf_lag=10 xvm_acf_z=2.2 xvm_ham=0.125 xvm_crc=0 xvm_score=0.00 noise-like
+  [vm:diff ones=0.478] entropy_gate=pass (ones=0.478 distinct=256) words=6250 steps=95 writes=95 locality=0.011 verdict_score=0.00 noise-like golay best_align=20 win_rate_wt<=2=0.0378 (rand~0.0327) wt<=3=0.1208 (rand~0.1133) golay_flag=noise-l
+  [xvm:diff] entropy_gate=pass (ones=0.478 distinct=256) xvm_sub=0.00 xvm_stk_ops=1 xvm_stk_loops=0 xvm_stk_depth=0 xvm_ca=0.00089 xvm_acf_lag=1639 xvm_acf_z=3.9 xvm_ham=0.128 xvm_crc=0 xvm_score=0.00 noise-like
+=== [10] T17-ON b3/ch4 20x@1520 ===
+  [slice] n=524288 rms=18.066 mean=-0.4836 maxz=7.0
+  [fam] Y2 peak  0 bin=4       alpha=      357.63 Hz  ratio=  4.11x
+  [fam] Y2 peak  1 bin=12      alpha=     1072.88 Hz  ratio=  3.72x
+  [fam] Y2 peak  2 bin=18      alpha=     1609.33 Hz  ratio=  3.57x
+  [fam] Y2 peak  3 bin=73      alpha=     6526.71 Hz  ratio=  3.33x
+  [fam] Y2 peak  4 bin=28      alpha=     2503.40 Hz  ratio=  3.32x
+  [fam] Y2 peak  5 bin=39      alpha=     3486.87 Hz  ratio=  3.26x
+  [fam] Y4 peak  0 bin=17      alpha=     1519.92 Hz  ratio= 20.03x
+  [fam] Y4 peak  1 bin=4       alpha=      357.63 Hz  ratio= 19.80x
+  [fam] Y4 peak  2 bin=25      alpha=     2235.17 Hz  ratio= 19.56x
+  [fam] Y4 peak  3 bin=8       alpha=      715.26 Hz  ratio= 19.25x
+  [fam] Y4 peak  4 bin=12      alpha=     1072.88 Hz  ratio= 18.86x
+  [fam] Y4 peak  5 bin=30      alpha=     2682.21 Hz  ratio= 18.46x
+  [comb] RESULT comb=1 comb_score=19.28 f0_hz=268.2 members=6 nongauss=1 kurt=0.11 tailx=3.56 nlines10=86 thicket=1
+  [xeno] RESULT skdev=0.770 skfrac=0.0020 skflag=0 coh=1.41 cohflag=0 ladder=7.29 ladderq=0 dm_sign=+0 dm_r2=0.046 impuls=1 maxz=7.0 kurt=0.11 tailx=3.56
+  [vm:sign ones=0.477] entropy_gate=pass (ones=0.477 distinct=256) words=6250 steps=92 writes=92 locality=0.000 verdict_score=0.00 noise-like golay best_align=20 win_rate_wt<=2=0.0375 (rand~0.0327) wt<=3=0.1169 (rand~0.1133) golay_flag=noise-l
+  [xvm:sign] entropy_gate=pass (ones=0.477 distinct=256) xvm_sub=0.00 xvm_stk_ops=1 xvm_stk_loops=0 xvm_stk_depth=0 xvm_ca=0.00068 xvm_acf_lag=2228 xvm_acf_z=4.2 xvm_ham=0.128 xvm_crc=0 xvm_score=0.00 noise-like
+  [vm:diff ones=0.479] entropy_gate=pass (ones=0.479 distinct=256) words=6250 steps=72 writes=72 locality=0.014 verdict_score=0.00 noise-like golay best_align=19 win_rate_wt<=2=0.0376 (rand~0.0327) wt<=3=0.1200 (rand~0.1133) golay_flag=noise-l
+  [xvm:diff] entropy_gate=pass (ones=0.479 distinct=256) xvm_sub=0.00 xvm_stk_ops=1 xvm_stk_loops=0 xvm_stk_depth=0 xvm_ca=0.00083 xvm_acf_lag=1283 xvm_acf_z=2.1 xvm_ham=0.129 xvm_crc=0 xvm_score=0.00 noise-like
+=== [11] T17-ON b0/ch56 10x@179 ===
+  [slice] n=524288 rms=8.295 mean=-0.5091 maxz=15.4
+  [fam] Y2 peak  0 bin=950     alpha=    84936.62 Hz  ratio=  4.81x
+  [fam] Y2 peak  1 bin=41      alpha=     3665.69 Hz  ratio=  4.80x
+  [fam] Y2 peak  2 bin=24      alpha=     2145.77 Hz  ratio=  4.70x
+  [fam] Y2 peak  3 bin=838     alpha=    74923.04 Hz  ratio=  4.63x
+  [fam] Y2 peak  4 bin=10      alpha=      894.07 Hz  ratio=  4.62x
+  [fam] Y2 peak  5 bin=815     alpha=    72866.68 Hz  ratio=  4.51x
+  [fam] Y4 peak  0 bin=2       alpha=      178.81 Hz  ratio= 10.40x
+  [fam] Y4 peak  1 bin=10      alpha=      894.07 Hz  ratio= 10.39x
+  [fam] Y4 peak  2 bin=19      alpha=     1698.73 Hz  ratio= 10.31x
+  [fam] Y4 peak  3 bin=23      alpha=     2056.36 Hz  ratio= 10.30x
+  [fam] Y4 peak  4 bin=36      alpha=     3218.65 Hz  ratio= 10.26x
+  [fam] Y4 peak  5 bin=14      alpha=     1251.70 Hz  ratio= 10.23x
+  [comb] RESULT comb=1 comb_score=10.24 f0_hz=447.0 members=7 nongauss=0 kurt=0.68 tailx=1.69 nlines10=48 thicket=1
+  [xeno] RESULT skdev=0.924 skfrac=0.0034 skflag=0 coh=1.38 cohflag=0 ladder=7.41 ladderq=0 dm_sign=+0 dm_r2=0.006 impuls=1 maxz=15.4 kurt=0.68 tailx=1.69
+  [vm:sign ones=0.449] entropy_gate=pass (ones=0.449 distinct=256) words=6250 steps=24 writes=24 locality=0.000 verdict_score=0.00 noise-like golay best_align=8 win_rate_wt<=2=0.0370 (rand~0.0327) wt<=3=0.1217 (rand~0.1133) golay_flag=noise-li
+  [xvm:sign] entropy_gate=pass (ones=0.449 distinct=256) xvm_sub=0.00 xvm_stk_ops=1011 xvm_stk_loops=250 xvm_stk_depth=256 xvm_ca=0.00143 xvm_acf_lag=115 xvm_acf_z=5.8 xvm_ham=0.127 xvm_crc=0 xvm_score=0.00 noise-like
+  [vm:diff ones=0.479] entropy_gate=pass (ones=0.479 distinct=256) words=6250 steps=67 writes=67 locality=0.000 verdict_score=0.00 noise-like golay best_align=9 win_rate_wt<=2=0.0355 (rand~0.0327) wt<=3=0.1148 (rand~0.1133) golay_flag=noise-li
+  [xvm:diff] entropy_gate=pass (ones=0.479 distinct=256) xvm_sub=0.00 xvm_stk_ops=8 xvm_stk_loops=0 xvm_stk_depth=4 xvm_ca=0.00112 xvm_acf_lag=1084 xvm_acf_z=4.1 xvm_ham=0.129 xvm_crc=0 xvm_score=0.00 noise-like
+=== [12] T17-ON b1/ch26 7x@1073 ===
+  [slice] n=524288 rms=16.389 mean=-0.5051 maxz=7.8
+  [fam] Y2 peak  0 bin=231     alpha=    20653.01 Hz  ratio=  2.37x
+  [fam] Y2 peak  1 bin=1137    alpha=   101655.72 Hz  ratio=  2.30x
+  [fam] Y2 peak  2 bin=8622    alpha=   770866.87 Hz  ratio=  2.29x
+  [fam] Y2 peak  3 bin=15628   alpha=  1397252.08 Hz  ratio=  2.28x
+  [fam] Y2 peak  4 bin=2864    alpha=   256061.55 Hz  ratio=  2.24x
+  [fam] Y2 peak  5 bin=1822    alpha=   162899.49 Hz  ratio=  2.17x
+  [fam] Y4 peak  0 bin=12      alpha=     1072.88 Hz  ratio=  7.20x
+  [fam] Y4 peak  1 bin=30      alpha=     2682.21 Hz  ratio=  6.71x
+  [fam] Y4 peak  2 bin=16      alpha=     1430.51 Hz  ratio=  6.59x
+  [fam] Y4 peak  3 bin=43      alpha=     3844.50 Hz  ratio=  6.57x
+  [fam] Y4 peak  4 bin=37      alpha=     3308.06 Hz  ratio=  6.41x
+  [fam] Y4 peak  5 bin=48      alpha=     4291.53 Hz  ratio=  6.40x
+  [comb] RESULT comb=1 comb_score=6.66 f0_hz=536.4 members=5 nongauss=0 kurt=0.03 tailx=1.21 nlines10=0 thicket=0
+  [xeno] RESULT skdev=0.881 skfrac=0.0020 skflag=0 coh=1.40 cohflag=0 ladder=7.66 ladderq=0 dm_sign=+0 dm_r2=0.027 impuls=0 maxz=7.8 kurt=0.03 tailx=1.21
+  [vm:sign ones=0.474] entropy_gate=pass (ones=0.474 distinct=256) words=6250 steps=91 writes=91 locality=0.000 verdict_score=0.00 noise-like golay best_align=13 win_rate_wt<=2=0.0355 (rand~0.0327) wt<=3=0.1201 (rand~0.1133) golay_flag=noise-l
+  [xvm:sign] entropy_gate=pass (ones=0.474 distinct=256) xvm_sub=0.00 xvm_stk_ops=1 xvm_stk_loops=1 xvm_stk_depth=0 xvm_ca=0.00092 xvm_acf_lag=3527 xvm_acf_z=4.1 xvm_ham=0.129 xvm_crc=0 xvm_score=0.00 noise-like
+  [vm:diff ones=0.480] entropy_gate=pass (ones=0.480 distinct=256) words=6250 steps=59 writes=59 locality=0.017 verdict_score=0.00 noise-like golay best_align=3 win_rate_wt<=2=0.0369 (rand~0.0327) wt<=3=0.1167 (rand~0.1133) golay_flag=noise-li
+  [xvm:diff] entropy_gate=pass (ones=0.480 distinct=256) xvm_sub=0.00 xvm_stk_ops=2 xvm_stk_loops=0 xvm_stk_depth=1 xvm_ca=0.00071 xvm_acf_lag=2978 xvm_acf_z=3.7 xvm_ham=0.130 xvm_crc=0 xvm_score=0.00 noise-like
+=== [13] T17-ON b2/ch48 7x@805 ===
+  [slice] n=524288 rms=13.295 mean=-0.6487 maxz=9.4
+  [fam] Y2 peak  0 bin=6366    alpha=   569164.75 Hz  ratio=  2.27x
+  [fam] Y2 peak  1 bin=11425   alpha=  1021474.60 Hz  ratio=  2.25x
+  [fam] Y2 peak  2 bin=11202   alpha=  1001536.85 Hz  ratio=  2.21x
+  [fam] Y2 peak  3 bin=7125    alpha=   637024.64 Hz  ratio=  2.20x
+  [fam] Y2 peak  4 bin=1622    alpha=   145018.10 Hz  ratio=  2.19x
+  [fam] Y2 peak  5 bin=15179   alpha=  1357108.35 Hz  ratio=  2.16x
+  [fam] Y4 peak  0 bin=9       alpha=      804.66 Hz  ratio=  7.27x
+  [fam] Y4 peak  1 bin=18      alpha=     1609.33 Hz  ratio=  7.22x
+  [fam] Y4 peak  2 bin=30      alpha=     2682.21 Hz  ratio=  7.11x
+  [fam] Y4 peak  3 bin=2       alpha=      178.81 Hz  ratio=  7.10x
+  [fam] Y4 peak  4 bin=13      alpha=     1162.29 Hz  ratio=  7.03x
+  [fam] Y4 peak  5 bin=65      alpha=     5811.45 Hz  ratio=  6.99x
+  [comb] RESULT comb=1 comb_score=6.97 f0_hz=536.4 members=7 nongauss=0 kurt=0.05 tailx=1.66 nlines10=0 thicket=0
+  [xeno] RESULT skdev=0.823 skfrac=0.0020 skflag=0 coh=1.40 cohflag=0 ladder=5.93 ladderq=0 dm_sign=+0 dm_r2=0.461 impuls=1 maxz=9.4 kurt=0.05 tailx=1.66
+  [vm:sign ones=0.465] entropy_gate=pass (ones=0.465 distinct=256) words=6250 steps=42 writes=42 locality=0.000 verdict_score=0.00 noise-like golay best_align=10 win_rate_wt<=2=0.0359 (rand~0.0327) wt<=3=0.1177 (rand~0.1133) golay_flag=noise-l
+  [xvm:sign] entropy_gate=pass (ones=0.465 distinct=256) xvm_sub=0.00 xvm_stk_ops=1 xvm_stk_loops=0 xvm_stk_depth=0 xvm_ca=0.00081 xvm_acf_lag=55 xvm_acf_z=4.6 xvm_ham=0.126 xvm_crc=0 xvm_score=0.00 noise-like
+  [vm:diff ones=0.479] entropy_gate=pass (ones=0.479 distinct=256) words=6250 steps=105 writes=105 locality=0.010 verdict_score=0.40 noise-like golay best_align=2 win_rate_wt<=2=0.0357 (rand~0.0327) wt<=3=0.1165 (rand~0.1133) golay_flag=noise-
+  [xvm:diff] entropy_gate=pass (ones=0.479 distinct=256) xvm_sub=0.40 xvm_stk_ops=1 xvm_stk_loops=0 xvm_stk_depth=0 xvm_ca=0.00071 xvm_acf_lag=1594 xvm_acf_z=4.2 xvm_ham=0.132 xvm_crc=0 xvm_score=0.00 noise-like
+=== [14] T17-ON b0/ch24 4.6x@179 ===
+  [slice] n=524288 rms=16.611 mean=-0.4954 maxz=7.3
+  [fam] Y2 peak  0 bin=4825    alpha=   431388.62 Hz  ratio=  2.60x
+  [fam] Y2 peak  1 bin=12147   alpha=  1086026.43 Hz  ratio=  2.24x
+  [fam] Y2 peak  2 bin=8212    alpha=   734210.01 Hz  ratio=  2.16x
+  [fam] Y2 peak  3 bin=13905   alpha=  1243203.88 Hz  ratio=  2.16x
+  [fam] Y2 peak  4 bin=5706    alpha=   510156.15 Hz  ratio=  2.13x
+  [fam] Y2 peak  5 bin=10832   alpha=   968456.27 Hz  ratio=  2.12x
+  [fam] Y4 peak  0 bin=2       alpha=      178.81 Hz  ratio=  4.59x
+  [fam] Y4 peak  1 bin=34      alpha=     3039.84 Hz  ratio=  4.16x
+  [fam] Y4 peak  2 bin=26      alpha=     2324.58 Hz  ratio=  4.00x
+  [fam] Y4 peak  3 bin=65      alpha=     5811.45 Hz  ratio=  3.97x
+  [fam] Y4 peak  4 bin=864     alpha=    77247.62 Hz  ratio=  3.91x
+  [fam] Y4 peak  5 bin=19      alpha=     1698.73 Hz  ratio=  3.90x
+  [comb] RESULT comb=0 comb_score=3.94 f0_hz=0.0 members=0 nongauss=0 kurt=0.03 tailx=1.78 nlines10=0 thicket=0
+  [xeno] RESULT skdev=1.041 skfrac=0.0015 skflag=0 coh=1.41 cohflag=0 ladder=8.06 ladderq=0 dm_sign=+0 dm_r2=0.002 impuls=0 maxz=7.3 kurt=0.03 tailx=1.78
+  [vm:sign ones=0.478] entropy_gate=pass (ones=0.478 distinct=256) words=6250 steps=115 writes=115 locality=0.017 verdict_score=0.40 noise-like golay best_align=11 win_rate_wt<=2=0.0351 (rand~0.0327) wt<=3=0.1172 (rand~0.1133) golay_flag=noise
+  [xvm:sign] entropy_gate=pass (ones=0.478 distinct=256) xvm_sub=0.40 xvm_stk_ops=7 xvm_stk_loops=1 xvm_stk_depth=4 xvm_ca=0.00101 xvm_acf_lag=1062 xvm_acf_z=3.5 xvm_ham=0.125 xvm_crc=0 xvm_score=0.00 noise-like
+  [vm:diff ones=0.478] entropy_gate=pass (ones=0.478 distinct=256) words=6250 steps=134 writes=134 locality=0.000 verdict_score=0.40 noise-like golay best_align=19 win_rate_wt<=2=0.0353 (rand~0.0327) wt<=3=0.1126 (rand~0.1133) golay_flag=noise
+  [xvm:diff] entropy_gate=pass (ones=0.478 distinct=256) xvm_sub=0.40 xvm_stk_ops=17 xvm_stk_loops=1 xvm_stk_depth=5 xvm_ca=0.00127 xvm_acf_lag=431 xvm_acf_z=2.8 xvm_ham=0.129 xvm_crc=0 xvm_score=0.00 noise-like
+=== [15] K10-ON b21/ch52 p0 ===
+  [slice] n=524288 rms=10.390 mean=-0.4936 maxz=5.5
+  [fam] Y2 peak  0 bin=4       alpha=      357.63 Hz  ratio= 20.27x
+  [fam] Y2 peak  1 bin=21      alpha=     1877.55 Hz  ratio= 19.43x
+  [fam] Y2 peak  2 bin=32      alpha=     2861.02 Hz  ratio= 19.01x
+  [fam] Y2 peak  3 bin=25      alpha=     2235.17 Hz  ratio= 18.81x
+  [fam] Y2 peak  4 bin=14      alpha=     1251.70 Hz  ratio= 15.14x
+  [fam] Y2 peak  5 bin=39      alpha=     3486.87 Hz  ratio= 12.71x
+  [fam] Y4 peak  0 bin=32      alpha=     2861.02 Hz  ratio= 37.04x
+  [fam] Y4 peak  1 bin=4       alpha=      357.63 Hz  ratio= 36.79x
+  [fam] Y4 peak  2 bin=21      alpha=     1877.55 Hz  ratio= 36.26x
+  [fam] Y4 peak  3 bin=25      alpha=     2235.17 Hz  ratio= 33.99x
+  [fam] Y4 peak  4 bin=53      alpha=     4738.57 Hz  ratio= 26.44x
+  [fam] Y4 peak  5 bin=14      alpha=     1251.70 Hz  ratio= 26.04x
+  [comb] RESULT comb=1 comb_score=24.87 f0_hz=715.3 members=7 nongauss=0 kurt=0.09 tailx=2.68 nlines10=36 thicket=1
+  [xeno] RESULT skdev=1.524 skfrac=0.0039 skflag=0 coh=1.37 cohflag=0 ladder=7.03 ladderq=0 dm_sign=+0 dm_r2=0.410 impuls=0 maxz=5.5 kurt=0.09 tailx=2.68
+  [vm:sign ones=0.462] entropy_gate=pass (ones=0.462 distinct=256) words=6250 steps=30 writes=30 locality=0.033 verdict_score=0.00 noise-like golay best_align=5 win_rate_wt<=2=0.0366 (rand~0.0327) wt<=3=0.1158 (rand~0.1133) golay_flag=noise-li
+  [xvm:sign] entropy_gate=pass (ones=0.462 distinct=256) xvm_sub=0.00 xvm_stk_ops=1 xvm_stk_loops=0 xvm_stk_depth=0 xvm_ca=0.00074 xvm_acf_lag=707 xvm_acf_z=4.4 xvm_ham=0.127 xvm_crc=0 xvm_score=0.00 noise-like
+  [vm:diff ones=0.479] entropy_gate=pass (ones=0.479 distinct=256) words=6250 steps=97 writes=97 locality=0.000 verdict_score=0.00 noise-like golay best_align=11 win_rate_wt<=2=0.0363 (rand~0.0327) wt<=3=0.1162 (rand~0.1133) golay_flag=noise-l
+  [xvm:diff] entropy_gate=pass (ones=0.479 distinct=256) xvm_sub=0.00 xvm_stk_ops=1 xvm_stk_loops=0 xvm_stk_depth=0 xvm_ca=0.00084 xvm_acf_lag=80 xvm_acf_z=0.6 xvm_ham=0.129 xvm_crc=0 xvm_score=0.00 noise-like
+=== [16] K10-ON b21/ch52 p1 ===
+  [slice] n=524288 rms=10.395 mean=-0.5219 maxz=6.0
+  [fam] Y2 peak  0 bin=32      alpha=     2861.02 Hz  ratio= 22.72x
+  [fam] Y2 peak  1 bin=4       alpha=      357.63 Hz  ratio= 20.52x
+  [fam] Y2 peak  2 bin=25      alpha=     2235.17 Hz  ratio= 20.04x
+  [fam] Y2 peak  3 bin=21      alpha=     1877.55 Hz  ratio= 19.85x
+  [fam] Y2 peak  4 bin=53      alpha=     4738.57 Hz  ratio= 17.72x
+  [fam] Y2 peak  5 bin=14      alpha=     1251.70 Hz  ratio= 16.92x
+  [fam] Y4 peak  0 bin=32      alpha=     2861.02 Hz  ratio= 39.51x
+  [fam] Y4 peak  1 bin=21      alpha=     1877.55 Hz  ratio= 37.55x
+  [fam] Y4 peak  2 bin=4       alpha=      357.63 Hz  ratio= 37.48x
+  [fam] Y4 peak  3 bin=25      alpha=     2235.17 Hz  ratio= 37.38x
+  [fam] Y4 peak  4 bin=53      alpha=     4738.57 Hz  ratio= 34.51x
+  [fam] Y4 peak  5 bin=14      alpha=     1251.70 Hz  ratio= 32.62x
+  [comb] RESULT comb=1 comb_score=34.68 f0_hz=447.0 members=5 nongauss=1 kurt=0.10 tailx=3.01 nlines10=37 thicket=1
+  [xeno] RESULT skdev=0.890 skfrac=0.0029 skflag=0 coh=1.37 cohflag=0 ladder=8.06 ladderq=0 dm_sign=+0 dm_r2=0.166 impuls=1 maxz=6.0 kurt=0.10 tailx=3.01
+  [vm:sign ones=0.461] entropy_gate=pass (ones=0.461 distinct=256) words=6250 steps=80 writes=80 locality=0.013 verdict_score=0.00 noise-like golay best_align=6 win_rate_wt<=2=0.0343 (rand~0.0327) wt<=3=0.1187 (rand~0.1133) golay_flag=noise-li
+  [xvm:sign] entropy_gate=pass (ones=0.461 distinct=256) xvm_sub=0.00 xvm_stk_ops=1 xvm_stk_loops=0 xvm_stk_depth=0 xvm_ca=0.00071 xvm_acf_lag=2622 xvm_acf_z=4.7 xvm_ham=0.131 xvm_crc=1 xvm_score=0.00 noise-like
+  [vm:diff ones=0.479] entropy_gate=pass (ones=0.479 distinct=256) words=6250 steps=69 writes=69 locality=0.014 verdict_score=0.00 noise-like golay best_align=15 win_rate_wt<=2=0.0365 (rand~0.0327) wt<=3=0.1166 (rand~0.1133) golay_flag=noise-l
+  [xvm:diff] entropy_gate=pass (ones=0.479 distinct=256) xvm_sub=0.00 xvm_stk_ops=1 xvm_stk_loops=0 xvm_stk_depth=0 xvm_ca=0.00075 xvm_acf_lag=8 xvm_acf_z=1.4 xvm_ham=0.128 xvm_crc=0 xvm_score=0.00 noise-like

@@ -52,6 +52,15 @@ DEFAULTS = {
     'pulse_sigma': 14.0,  # DM x width trial max ~10.8 on noise; injects 168+
     # cadence / veto
     'alpha_tol': 2000.0, 'persist_min': 4, 'multichan_min': 3,
+    # xeno (overhaul): microscopic + exotic + alien-code battery
+    'xeno_min_fam': 4.0, 'xeno_topk': 40,     # candidates entering the battery
+    'xeno_sk_frac': 0.02,                     # SK deviant-bin fraction gate
+    'xeno_ladder': 20.0,                      # cepstral comb ratio gate
+    'xeno_dm_r2': 0.80, 'xeno_dm_min': 50.0,  # arrival-order fit + |DM| floor
+    'xeno_coh': 6.0,                          # zero-crossing regularity gate
+    'xeno_acf_z': 6.0, 'xeno_ham': 0.25,      # frame ACF + Hamming gates
+    'xeno_crc_min': 3, 'xeno_ca_var': 0.0015, # CRC hits + CA breathing floor
+    'scint_m_quiet': 0.15, 'scint_xcorr': 0.80,  # ISM scintillation gates
     # pipeline
     'workers': 4, 'pol_list': [0, 1, 2, 3], 'blocks': '0-127',
     'line_exclude': [0],  # ch0 standing-line channels excluded from SCD top-k

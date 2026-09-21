@@ -41,11 +41,20 @@ the proofs below quantify exactly where the floor is.
    ├── python/jerk_scan.py ─── Viterbi track-before-detect + quadratic motion fit
    ├── python/bitslice.py ──── sign / transition bitstreams ──► c/vm_sandbox.c
    │                                                            (SUBLEQ locality + Golay G₂₄ syndrome)
-   │
+   ├── c/xeno_scan ────────── microscopic battery: spectral kurtosis, coherence,
+   │                           cepstral ladder, dispersion-order sign, impulsivity
+   ├── c/xvm_sandbox ──────── 6-machine alien-code battery (SUBLEQ/STACK/CA110/
+   │                           frame-ACF/Hamming/CRC behind the entropy gate)
+   ├── python/scint_pol.py ── ISM scintillation + cross-pol agreement
+   ├── python/exotic_pass.py ─ negative-DM, clock stability, prime trains,
+   │                           precursor echoes (bizarre-physics hunters)
+   └── python/xeno_pass.py ── I0–I5 interstellar grades (see
+                               INTERSTELLAR_HIT_CRITERIA.md)
    ▼
  hits.csv ──► python/rfi_veto.py ──► BLOCK / WATCH / CANDIDATE
                     │                   (band allocation, α zone, persistence,
-                    │                    channel coincidence, VM structure, recurrence)
+                    │                    channel coincidence, VM structure, recurrence,
+                    │                    thicket fence + comb discount)
                     ▼
               python/latent_pca.py ──► outlier ranking across all slices
                     │
@@ -69,7 +78,13 @@ Honest split between what has been validated and what is a substitute.
 | Learned trajectory field | ⚠️ deferred | MLP can't beat Viterbi on spike-riding energy; documented dead ends in `neural_track.py` |
 | Latent anomaly | ✅ real | ranks all flags in the top 10–15% of the corpus |
 | Golay / VM structure test | ✅ real | engineered codewords 100% vs 3.27% random baseline |
-| RFI veto | ✅ real | 6/6 flags correctly BLOCKed; catalog + recurrence memory |
+| XENO microscopic battery | ✅ real | SK/coherence/ladder/DM-sign/impulsivity; up-chirp EXOTIC (−1), down-chirp normal (+1) |
+| Alien-code xeno sandbox | ✅ real | 5/6 machines fire on framed+coded+looping stream; noise silent on all six |
+| Scintillation + polarisation | ✅ real | decorrelated SCINT vs COMMON vs WANDER-LOCAL; 6/6 |
+| Bizarre-physics hunters | ✅ real | neg-DM ±23000, prime trains (machinery quiet), precursors; 10/10 |
+| Interstellar grades I0–I5 | ✅ real | 14/14 ladder checks; SMT2-verified, 5000/5000 code tie |
+| Thicket fence | ✅ real | dense forest scores comb 1940 yet trips fence; real 9-line comb spared |
+| RFI veto | ✅ real | 11/11 legs incl. thicket; catalog + recurrence memory |
 | ON–OFF cadence test | ❌ missing | needs a second pointing file — no code will substitute |
 | Periodicity / folding search | ❌ missing | pipeline is currently deaf to pulsars by construction |
 | Single-pulse + DM sweep | ❌ missing | no FRB-class coverage yet |
@@ -110,6 +125,25 @@ dechirp bank    : 7,278×  at γ = −30,000 Hz/s, error 0 Hz
 100% hit rate, versus 3.27% for random bits at the same window length. The
 sandbox also refuses to render a verdict on low-entropy input, after a dark
 digitizer lane produced false 100% hits on zero-runs.
+
+**Universal ingest (2026-09-21).** `python/univ_ingest.py` sniffs GUPPI /
+SigProc filterbank / HDF5 / FITS / WAV / raw I-Q (GNU Radio, rtl-sdr,
+HackRF layouts) / numpy / CSV and delivers one canonical stream:
+voltage/complex inputs get the FULL battery, detected-power inputs get an
+honest SPECTRAL subset (phase was discarded at record time). 13/13
+round-trips; the same real slice as WAV and NPY scores bit-identical
+batteries. `python/satpass.py` adds TLE conjunction checks (SGP4,
+offline-first, with a staleness guard) as attribution evidence.
+See `UNIVERSAL_INGEST.md`. `python/univ_scan.py --in anything --outdir runs/x`.
+
+**XENO results (2026-09-20 overhaul).** Full receipt table in
+`reports/xeno_overhaul.md`: 19/19 proves, 23/23 SMT2 checks, all code ties
+green. On real data (TRAPPIST-1 + Kepler-160, 65k+ slices): zero I3+,
+zero CANDIDATE — with a named, fenced contaminant (the 179-family
+intermod thicket: dense line forests that game the comb rule, caught by
+line-density) and one fully-anatomised sub-second burst (OFF b1/ch57).
+Strongest follow-up: Kepler OFF ch25, persistent protected-band combs in
+all four OFF pols, absent ON — WATCH, needs ON–OFF–ON re-observation.
 
 ---
 

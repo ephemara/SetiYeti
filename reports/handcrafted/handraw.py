@@ -37,6 +37,32 @@ def geom(kv):
     return dict(nchan=nchan, npol=npol, nbits=nbits, blocsize=blocsize,
                 tbin=tbin, freq=freq, bw=bw)
 
+def detect_layout(raw, nchan, npol, nbits):
+    """Port of seti_slice.c layout probe. Returns 0,1,2.
+    0 = time-major [t][chan][pol]
+    1 = chan-major pol-blocked [chan][pol][t]
+    2 = chan-major pol-interleaved [chan][t][pol]   (modern BL/dibas)
+    """
+    if nbits != 8:
+        return 0
+    raw = np.frombuffer(raw, dtype=np.uint8).view(np.int8).astype(np.float64)
+    per_c = len(raw)//nchan
+    ac1 = acN = den = 0.0
+    for c in (16, 28, 40, 52):
+        p2 = raw[c*per_c:(c+1)*per_c]
+        n = min(len(p2), 262144)
+        p2 = p2[:n]
+        v = p2 - p2.mean()
+        den += (v*v).sum()
+        ac1 += (v[:-1]*v[1:]).sum()
+        acN += (v[:-npol]*v[npol:]).sum()
+    if den > 0:
+        ac1 /= den; acN /= den
+    if abs(ac1) > 0.005 or abs(acN) > 0.005:
+        return 2 if abs(acN) > 1.5*abs(ac1) else 1
+    return 2
+
+
 class Raw:
     def __init__(self, path):
         self.path = path
@@ -61,11 +87,21 @@ class Raw:
             stride = hdr + self.blocsize
             best = (hdr, stride, self.size // stride)
         self.hdr, self.stride, self.nblocks = best
-        self.ntime = self.blocsize // (self.nchan * self.npol) if self.nbits == 8 else \
-                     self.blocsize // (self.nchan * self.npol // 4) if self.nbits == 2 else None
         self.fs = 1.0 / self.tbin
-        self.dur = self.ntime * self.tbin
         self.chan_bw = abs(self.bw) / self.nchan
+        # detect payload layout from block 0 (same rule as seti_slice.c)
+        with open(path, 'rb') as f:
+            f.seek(self.hdr)
+            probe = f.read(self.blocsize)
+        self.layout = detect_layout(probe, self.nchan, self.npol, self.nbits)
+        self.per_ch = self.blocsize // self.nchan
+        if self.layout == 0:
+            self.ntime = self.blocsize // (self.nchan*self.npol*self.nbits//8)
+        elif self.layout == 1:
+            self.ntime = self.blocsize // (self.nchan*self.npol)
+        else:
+            self.ntime = self.per_ch // self.npol
+        self.dur = self.ntime * self.tbin
 
     def block_bytes(self, b):
         with open(self.path, 'rb') as f:
@@ -81,7 +117,13 @@ class Raw:
         raw = np.frombuffer(self.block_bytes(b), dtype=np.uint8)
         if self.nbits == 8:
             a = raw.view(np.int8).astype(np.float32)
-            a = a.reshape(self.ntime, self.nchan, self.npol)
+            if self.layout == 0:
+                a = a.reshape(self.ntime, self.nchan, self.npol)
+            elif self.layout == 1:
+                a = a.reshape(self.nchan*self.npol, self.ntime).reshape(
+                        self.nchan, self.npol, self.ntime).transpose(2, 0, 1)
+            else:
+                a = a.reshape(self.nchan, self.ntime, self.npol).transpose(1, 0, 2)
         else:
             # 2-bit packed: 4 pols per byte, time-major
             codes = np.array([-3.34, -1.0, 1.0, 3.34], dtype=np.float32)
@@ -95,6 +137,16 @@ class Raw:
         if chan is not None:
             return a[:, chan, :]
         return a
+
+    def chan_block(self, b, ch):
+        """Read a single coarse channel across one block (layout-aware).
+        Returns (ntime, npol) float32. Falls back to full block if needed."""
+        if self.nbits != 8 or self.layout != 2:
+            return self.block(b)[:, ch, :]
+        with open(self.path, 'rb') as f:
+            f.seek(b*self.stride + self.hdr + ch*self.per_ch)
+            raw = np.frombuffer(f.read(self.per_ch), dtype=np.uint8).view(np.int8)
+        return raw.astype(np.float32).reshape(self.ntime, self.npol)
 
     def chan_freq(self, ch):
         """Sky frequency of coarse channel ch (MHz).

@@ -68,14 +68,17 @@ def comb_backend(root):
 def comb_via_c(exe, f32, fs):
     rc, out, _ = run(exe, f32, f'{fs:.1f}')
     m = re.search(r'^RESULT comb=(\d+) comb_score=([\d.]+) f0_hz=([\d.]+) '
-                  r'members=(\d+) nongauss=(\d+) kurt=([-\d.]+) tailx=([\d.]+)',
+                  r'members=(\d+) nongauss=(\d+) kurt=([-\d.]+) tailx=([\d.]+)'
+                  r'(?: nlines10=(\d+) thicket=(\d+))?',
                   out, re.M)
     if not m:
         return None
     return {'comb': int(m.group(1)), 'comb_score': float(m.group(2)),
             'comb_f0': float(m.group(3)), 'members': int(m.group(4)),
             'nongauss': int(m.group(5)), 'kurt': float(m.group(6)),
-            'tailx': float(m.group(7))}
+            'tailx': float(m.group(7)),
+            'lines10': int(m.group(8)) if m.group(8) is not None else -1,
+            'thicket': int(m.group(9)) if m.group(9) is not None else 0}
 
 
 def fam_peaks(fam_exe, f32, fs, topk=15):
@@ -126,7 +129,7 @@ def comb_via_numpy(fam_exe, f32, fs):
     n, s, b0 = comb_rule_on_bins(bins, 32768 // 2)
     f0 = b0 * fs / 32768.0 if n else 0.0
     return {'comb': 1 if n else 0, 'comb_score': s, 'comb_f0': f0,
-            'members': n}
+            'members': n, 'lines10': -1, 'thicket': 0}
 
 
 def nongauss_stats(x):
@@ -224,12 +227,13 @@ def main():
                             r.get('pol', '0'), fs, work, tag, a.timeout)
         scored[key] = res or {'comb': 0, 'comb_score': 0.0, 'comb_f0': 0.0,
                               'members': 0, 'nongauss': 0, 'kurt': 0.0,
-                              'tailx': 0.0}
+                              'tailx': 0.0, 'lines10': -1, 'thicket': 0}
     n_comb = sum(1 for v in scored.values() if v['comb'])
     n_ng = sum(1 for v in scored.values() if v['nongauss'])
 
     fields = list(rows[0].keys()) if rows else []
-    for extra in ('comb', 'comb_f0', 'comb_score', 'frame', 'nongauss'):
+    for extra in ('comb', 'comb_f0', 'comb_score', 'frame', 'nongauss',
+                  'lines10', 'thicket'):
         if extra not in fields:
             fields.append(extra)
     with open(outp, 'w', newline='') as fh:
@@ -242,6 +246,8 @@ def main():
             r['comb'] = s.get('comb', 0)
             r['comb_f0'] = f"{s.get('comb_f0', 0.0):.0f}"
             r['comb_score'] = f"{s.get('comb_score', 0.0):.2f}"
+            r['lines10'] = s.get('lines10', -1)
+            r['thicket'] = s.get('thicket', 0)
             r['frame'] = 1 if str(r.get('chan')) in frame_chans else 0
             r['nongauss'] = s.get('nongauss', 0)
             w.writerow(r)
