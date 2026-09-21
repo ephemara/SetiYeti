@@ -1,0 +1,24 @@
+[mc] slice n=524288 rms=8.30 Nbits=200000 surr=500 noise=500
+  [surr] 50/500 loop=1 acf=0 joint=0 maxloops=16666 max|z|=4.5
+  [surr] 100/500 loop=1 acf=0 joint=0 maxloops=16666 max|z|=4.9
+  [surr] 150/500 loop=1 acf=0 joint=0 maxloops=16666 max|z|=4.9
+  [surr] 200/500 loop=1 acf=0 joint=0 maxloops=16666 max|z|=4.9
+  [surr] 250/500 loop=1 acf=0 joint=0 maxloops=16666 max|z|=4.9
+  [surr] 300/500 loop=1 acf=0 joint=0 maxloops=16666 max|z|=4.9
+  [surr] 350/500 loop=1 acf=0 joint=0 maxloops=16666 max|z|=4.9
+  [surr] 400/500 loop=2 acf=0 joint=0 maxloops=25000 max|z|=5.0
+  [surr] 450/500 loop=2 acf=0 joint=0 maxloops=25000 max|z|=5.2
+  [surr] 500/500 loop=3 acf=0 joint=0 maxloops=25000 max|z|=5.2
+[RESULT surr] n=500 P_loop~3/500=0.006 P_acf~0/500=0.0000 P_joint~0/500=0.0000 maxloops=25000 max|z|=5.2
+  [noise] 50/500 loop=0 acf=0 joint=0 maxloops=2 max|z|=4.8
+  [noise] 100/500 loop=0 acf=0 joint=0 maxloops=2 max|z|=4.8
+  [noise] 150/500 loop=0 acf=0 joint=0 maxloops=2 max|z|=4.8
+  [noise] 200/500 loop=0 acf=0 joint=0 maxloops=2 max|z|=4.8
+  [noise] 250/500 loop=0 acf=0 joint=0 maxloops=2 max|z|=4.8
+  [noise] 300/500 loop=0 acf=0 joint=0 maxloops=2 max|z|=4.8
+  [noise] 350/500 loop=0 acf=0 joint=0 maxloops=256 max|z|=4.8
+  [noise] 400/500 loop=0 acf=0 joint=0 maxloops=256 max|z|=4.8
+  [noise] 450/500 loop=0 acf=0 joint=0 maxloops=256 max|z|=4.8
+  [noise] 500/500 loop=0 acf=0 joint=0 maxloops=256 max|z|=4.8
+[RESULT noise] n=500 P_loop~0/500=0.000 P_acf~0/500=0.0000 P_joint~0/500=0.0000 maxloops=256 max|z|=4.8
+[mc] DONE

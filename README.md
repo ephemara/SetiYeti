@@ -85,9 +85,12 @@ Honest split between what has been validated and what is a substitute.
 | Interstellar grades I0–I5 | ✅ real | 14/14 ladder checks; SMT2-verified, 5000/5000 code tie |
 | Thicket fence | ✅ real | dense forest scores comb 1940 yet trips fence; real 9-line comb spared |
 | RFI veto | ✅ real | 11/11 legs incl. thicket; catalog + recurrence memory |
-| ON–OFF cadence test | ❌ missing | needs a second pointing file — no code will substitute |
-| Periodicity / folding search | ❌ missing | pipeline is currently deaf to pulsars by construction |
-| Single-pulse + DM sweep | ❌ missing | no FRB-class coverage yet |
+| ON–OFF cadence gate | ✅ real | `cadence_pair.py`: only WATCH→CANDIDATE path + catalog audit |
+| Periodicity / folding search | ✅ real | envelope FFT + 8-harmonic sum, 1 Hz–2 kHz; 5/5 (burst-envelope caveat documented) |
+| Single-pulse + DM sweep | ✅ real | boxcar bank + incoherent dedispersion; 3/3 (single-channel proxy caveat) |
+| Payload raster framing | ✅ real | 23×73 Arecibo fires at 9.4σ, noise 1.7σ |
+| Universal ingest | ✅ real | 10 formats → one canonical stream; WAV≡NPY bit-identical batteries |
+| Satellite conjunction | ✅ real | TLE/SGP4 overhead checks, staleness-guarded; attribution evidence |
 
 ---
 
@@ -137,7 +140,7 @@ offline-first, with a staleness guard) as attribution evidence.
 See `UNIVERSAL_INGEST.md`. `python/univ_scan.py --in anything --outdir runs/x`.
 
 **XENO results (2026-09-20 overhaul).** Full receipt table in
-`reports/xeno_overhaul.md`: 19/19 proves, 23/23 SMT2 checks, all code ties
+`reports/xeno_overhaul.md`: 22/22 proves, 38/38 SMT2 checks, all code ties
 green. On real data (TRAPPIST-1 + Kepler-160, 65k+ slices): zero I3+,
 zero CANDIDATE — with a named, fenced contaminant (the 179-family
 intermod thicket: dense line forests that game the comb rule, caught by
@@ -149,8 +152,8 @@ all four OFF pols, absent ON — WATCH, needs ON–OFF–ON re-observation.
 
 ## Results so far
 
-Three pointings, 2,264 slice-analyses, 70 cataloged interference signatures,
-**zero surviving candidates.**
+Seven pointings, 70,000+ slice-analyses, ~1,500 cataloged interference
+signatures, **zero surviving candidates.**
 
 | Observation | Slices | Outcome |
 |---|---|---|
@@ -158,37 +161,47 @@ Three pointings, 2,264 slice-analyses, 70 cataloged interference signatures,
 | **HIP 113357** (L-band, 1406 MHz, 8-bit) | 64 | 64/64 channels flagged at 4–10×, all at the same low-frequency α, each polarization peaking at a *different* frequency → receiver-chain wander, not sky. |
 | **HIP 113357** (bank 6, same observation) | 64 | Digitizer essentially dark (21 distinct codes, all lanes RMS 1.1). Quarantined before analysis; zero-runs were passing the Golay test trivially. |
 | **Voyager 1 coords** (X-band) | 64 | Null, as expected — the file's band is ~800 MHz above Voyager's 8.415 GHz downlink. Useful as a specificity check on a fresh pointing. |
+| **TRAPPIST-1** ON+OFF PART1GB (L-band, 2017) | 1,792 | 0 above I1. Richest slice: OFF b1/ch57 sub-second burst (91×, 60+ cyclic lines, both pols) → I2/WATCH, mechanism unidentified, fenced below candidacy. |
+| **Kepler-160** ON+OFF full 128-block (L-band, 2020) | 65,536 | 1 I2 (OFF b66/ch57). 179-family intermod thicket named + fenced (36–108 lines>10× across both pointings, both epochs). Top follow-up: OFF ch25, persistent protected-band combs in all 4 OFF pols, absent ON → WATCH. |
 
-The M31 negative is the substantive result: a real upper limit on that band over
-that span, backed by a noise-matched threshold for every detector.
+The M31 negative is the substantive early result: a real upper limit on that
+band over that span, backed by a noise-matched threshold for every detector.
+The XENO campaign (`reports/xeno_overhaul.md`) is the substantive recent one:
+grades I0–I5 across the whole corpus with per-marker receipts.
 
 ---
 
 ## Quick start
 
 ```bash
-# 1. build the C tools (no dependencies, C99)
-gcc -O3 -o c/seti_slice  c/seti_slice.c  -lm
-gcc -O3 -o c/fam_scan    c/fam_scan.c    -lm
-gcc -O3 -o c/vm_sandbox  c/vm_sandbox.c  -lm
+# 1. build the C tools (no dependencies, C99) — 6 binaries via make
+make                # seti_slice fam_scan vm_sandbox comb_scan xeno_scan xvm_sandbox
+make check          # verify binaries run + probe real-file layouts
 
-# 2. verify the detectors before trusting them on data
-python python/dsss_prove.py          # spread spectrum at −12 dB
-python python/jerk_scan.py --prove   # drift + jerk at −35 dB
-python python/scd_frf.py --prove     # baud comb + chirp de-smear
+# 2. verify the detectors before trusting them on data (22/22 = gate)
+python python/sy_prove_all.py --root . --quick   # fast gate (<2 min, 17 checks)
+python python/sy_prove_all.py --root .           # full gate (all 22)
 
-# 3. scan a file
+# 3. scan a file — GUPPI or literally anything (WAV/FIL/H5/FITS/I-Q/npy/CSV)
 python python/mvp_scan.py --raw data/<file>.raw --b0 0 --b1 48 --chans 0,8,16,24,32,40,48,56
+python python/univ_scan.py --in signal.wav --outdir runs/univ_wav
+python python/univ_scan.py --in capture.cu8 --fs 2000000 --outdir runs/univ_rtl
 
-# 4. disposition every flag
+# 4. grade top candidates I0–I5, then disposition every flag
+python python/structure_pass.py --scan scan.csv --raw data/<file>.raw --out struct.csv
+python python/xeno_pass.py --scan struct.csv --raw data/<file>.raw --out xeno.csv \
+    --off scan_off.csv --evidence evidence.csv --target NAME --xpol
 python python/rfi_veto.py --hits hits.csv --evidence evidence.csv --target M31
 
-# 5. rank the whole corpus for outliers
+# 5. satellite-overhead check + corpus ranking
+python python/satpass.py --guppi-at data/<file>.raw --block 21 --dur 30 --site GBT
 python python/latent_pca.py --slices hits.csv
 ```
 
-Requires Python 3.12+ with numpy (scipy/matplotlib optional — matplotlib only
-for waterfall PNGs). The C tools are dependency-free.
+Requires Python 3.12+ with numpy; `pip install -r requirements-science.txt`
+adds the science stack (`h5py`/`astropy`/`scipy` + `sgp4` for `satpass.py`).
+The C tools are dependency-free. On Windows: MinGW on PATH for `make`,
+Scoop Python at `C:/scoop/apps/python/current`.
 
 ---
 
@@ -226,8 +239,45 @@ gate refuses to score constant or rail-saturated input.
 **`python/rfi_veto.py`** — the Earth blocker. Every flag is scored against ITU
 band allocations, the cyclic-frequency zone (1 Hz–2 kHz is where rotation-powered
 astrophysics lives; 100 kHz–5 MHz is where electronics live), time persistence,
-channel coincidence, VM structure, and a growing signature catalog that hard-blocks
-anything seen before. Emits BLOCK / WATCH / CANDIDATE with written reasons.
+channel coincidence, VM structure, a growing signature catalog that hard-blocks
+anything seen before, and the thicket fence (dense intermod forests get +0.35
+EARTH and their comb vote discounted to +0.00 — comb-by-density is not
+modulation). Emits BLOCK / WATCH / CANDIDATE with written reasons.
+
+**`c/xeno_scan`** — microscopic battery in one pass: per-bin spectral-kurtosis
+fraction (packetised cadence), zero-crossing coherence (clock-grade oscillation),
+whitened cepstral ladder (frequency combs), dispersion-order sign (up-chirp =
+EXOTIC negative-DM, down-chirp = normal plasma), impulsivity. One `RESULT` line.
+
+**`c/xvm_sandbox`** — 6-machine alien-code battery behind the entropy gate:
+SUBLEQ, Forth-STACK (bits that LOOP vs noise that halts), Rule-110 CA (breathing
+vs flat density), frame-ACF (reports the fundamental stride), Hamming(7,4)
+excess, CRC-16 excess. ≥3/6 votes = XENO-CANDIDATE.
+
+**`python/scint_pol.py`** — sky markers from the medium: decorrelated
+scintillation (single-gain wander reads COMMON instead) and cross-polarisation
+agreement (same frequency in every feed = SKY-LIKE; divergent = WANDER-LOCAL).
+
+**`python/exotic_pass.py`** — bizarre-physics hunters: negative dispersion
+(|DM|>50, r²≥0.8), clock-grade stability, prime-interval pulse trains
+(machinery rhythms stay quiet), non-causal precursor echoes.
+
+**`python/xeno_pass.py`** — one I0–I5 grade per slice from all of the above
+plus veto/evidence/cadence context (single files cap at I2; exotic alone never
+engineers; common-mode bystanders eligible by design).
+
+**`python/univ_ingest.py` + `python/univ_scan.py`** — the any-format front-end:
+sniff GUPPI/filterbank/HDF5/FITS/WAV/raw-IQ/numpy/CSV → one canonical stream
+(voltage/complex: FULL battery; detected power: honest SPECTRAL subset) →
+verdict + REPORT.md. See `UNIVERSAL_INGEST.md`.
+
+**`python/satpass.py`** — TLE conjunction checks (SGP4, offline-first) for any
+observatory: what metal was overhead at a flag's timestamp. Attribution
+evidence with a staleness guard, not a veto rule.
+
+**`python/cadence_pair.py`** — the only legal WATCH→CANDIDATE gate (ON-only +
+structured + persistent) plus the cross-observation recurrence hook and the
+catalog audit that keeps the bystander family unblockable without structure.
 
 **`python/latent_pca.py`** — unsupervised triage. A PCA subspace is learned on
 clean slices; every slice is scored by reconstruction residual plus latent
@@ -249,41 +299,58 @@ primary sieve. See `houdini/README.md`.
 ## Limits
 
 - **No ON–OFF test.** A single pointing cannot distinguish celestial from local.
-  Every claim so far is capped at WATCH for exactly this reason.
-- **Deaf to periodicity.** No folding or harmonic-summing search, so millisecond
-  pulsars and long-period rotators are invisible regardless of strength.
-- **No single-pulse search.** No boxcar or dispersion-measure sweep; fast
-  transients are only caught incidentally by the cyclostationary stage.
+  Single pointings cap at WATCH (I2) for exactly this reason; the
+  `cadence_pair.py` gate is the only promotion path.
+- **Folding has a burst caveat.** `pulsar_fold.py` covers 1 Hz–2 kHz, but
+envelope methods report bright transient envelopes as rotation on
+sub-second slices; periods longer than the span are meaningless.
+- **Single-channel DM is a proxy.** Intra-channel sweeps flag candidates;
+  confirmation needs full-band coherent dedispersion.
 - **0.176 s per block.** A short file is a snapshot, not an observation. Drift
   fitting and persistence adjudication need tens of seconds to work properly.
 - **One polarization at a time** in the current sweeps, and the sweep strides
   channels rather than covering every cell.
-- **Not a survey.** This is a per-file analysis engine. Throughput is limited by
-  download, not compute.
+- **Very strong carriers can trip the thicket fence.** Sidelobe forests read
+  as line-density — errors point toward caution (BLOCK), never discovery.
+- **Power inputs can't use phase tools.** Filterbank/FITS spectra get the
+  spectral subset; the battery abstains where phase is required.
+- **Not a survey.** This is a per-file (now any-format) analysis engine.
+  Throughput is limited by download, not compute.
 
 ---
 
 ## Roadmap
 
-1. **Periodicity search** — envelope FFT with harmonic summing over 1 Hz–2 kHz.
-   Highest value per line of code; closes the pulsar/rotator blind spot.
-2. **Single-pulse + DM sweep** — boxcar matched filtering with incoherent
-   dedispersion, for FRB-class and magnetar-shot events.
-3. **Cadence pairing** — pull A/B pairs from the archive and make the ON–OFF test
-   the gate that promotes WATCH to CANDIDATE.
-4. **Full-polarization sweeps** — currently the strongest discriminator against
-   backend artifacts (see HIP 113357) and only used on demand.
-5. **Parallel scanning** — `mvp_scan` is embarrassingly parallel; scale out to a
-   worker fleet before scaling up file size.
+1. **Cross-observation matcher (M9)** — the same signature recurring across
+   nights is the only way to catch long-cycle monuments. Top missing piece.
+2. **Full-polarization sweeps** — currently top-candidates only (`--xpol`);
+   the strongest backend-artifact discriminator deserves full coverage.
+3. **Parallel scanning** — `mvp_scan` is embarrassingly parallel; scale out
+   to a worker fleet before scaling up file size.
+4. **Complex-native C detectors** — today the canonical real is the I channel;
+   Q carries half the story for PSK-class signals.
+5. **Archive TLEs** — 2020-era satellite attribution needs space-track.org
+elements; the `satpass.py` hook is ready.
+6. **Chunked HDF5 streaming** — GB-scale filterbanks are currently windowed,
+   not streamed.
+7. **Full-band coherent dedispersion** — to confirm or kill DM-proxy shots
+   like the b1/ch57 event.
 
 ---
 
 ## Layout
 
 ```
-c/          C99 tools: raw unpacker, cyclo scanner, VM sandbox
-python/     detectors, prove harnesses, RFI veto, latent triage
+c/          C99 tools: seti_slice, fam_scan, vm_sandbox, comb_scan (+thicket),
+            xeno_scan (microscopic), xvm_sandbox (alien-code) — `make` builds 6
+python/     detectors, prove harnesses, veto, triage, universal ingest/scan,
+            satpass, xeno grades, pipeline/longhaul orchestrators
+z3/         machine-checked specs + code ties (veto, grades, dispatch, ...)
+configs/    TOML presets (header geometry wins, preset fills, CLI overrides)
+runs/       per-run scans/evidence/grades/REPORTs (machine-readable record)
+reports/    write-ups with receipts (xeno_overhaul.md = latest campaign)
 houdini/    triage terrain exporter + Houdini shelf script
+INTERSTELLAR_HIT_CRITERIA.md   what I0–I5 mean
 data/       raw + derived signal files (gitignored — see data/README.md)
 spec.md     the original design brief; README describes what is actually built
 hits*.csv   per-observation scan results (the scientific record)
@@ -298,3 +365,6 @@ rfi_catalog.json   accumulated interference signature catalog
 - Gardner 1991 — cyclostationary spectral correlation
 - Ma et al. 2023 — unsupervised autoencoder search over 820 stars
 - Price et al. 2020 — Breakthrough Listen's data formats and cadence design
+- Lorimer 2011 — SigProc filterbank format (the `.fil` header contract)
+- Lebofsky et al. 2019 — `blimpy` HDF5 filterbank convention
+- Vallado et al. — SGP4 propagation (the `sgp4` package powers `satpass.py`)

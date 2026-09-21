@@ -44,7 +44,7 @@ promote anything.**
   engineers) — 13/13 (one draft property caught missing `flagged` by Z3).
 - `verify_xeno.py`: model-vs-code 5000/5000, X1/X2/X3/X5 zero violations.
 - `verify_veto.py` extended with `lines10` fuzz; still 3000/3000.
-- Full suite: **19/19 proves + 23/23 SMT2 + ties green.**
+- Full suite: **22/22 proves + 38/38 SMT2 + ties green.**
 
 ### Bugs real data caught (fixed with receipts, all in-code documented)
 

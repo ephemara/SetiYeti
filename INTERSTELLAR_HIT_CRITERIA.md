@@ -116,8 +116,9 @@ I5 ──▶ re-observe, second telescope, archive recurrence, THEN talk
 
 Every marker ships with an injection prove (fires on target, quiet on matched
 noise): `xeno_scan` 11/11, `xvm_sandbox` 10/10, `scint_pol` 6/6,
-`exotic_pass` 10/10, grade ladder 14/14, SMT2 libs 23/23, code ties
-5000/5000 + 3000/3000. Thresholds come from multiple noise realisations, and
+`exotic_pass` 10/10, grade ladder 14/14, SMT2 libs 38/38, code ties
+5000/5000 + 3000/3000 + 2000/2000. `univ_ingest` round-trips 13/13,
+`satpass` 6/6. Thresholds come from multiple noise realisations, and
 every calibration surprise is documented in the code where it was found
 (SK-per-bin not grouped, gate-period ≠ STFT length, code-stripe stride,
 broadband-vs-decorrelated scintillation, peak-hold precursors, stack balance).

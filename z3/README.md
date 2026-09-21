@@ -7,7 +7,7 @@ or a false veto. Two layers, both must pass:
 Machine-checked specs with `; expect` verdicts. No z3 binary needed
 (`z3.parse_smt2_string` replay with push/pop scoping).
 
-| lib | theorems (40 checks total, all PASS) |
+| lib | theorems (38 checks total, all PASS) |
 |---|---|
 | `comb_rule.smt2` | single peak can never reach 3 members (UNSAT); Kepler family {(4,30),(16,25),(32,20)} fires at b0=4 (SAT) |
 | `veto_disposition.smt2` | P1 hard-block⇒BLOCK, P2 CANDIDATE⇒persist&(eng\|multi), P3 engineered+recurring never hard-blocks, P4 BLOCK/CANDIDATE exclusive (all UNSAT-of-violation); all three dispositions reachable (SAT) |

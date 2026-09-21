@@ -6,8 +6,32 @@ excludes `*.raw`, `*.f32`, `*.bin`, `*.png` and `mvp_tmp/`.
 
 ## Getting raw files
 
-Breakthrough Listen's archive is on **AWS S3 and is requester-pays** — you pay
-egress. Authenticate first (`aws configure`), then:
+**Do not go to AWS S3 first.** The archive is *also* on S3 requester-pays
+(needs credentials + egress), but there is a public JSON API and public HTTP
+mirrors with **no account and no payment**. Use the wrapper:
+
+```bash
+# what targets exist
+python python/bl_download.py targets --grep 'SGR|HIP|MESSIER'
+
+# inspect files for a target (no download)
+python python/bl_download.py query --target MESSIER031 --file-types 'baseband data' --limit 8
+
+# download (aria2c -x16: ~90 MB/s from blpd0, ~65 MB/s from Google)
+python python/bl_download.py get --target HIP57328 --file-types 'baseband data' \
+    --limit 4 --outdir D:/data/raw --jobs 3 --conns 16
+
+# or replay a saved manifest
+python python/bl_download.py from-manifest D:/data/download_manifest.csv --outdir D:/data/raw
+```
+
+Speed notes: a single `curl` to `blpd0.ssl.berkeley.edu` is only ~4 MB/s; the
+same file with **aria2c `-x16 -s16`** is ~90 MB/s. The wrapper uses aria2c when
+it is on PATH and falls back to single-threaded urllib (with a loud warning)
+otherwise. `file-types` are `baseband data` (raw voltage), `filterbank`,
+`HDF5`, `data`. See `python/bl_download.py --help`.
+
+If you really want the S3 route:
 
 ```bash
 aws s3 ls --request-payer requester s3://breakthrough-listen/
