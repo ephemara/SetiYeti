@@ -43,8 +43,9 @@ the proofs below quantify exactly where the floor is.
    │                                                            (SUBLEQ locality + Golay G₂₄ syndrome)
    ├── c/xeno_scan ────────── microscopic battery: spectral kurtosis, coherence,
    │                           cepstral ladder, dispersion-order sign, impulsivity
-   ├── c/xvm_sandbox ──────── 6-machine alien-code battery (SUBLEQ/STACK/CA110/
-   │                           frame-ACF/Hamming/CRC behind the entropy gate)
+   ├── c/xvm_sandbox ──────── 6-machine alien-code battery (SUBLEQ/stride-swept
+   │                           STACK/CA110/frame-ACF/Berlekamp-Massey/2D-raster
+   │                           behind the entropy gate; no human code assumed)
    ├── python/scint_pol.py ── ISM scintillation + cross-pol agreement
    ├── python/exotic_pass.py ─ negative-DM, clock stability, prime trains,
    │                           precursor echoes (bizarre-physics hunters)
@@ -72,9 +73,9 @@ Honest split between what has been validated and what is a substitute.
 |---|---|---|
 | I/Q ingestion | ✅ real | 49/49 blocks parsed, zero packet loss, random access by block |
 | Cyclostationary (f=0) | ✅ real | DSSS recovered at −12 dB; noise floor characterized |
-| Full SCD (α, f) plane | ✅ real | harmonic baud comb detected 4.2× over noise |
-| Chirp / FrFT angle search | ✅ real | 30 kHz/s chirp concentrated 360×, rate error 0 Hz |
-| Non-linear tracking | ✅ real (not Neural ODE) | Viterbi TBD recovers drift and jerk at −35 dB |
+| Full SCD (α, f) plane | ✅ real (C port too) | harmonic baud comb detected 4.2× over noise. C: `scd_dechirp` BPSK 124.8× vs 4.5× floor, chirp 28× concentration, SMT2 + CBMC proved |
+| Chirp / FrFT angle search | ✅ real (C port too) | 30 kHz/s chirp concentrated 360×, rate error 0 Hz. C: `scd_dechirp` bank @30000 Hz/s exact |
+| Non-linear tracking | ✅ real (C port too) | Viterbi TBD recovers drift and jerk at −35 dB. C: `jerk_track` noise 3.2, chirps 6.0, SMT2 + CBMC proved |
 | Learned trajectory field | ⚠️ deferred | MLP can't beat Viterbi on spike-riding energy; documented dead ends in `neural_track.py` |
 | Latent anomaly | ✅ real | ranks all flags in the top 10–15% of the corpus |
 | Golay / VM structure test | ✅ real | engineered codewords 100% vs 3.27% random baseline |
@@ -86,11 +87,13 @@ Honest split between what has been validated and what is a substitute.
 | Thicket fence | ✅ real | dense forest scores comb 1940 yet trips fence; real 9-line comb spared |
 | RFI veto | ✅ real | 11/11 legs incl. thicket; catalog + recurrence memory |
 | ON–OFF cadence gate | ✅ real | `cadence_pair.py`: only WATCH→CANDIDATE path + catalog audit |
-| Periodicity / folding search | ✅ real | envelope FFT + 8-harmonic sum, 1 Hz–2 kHz; 5/5 (burst-envelope caveat documented) |
-| Single-pulse + DM sweep | ✅ real | boxcar bank + incoherent dedispersion; 3/3 (single-channel proxy caveat) |
+| Periodicity / folding search | ✅ real (C port too) | envelope FFT + 8-harmonic sum, 1 Hz–2 kHz; 5/5 (burst-envelope caveat documented). C: `fold_dm` 29.68 Hz @4799σ, noise 9.4σ; SMT2 + CBMC proved |
+| Single-pulse + DM sweep | ✅ real (C port too) | boxcar bank + incoherent dedispersion; 3/3 (single-channel proxy caveat). C: `fold_dm` fires 289σ on shot, 11.7σ noise; SMT2 + CBMC proved |
 | Payload raster framing | ✅ real | 23×73 Arecibo fires at 9.4σ, noise 1.7σ |
 | Universal ingest | ✅ real | 10 formats → one canonical stream; WAV≡NPY bit-identical batteries |
 | Satellite conjunction | ✅ real | TLE/SGP4 overhead checks, staleness-guarded; attribution evidence |
+| Corpus library | ✅ real | 258k slices / 1.5k signatures / 90 flags in one SQLite DB; review queue + recurrence + family + noise-watch queries |
+| Threshold suggest | ✅ real (gated) | corpus distributions + margins + rates with HOLDS/REVIEW; proposes nothing numeric, tunes nothing automatically |
 
 ---
 
@@ -140,7 +143,7 @@ offline-first, with a staleness guard) as attribution evidence.
 See `UNIVERSAL_INGEST.md`. `python/univ_scan.py --in anything --outdir runs/x`.
 
 **XENO results (2026-09-20 overhaul).** Full receipt table in
-`reports/xeno_overhaul.md`: 22/22 proves, 38/38 SMT2 checks, all code ties
+`reports/xeno_overhaul.md`: quick 29/29, full 34/34, SMT2 44/44 checks, all code ties
 green. On real data (TRAPPIST-1 + Kepler-160, 65k+ slices): zero I3+,
 zero CANDIDATE — with a named, fenced contaminant (the 179-family
 intermod thicket: dense line forests that game the comb rule, caught by
@@ -174,13 +177,13 @@ grades I0–I5 across the whole corpus with per-marker receipts.
 ## Quick start
 
 ```bash
-# 1. build the C tools (no dependencies, C99) — 6 binaries via make
-make                # seti_slice fam_scan vm_sandbox comb_scan xeno_scan xvm_sandbox
+# 1. build the C tools (no dependencies, C99) — 9 binaries via make
+make                # seti_slice fam_scan vm_sandbox comb_scan xeno_scan xvm_sandbox jerk_track fold_dm scd_dechirp
 make check          # verify binaries run + probe real-file layouts
 
-# 2. verify the detectors before trusting them on data (22/22 = gate)
-python python/sy_prove_all.py --root . --quick   # fast gate (<2 min, 17 checks)
-python python/sy_prove_all.py --root .           # full gate (all 22)
+# 2. verify the detectors before trusting them on data (34/34 = gate)
+python python/sy_prove_all.py --root . --quick   # fast gate (29 checks, ~8 min)
+python python/sy_prove_all.py --root .           # full gate (all 34)
 
 # 3. scan a file — GUPPI or literally anything (WAV/FIL/H5/FITS/I-Q/npy/CSV)
 python python/mvp_scan.py --raw data/<file>.raw --b0 0 --b1 48 --chans 0,8,16,24,32,40,48,56
@@ -250,9 +253,13 @@ whitened cepstral ladder (frequency combs), dispersion-order sign (up-chirp =
 EXOTIC negative-DM, down-chirp = normal plasma), impulsivity. One `RESULT` line.
 
 **`c/xvm_sandbox`** — 6-machine alien-code battery behind the entropy gate:
-SUBLEQ, Forth-STACK (bits that LOOP vs noise that halts), Rule-110 CA (breathing
-vs flat density), frame-ACF (reports the fundamental stride), Hamming(7,4)
-excess, CRC-16 excess. ≥3/6 votes = XENO-CANDIDATE.
+SUBLEQ, Forth-STACK swept over word widths 3–8 (bits that LOOP at their native
+width vs noise that halts at every width), Rule-110 CA (breathing vs flat
+density), frame-ACF (reports the fundamental stride), Berlekamp-Massey linear
+complexity (ANY linear code/scrambler collapses L≪N/2 — no polynomial guessed;
+replaces Hamming(7,4) + CRC-16, which demanded our 0x1021), 2D prime-raster
+spatial coherence (Arecibo-style frames at natural width, proven w=23 in-test).
+≥3/6 votes = XENO-CANDIDATE.
 
 **`python/scint_pol.py`** — sky markers from the medium: decorrelated
 scintillation (single-gain wander reads COMMON instead) and cross-polarisation
@@ -341,8 +348,11 @@ elements; the `satpass.py` hook is ready.
 ## Layout
 
 ```
+corpus/     setiyeti.db (DERIVED, gitignored — rebuild via `python/corpus.py --auto`)
 c/          C99 tools: seti_slice, fam_scan, vm_sandbox, comb_scan (+thicket),
-            xeno_scan (microscopic), xvm_sandbox (alien-code) — `make` builds 6
+            xeno_scan (microscopic), xvm_sandbox (alien-code),
+            jerk_track (Viterbi TBD), fold_dm (pulsar+DM), scd_dechirp
+            (SCD plane+dechirp) — `make` builds 9
 python/     detectors, prove harnesses, veto, triage, universal ingest/scan,
             satpass, xeno grades, pipeline/longhaul orchestrators
 z3/         machine-checked specs + code ties (veto, grades, dispatch, ...)

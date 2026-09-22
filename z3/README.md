@@ -7,10 +7,10 @@ or a false veto. Two layers, both must pass:
 Machine-checked specs with `; expect` verdicts. No z3 binary needed
 (`z3.parse_smt2_string` replay with push/pop scoping).
 
-| lib | theorems (38 checks total, all PASS) |
+| lib | theorems (44 checks total, all PASS) |
 |---|---|
 | `comb_rule.smt2` | single peak can never reach 3 members (UNSAT); Kepler family {(4,30),(16,25),(32,20)} fires at b0=4 (SAT) |
-| `veto_disposition.smt2` | P1 hard-block⇒BLOCK, P2 CANDIDATE⇒persist&(eng\|multi), P3 engineered+recurring never hard-blocks, P4 BLOCK/CANDIDATE exclusive (all UNSAT-of-violation); all three dispositions reachable (SAT) |
+| `veto_disposition.smt2` | P1 hard-block⇒BLOCK, P2 CANDIDATE⇒persist&(eng\|multi), P3 engineered+recurring never hard-blocks, P4 BLOCK/CANDIDATE exclusive, P6 engineered high-net never auto-blocked (all UNSAT-of-violation); all three dispositions reachable (SAT) |
 | `xeno_rules.smt2` | X1 I5⇒full-house, X2 eng∧sky∧exotic⇒≥I4, X3 silence⇒I0, X4 exhaustive+exclusive, X5 exotic-alone-never-engineers (all UNSAT-of-violation); all six grades reachable (SAT) |
 | `ingest_dispatch.smt2` | D1 total+exclusive routing, D2 magic priority, D3 no-fs refusal, D4 kind soundness (all UNSAT-of-violation); all readers reachable (SAT) |
 | `pack_bits.smt2` | pack injectivity over 8-bit vectors (UNSAT-of-collision) |
@@ -20,9 +20,11 @@ Machine-checked specs with `; expect` verdicts. No z3 binary needed
 |---|---|---|
 | `verify_c_comb.py` | SMT2 rule semantics vs shipped `structure_pass.comb_rule_on_bins`, 2000 random peak sets + Z3 canonical cases | 2000/2000 + PASS |
 | `verify_c_median.py` | **FULL PROOF**: unrolled Lomuto quickselect N=5 == sorted median over ALL 1024 inputs (0..3), UNSAT-of-counterexample; plus compiled C header (`harness_median.c`) vs `statistics.median` | UNSAT + 6/6 agree |
-| `verify_veto.py` | disposition-tail transcription vs real `rfi_veto.score_slice`, 3000 fuzz rows (incl. `lines10` thicket dimension); P1/P2/P3 re-checked on real verdicts | 3000/3000, 0 violations |
+| `verify_veto.py` | disposition-tail transcription vs real `rfi_veto.score_slice`, 3000 fuzz rows (incl. `lines10` thicket dimension); P1/P2/P3 (reasons-inspected) + P5 re-checked on real verdicts; boundary-exact model | 3000/3000, 0 violations |
 | `verify_xeno.py` | grade-ladder transcription vs real `xeno_pass.grade_slice`, 5000 fuzz rows; X1/X2/X3/X5 re-checked on real grades | 5000/5000, 0 violations |
 | `verify_ingest.py` | dispatch transcription vs real `univ_ingest.detect_format`, 2000 fuzz inputs; kind soundness on real round-trips | 2000/2000, 0 violations |
+| `corpus_invariants.smt2` | C1 ingest-map functionality, C4 review soundness from the view def, C5 livability (UNSAT-of-violation + SAT). Orphan-freedom etc. are data invariants, enforced live (see below), not provable over empty predicates | 5 checks, ALL PASS |
+| `verify_corpus.py` | C1-C6 against the LIVE 104k-slice DB: key uniqueness, no orphans, flags-on-signal, review soundness, scored-file pins, UNIQUE enforcement | 0 violations |
 | `verify_pack.py` | shipped `bitslice.pack_bits` roundtrip, exhaustive 256 + 500 streams | ALL PASS |
 
 ## Run
@@ -41,9 +43,11 @@ python z3/verify_pack.py       # packing tie
 Proven: comb counting, median selection, veto disposition boundaries, bit
 packing, xeno grade ladder (X1/X2/X3/X4/X5). Tested (not proven): FFT core
 (8.4e-12 vs DFT + tone-in-one-bin), Viterbi DP, SCD plane, all Python proves.
-Deliberately unverified (empirical, not logical): the thicket *threshold*
-(25 lines) and every detection floor - those are calibration numbers with
-gap receipts, not theorems; what IS proven is that the disposition logic
-consuming them cannot misbehave (P1-P4, X1-X5). TheNext formal targets:
+Deliberately unverified in SMT (empirical, not logical): the thicket *threshold*
+(25 lines), every detection floor, and the corpus DATA invariants (orphan-
+freedom over 104k rows is checked by `verify_corpus.py`, not proven over
+empty predicates - a vacuous-SAT trap documented in `corpus_invariants.smt2`).
+What IS proven is that the disposition logic consuming them cannot misbehave
+(P1-P4+P6, X1-X5, D1-D4, C1/C4/C5). TheNext formal targets:
 `sy_fft` butterfly permutation (N=8 exhaustive), `build_evidence` persist
 predicate, `cadence_pair` promotion gate.

@@ -20,6 +20,7 @@ houdini/out/
 
 # ─── Compiled C tools — rebuild with gcc, see README ─────────────────────────
 c/*.exe
+c/proofs/*.exe
 c/seti_slice
 c/fam_scan
 c/vm_sandbox
@@ -57,3 +58,22 @@ desktop.ini
 *.fil
 *.h5
 *.exe
+
+# ─── Campaign scratch on the big drive (D:), never the repo drive ───────────
+# Campaign bulk outputs live under runs/campaigns/ (junction to D:/data/runs).
+# Ignore the junction contents in git; catalog.tsv is the committed record.
+runs/campaigns/
+
+# ─── Corpus database (derived, regenerable — rebuild, never commit) ──────────
+# python/corpus.py --auto rebuilds it from the committed record above.
+corpus/*.db
+
+# ─── Kain build outputs (E:/setiyeti/kain/) ─────────────────────────────────
+# .kn sources are committed. Everything the compiler generates is not:
+# .kain/ = per-project out/, cache/, reports/ (like data/, regenerable).
+kain/.kain/
+kain/out/
+.kain/
+*.bin
+*.js
+*.log

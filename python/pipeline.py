@@ -61,7 +61,9 @@ class Beast:
         self.root = os.getcwd()
         self.out = os.path.join(self.root, a.outdir)
         os.makedirs(self.out, exist_ok=True)
-        self.tmp = os.path.join(self.root, 'data', 'beast_tmp')
+        # Campaign runs keep scratch on the big drive (SETIYETI_TMP);
+        # fallback preserves the historical repo-local path.
+        self.tmp = os.environ.get('SETIYETI_TMP') or os.path.join(self.root, 'data', 'beast_tmp')
         os.makedirs(self.tmp, exist_ok=True)
         self.logf = open(os.path.join(self.out, 'master.log'), 'a',
                          encoding='utf-8', errors='replace')

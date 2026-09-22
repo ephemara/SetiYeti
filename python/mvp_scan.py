@@ -289,7 +289,9 @@ def main():
     if not chans or any(c < 0 or c > 63 for c in chans):
         sys.exit('bad --chans (0-63)')
 
-    work = os.path.join(a.root, 'data', 'mvp_tmp')
+    # SETIYETI_TMP lets the campaign put scratch .f32 slices on the big
+    # drive (D:) instead of filling the repo drive; fallback is historical.
+    work = os.environ.get('SETIYETI_TMP') or os.path.join(a.root, 'data', 'mvp_tmp')
     os.makedirs(work, exist_ok=True)
     csvp = os.path.join(a.root, a.out)
     os.makedirs(os.path.dirname(csvp) or '.', exist_ok=True)

@@ -36,7 +36,7 @@ LDLIBS  ?= -lm
 # `make CFLAGS="-O2 -Wall -Wextra -std=c99 -I c"` for portable binaries.
 
 BIN     := c
-TOOLS   := seti_slice fam_scan vm_sandbox comb_scan xeno_scan xvm_sandbox
+TOOLS   := seti_slice fam_scan vm_sandbox comb_scan xeno_scan xvm_sandbox jerk_track fold_dm scd_dechirp
 BINS    := $(addprefix $(BIN)/,$(addsuffix $(EXE),$(TOOLS)))
 
 PY      ?= python
@@ -78,9 +78,17 @@ check: all
 prove: all
 	$(PY) python/sy_prove_all.py     --root $(ROOT)
 
-# ---- fast subset (<2 min): C selftests + pure-rule + new-detector proves --
+# ---- fast subset: C selftests + pure-rule + new-detector proves ----------
 prove-quick: all
 	$(PY) python/sy_prove_all.py     --root $(ROOT) --quick
+
+# ---- CBMC proof gate (exhaustive where cbmc exists, gcc fuzz fallback) ---
+cbmc:
+	$(PY) z3/run_cbmc.py             --root $(ROOT)
+
+# ---- SMT2 spec libs ------------------------------------------------------
+smt2:
+	$(PY) z3/run_smt2.py             --root $(ROOT)
 
 # ---- pytest unit gate (no data, deterministic) ----------------------------
 pytest: all
@@ -100,8 +108,8 @@ prove-legacy: all
 	@echo "ALL PROVES PASSED"
 
 clean:
-	$(RM) $(BINS)
-	@echo "cleaned $(BINS)"
+	$(RM) $(BINS) $(BIN)/proofs/harness_jerk$(EXE) $(BIN)/proofs/harness_fold$(EXE) $(BIN)/proofs/harness_scd$(EXE)
+	@echo "cleaned $(BINS)" 
 
 help:
 	@echo "SetiYeti C tools"

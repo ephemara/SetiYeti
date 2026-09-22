@@ -21,6 +21,11 @@ Usage:
   python xeno_pass.py --scan scan_on_p0.csv --raw data/x.raw --out xeno_p0.csv
       [--off scan_off_p0.csv] [--evidence evidence.csv] [--jerk jerk_results.csv]
       [--topk 40] [--min-fam 4.0]
+  --scan/--off are REPEATABLE: pass on_p0 + on_p1 (and off_p0 + off_p1)
+  to pool polarizations. Candidates are taken across the pool by fam_best,
+  so each (block,chan) is analysed at whichever pol has the higher-SNR
+  slice (the mega-run blindspot: p1-only candidates graded never). The
+  per-row pol flows into seti_slice, so no extra extraction is needed.
   python xeno_pass.py --selftest   # grade-ladder unit tests (no data/binaries)
 """
 import argparse
@@ -129,24 +134,44 @@ def parse_xeno_result(out):
 
 
 def parse_xvm_result(out):
+    # New contract (BM + RASTER replaced HAM + CRC; polynomial-agnostic):
     m = re.search(
-        r'xvm_sub=([\d.]+) xvm_stk_ops=(\d+) xvm_stk_loops=(\d+) xvm_stk_depth=(\d+) '
-        r'xvm_ca=([\d.]+) xvm_acf_lag=(\d+) xvm_acf_z=([-\d.]+) xvm_ham=([\d.]+) '
-        r'xvm_crc=(\d+) xvm_score=([\d.]+) (\S+)', out)
+        r'xvm_sub=([\d.]+) xvm_stk_ops=(\d+) xvm_stk_loops=(\d+) xvm_stk_depth=(\d+) xvm_stk_w=(\d+) '
+        r'xvm_ca=([\d.]+) xvm_acf_lag=(\d+) xvm_acf_z=([-\d.]+) xvm_bm_L=(\d+) xvm_bm_z=([-\d.]+) '
+        r'xvm_raster_w=(\d+) xvm_raster_h=(\d+) xvm_raster_z=([-\d.]+) xvm_score=([\d.]+) (\S+)', out)
     if not m:
-        return None
+        # Legacy contract (pre-BM binaries): HAM/CRC floors, kept so old
+        # logs still parse. New runs always emit the contract above.
+        m = re.search(
+            r'xvm_sub=([\d.]+) xvm_stk_ops=(\d+) xvm_stk_loops=(\d+) xvm_stk_depth=(\d+) '
+            r'xvm_ca=([\d.]+) xvm_acf_lag=(\d+) xvm_acf_z=([-\d.]+) xvm_ham=([\d.]+) '
+            r'xvm_crc=(\d+) xvm_score=([\d.]+) (\S+)', out)
+        if not m:
+            return None
+        g = m.groups()
+        sub = float(g[0]) >= 0.6
+        stk = int(g[2]) >= 20 and int(g[1]) >= 5000
+        ca = float(g[4]) >= 0.0015
+        acf = abs(float(g[6])) >= 6.0
+        ham = float(g[7]) >= 0.25
+        crc = int(g[8]) >= 3
+        score = float(g[9])
+        return {'xvm_nflags': int(sub) + int(stk) + int(ca) + int(acf) + int(ham) + int(crc),
+                'xvm_score': score,
+                'xvm_cand': 1 if ('XENO-CANDIDATE' in g[10]) else 0,
+                'xvm_acf_lag': int(g[5]), 'xvm_bm_z': 0.0}
     g = m.groups()
     sub = float(g[0]) >= 0.6
     stk = int(g[2]) >= 20 and int(g[1]) >= 5000
-    ca = float(g[4]) >= 0.0015
-    acf = abs(float(g[6])) >= 6.0
-    ham = float(g[7]) >= 0.25
-    crc = int(g[8]) >= 3
-    score = float(g[9])
-    return {'xvm_nflags': int(sub) + int(stk) + int(ca) + int(acf) + int(ham) + int(crc),
+    ca = float(g[5]) >= 0.0015
+    acf = abs(float(g[7])) >= 6.0
+    bm = float(g[9]) >= 6.0
+    raster = float(g[12]) >= 6.0
+    score = float(g[13])
+    return {'xvm_nflags': int(sub) + int(stk) + int(ca) + int(acf) + int(bm) + int(raster),
             'xvm_score': score,
-            'xvm_cand': 1 if ('XENO-CANDIDATE' in g[10]) else 0,
-            'xvm_acf_lag': int(g[5]), 'xvm_crc': int(g[8])}
+            'xvm_cand': 1 if ('XENO-CANDIDATE' in g[14]) else 0,
+            'xvm_acf_lag': int(g[6]), 'xvm_bm_z': float(g[9])}
 
 
 def pack_bits(bits):
@@ -191,6 +216,11 @@ def analyze_candidate(root, raw, block, chan, pol, fs, work, tag, pols_extra=())
                     if 'entropy_gate=BLOCK' in so:
                         continue
                     r = parse_xvm_result(so)
+                    # Audit trail (lands in xeno.log via the runner): which
+                    # machines fired is otherwise invisible downstream -
+                    # xvm_nflags carries the count, never the cause.
+                    last = so.strip().splitlines()[-1] if so.strip() else 'no-output'
+                    print(f'[xvm] b{block} ch{chan} p{pol} {name}: {last}')
                     if r and (best is None or r['xvm_nflags'] > best['xvm_nflags']):
                         best = r
                 finally:
@@ -254,10 +284,12 @@ def analyze_candidate(root, raw, block, chan, pol, fs, work, tag, pols_extra=())
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--scan', required=False, default='')
+    ap.add_argument('--scan', required=False, default=[], action='append',
+                    help='scan CSV (repeatable: on_p0 + on_p1 pool pols)')
     ap.add_argument('--raw', required=False, default='')
     ap.add_argument('--out', default='xeno.csv')
-    ap.add_argument('--off', default='', help='OFF scan CSV (cadence map)')
+    ap.add_argument('--off', default=[], action='append',
+                    help='OFF scan CSV, cadence map (repeatable)')
     ap.add_argument('--evidence', default='', help='evidence.csv (persist/multichan)')
     ap.add_argument('--jerk', default='', help='jerk_results.csv (Doppler screen)')
     ap.add_argument('--target', default='')
@@ -274,10 +306,14 @@ def main():
     if not a.scan or not a.raw:
         sys.exit('need --scan and --raw')
 
-    scanp = os.path.join(a.root, a.scan)
+    scanps = [os.path.join(a.root, s) for s in a.scan]
     rawp = os.path.join(a.root, a.raw)
     outp = os.path.join(a.root, a.out)
-    rows = list(csv.DictReader(open(scanp)))
+    rows = []
+    for sp in scanps:
+        rows.extend(list(csv.DictReader(open(sp))))
+    if not rows:
+        sys.exit('no rows in --scan files')
     fs = SC.fs_from_header(rawp) or SC.DEFAULT_FS
 
     ev = {}
@@ -287,10 +323,15 @@ def main():
             ev.setdefault((r['block'], r['chan']), r)
 
     off_idx = None
-    if a.off and os.path.exists(os.path.join(a.root, a.off)):
-        off_idx = [(int(r['chan']), float(r.get('fam_hz') or 0))
-                   for r in csv.DictReader(open(os.path.join(a.root, a.off)))
-                   if str(r.get('verdict', '')).startswith(('FAM-HIT', 'SPECTRAL'))]
+    for o in (a.off or []):
+        op = os.path.join(a.root, o)
+        if not os.path.exists(op):
+            continue
+        if off_idx is None:
+            off_idx = []
+        off_idx.extend([(int(r['chan']), float(r.get('fam_hz') or 0))
+                        for r in csv.DictReader(open(op))
+                        if str(r.get('verdict', '')).startswith(('FAM-HIT', 'SPECTRAL'))])
     on_idx = [(int(r['chan']), float(r.get('fam_hz') or 0)) for r in rows
               if str(r.get('verdict', '')).startswith(('FAM-HIT', 'SPECTRAL'))]
 
@@ -312,7 +353,7 @@ def main():
 
     work = os.path.join(a.root, 'data', 'mvp_tmp')
     os.makedirs(work, exist_ok=True)
-    tag = os.path.basename(scanp).replace('.csv', '')
+    tag = os.path.basename(scanps[0]).replace('.csv', '')
 
     fields = list(rows[0].keys()) if rows else []
     for extra in ('x_skflag', 'x_cohflag', 'x_ladderq', 'x_dm_sign', 'x_impuls',
@@ -331,8 +372,15 @@ def main():
             r = dict(r)
             is_cand = str(r.get('verdict', '')).startswith(('FAM-HIT', 'SPECTRAL'))
             key = (str(r.get('block')), str(r.get('chan')))
-            match = [c for c in cands if str(c['block']) == key[0]
-                     and str(c['chan']) == key[1]]
+            # Per-POL match: with pooled scans each pol is graded on its OWN
+            # evidence (a p1 winner's battery must not launder its twin's
+            # row). Single-scan behaviour is unchanged (rows unique per
+            # block,chan there). The pooling fix is upstream: topk is taken
+            # across pols, so a p1-only candidate IS analysed (at its pol).
+            pkey = (key[0], key[1], str(r.get('pol', '0')))
+            match = [c for c in cands if str(c['block']) == pkey[0]
+                     and str(c['chan']) == pkey[1]
+                     and str(c.get('pol', '0')) == pkey[2]]
             if match:
                 c = match[0]
                 pols_extra = (tuple(p for p in ('1', '2', '3')

@@ -14,6 +14,13 @@ Read this before touching code or data.
 > *engineeredness* rather than auto-blocking common-mode — see the two-axis
 > model (EARTH / STRUCTURE) below.
 
+> **Verdicts are earned, not assumed.** The default disposition of an anomaly
+> is `UNEXPLAINED`, not `EARTH`. Common-mode is a category, not a curse — the
+> veto's job is to grade engineeredness, never to launder a prior as a result.
+> "This looks like the interference everyone else found" is not an argument:
+> our null history is explained by ~2% dwell and beacon-based aiming, and the
+> target class is *engineered to look like noise*.
+
 ---
 
 ## What SetiYeti is
@@ -90,8 +97,10 @@ same test on noise alone stays quiet. No threshold ships without calibration.
               houdini/export_triage.py ──► 3D waterfall terrain (appeal court)
 
  Cross-cutting: python/satpass.py (TLE conjunction, attribution evidence),
- python/cadence_pair.py (the only WATCH→CANDIDATE gate), z3/ (machine-checked
- specs + code ties for veto, grades, dispatch, packing, median, comb).
+ python/cadence_pair.py (the only WATCH→CANDIDATE gate), python/corpus.py
+ (the MASS-DATA library: all slices/flags/floors/proves in one SQLite DB),
+ z3/ (machine-checked specs + code ties for veto, grades, dispatch, corpus,
+ packing, median, comb).
 ```
 
 ---
@@ -101,7 +110,8 @@ same test on noise alone stays quiet. No threshold ships without calibration.
 ```
 c/          C99 tools, zero dependencies — seti_slice, fam_scan, vm_sandbox,
             comb_scan (+thicket fence), xeno_scan (microscopic), xvm_sandbox
-            (6-machine alien-code). Build with `make` (6 binaries).
+            (6-machine alien-code), jerk_track (Viterbi TBD), fold_dm
+            (pulsar+DM), scd_dechirp (SCD plane+dechirp). Build with `make` (9 binaries).
 python/     detectors, prove harnesses, RFI veto, latent triage,
             univ_ingest/univ_scan (any-format front-end), satpass (TLE check),
             xeno_pass (I0–I5 grades), pipeline.py / longhaul.py (orchestrators)
@@ -119,6 +129,11 @@ UNIVERSAL_INGEST.md            format table + canonical-stream contract
 _objective/objective_1.md      the mission (bystander traffic/monuments/payloads)
 hits*.csv   per-observation scan results — THIS IS THE SCIENTIFIC RECORD
 rfi_catalog.json   accumulated interference signature catalog
+catalog.tsv    master ledger of EVERY sky file in storage (E:/data + D:/data):
+               exact filename, target, ON/OFF, location, size, format,
+               scan_status, coverage, runs evidence, result — rebuilt with
+               `python python/build_catalog.py`; read it before scanning anything
+archive/     retired root files (old hits_*.csv, catalog backups) — not live
 ```
 
 ### Storage tiers
@@ -139,19 +154,25 @@ sits on `E:`. **Never hardcode a `D:/` path in committed code** — take a
 unplugged. Disk is not infinite (~58 GUPPI files); prune intermediates after a
 write-up, keep the `.raw`.
 
+**`catalog.tsv` is the ledger of it all.** Before scanning anything, grep
+`catalog.tsv` for the exact filename — if it is already SCANNED at equal or
+deeper coverage, do not rescan; if it is NOT_SCANNED, that is your target
+list. OFF legs whose ON leg is already scanned are the highest-value targets
+(they unlock ON–OFF cadence gating).
+
 ---
 
 ## Build & run
 
 ```bash
-# Build the C tools (C99, no deps beyond -lm) — 6 binaries, never by hand:
-make                # build all (seti_slice fam_scan vm_sandbox comb_scan xeno_scan xvm_sandbox)
+# Build the C tools (C99, no deps beyond -lm) — 9 binaries, never by hand:
+make                # build all (seti_slice fam_scan vm_sandbox comb_scan xeno_scan xvm_sandbox jerk_track fold_dm scd_dechirp)
 make check          # build + verify each binary runs + probe real-file layouts
-make prove-quick    # fast gate (<2 min). Full gate: make prove
+make prove-quick    # fast gate. Full gate: make prove
 
-# ALWAYS prove detectors before trusting them on data (22/22 green = gate)
-python python/sy_prove_all.py --root . --quick   # 17 fast proves + ties
-python python/sy_prove_all.py --root .           # all 22 (adds dsss/scd/jerk/latent)
+# ALWAYS prove detectors before trusting them on data (34/34 green = gate)
+python python/sy_prove_all.py --root . --quick   # fast gate (29 checks)
+python python/sy_prove_all.py --root .           # full gate (all 34: adds dsss/scd/jerk/latent slows)
 
 # Scan a GUPPI file (stride channels to keep it cheap)
 python python/mvp_scan.py --raw data/<file>.raw --b0 0 --b1 48 --chans 0,8,16,24,32,40,48,56
@@ -206,10 +227,47 @@ C tools are dependency-free. Windows shop: `make` needs MinGW on PATH
    from a single file.**
 5. **`hits.csv` / `evidence.csv` / `rfi_catalog.json` are the scientific
    record.** Treat them as append-only truth. Don't rewrite history; add rows.
+   `corpus/setiyeti.db` is the DERIVED query layer (one SQLite file: every
+   slice, flag, floor, prove — rebuilt by `python/corpus.py --auto`, never
+   committed). Query the DB, cite the record.
 6. **Raw data is never committed.** `.raw/.f32/.bin/.png` are gitignored. S3 is
    requester-pays — see `data/README.md`. Bulk raw/derived files go on the
    external **`D:/data/`** tier (1 TB, outside the repo), not on `E:`.
-7. **Don't overclaim.** This is a blind-spot specialist, not a survey. Known
+7. **Attribution needs a receipt — symmetric burden of proof.** A detector must
+   earn its negative with a noise-matched receipt; a *disposition* must earn
+   its negative the same way. No flag may be called terrestrial, RFI, receiver
+   artifact, or "consistent with human activity" without (a) the rule id that
+   fired, (b) the numeric margin, and (c) the physical mechanism (band
+   allocation, α-zone, fs/4 spur, backend-wander fingerprint, catalog match).
+   "Likely RFI" with no rule id + number is refusal-worthy — like guessing
+   geometry on a headerless format. If you cannot produce the receipt, the
+   disposition is `UNEXPLAINED`, not `BLOCK`.
+8. **Steelman the exotic first, then audit the mundane.** Before naming a
+   terrestrial cause, state the best non-terrestrial explanation and the one
+   measurement that would separate them. If the anomaly has structure (FAM
+   fires where the spectrum is flat, a comb outside a thicket, common-mode
+   *with* engineered structure), the slow path is mandatory: **open the raw
+   file and inspect it** before disposition. Cheap-to-verify dismissals
+   (catalog hit, exact fs/4, band-allocation match) may stay instant.
+9. **Dismissals are part of the record.** A `BLOCK` on a structure-bearing flag
+   is a claim we can be audited on — log its receipt (rule id, margin,
+   mechanism, counter-hypothesis) to the dismissal ledger, never delete it
+   quietly. Mirrors "never delete or hide a flag."
+10. **The catalog is updated after every scan and every download — no exceptions.**
+   Finishing a scan (or landing a new file on either drive) is not done until
+   `catalog.tsv` says so:
+   - `python python/build_catalog.py` rebuilds the storage inventory and
+     re-joins every `runs/**/*.manifest.json` for coverage/flag counts.
+   - Then hand-edit the row: exact `filename`, star system (`target`), ON/OFF
+     (`pointing`), honest `scan_status` (`SCANNED_FULL` / `SCANNED_PARTIAL` /
+     `SMOKE` / `NOT_SCANNED` / `QUARANTINED`), `coverage` (blocks/chans/pols),
+     `runs_evidence` (the CSVs/REPORTs), and a one-line `result_summary`
+     (flag counts, veto dispositions, grades — no adjectives without numbers).
+   - Always emit a manifest with `mvp_scan` (it is what feeds the catalog's
+     coverage column); a scan with no manifest is a scan that never happened.
+   - Commit the updated `catalog.tsv` with the run. A re-scan of an already
+     SCANNED file without new coverage is a bug, not diligence.
+11. **Don't overclaim.** This is a blind-spot specialist, not a survey. Known
    winners: spread spectrum, jerk/chirp, bit structure, dense-comb fencing
    (thicket rule), any-format ingest. Known losers: stable narrowband
    (turboSETI is better). Former losers now covered, with caveats:
@@ -230,7 +288,8 @@ C tools are dependency-free. Windows shop: `make` needs MinGW on PATH
   low-entropy input. Never remove it.
 - **Quarantine bad lanes before analysis.** `seti_slice.c` reports per-lane RMS
   + range/diversity; a dark digitizer (few distinct codes, low RMS) must be
-  quarantined, not scanned. See `hits_hip_b6.QUARANTINED.csv`. Phantom flags
+  quarantined, not scanned. See `archive/root_20260921/hits_hip_b6.QUARANTINED.csv`
+  (and the W75N lane, ledgered QUARANTINED in `catalog.tsv`). Phantom flags
   must never reach the veto or catalog.
 - **Windows cost coherent gain.** Hamming/Blackman windows cost ~8 dB of
   coherent integration in the track-before-detect path. That path uses a
@@ -286,6 +345,22 @@ C tools are dependency-free. Windows shop: `make` needs MinGW on PATH
 - **Order matters around bare excepts.** A staleness guard placed before its
   `jd0` assignment raised NameError into a bare `except: pass` and went
   silent. Initialise before guarding; log guard failures.
+- **Sub-bin drift grids report the grid edge.** When drift displacement over
+  the stare is << channel width, every rate ties and argmax order picks an
+  edge (measured: phantom −2.0 Hz/s drifters on steady lines). Tie-prefer
+  rate 0; warn when resolution >> step. Zero unless drift proven.
+- **Test-harness units kill injections silently.** Adding Hz to MHz puts the
+  tone 70 MHz away from the first spectrum on — the injection is invisible
+  and the detector looks broken (measured, twice). Assert the injection
+  lands (argmax trace) before asserting recovery.
+- **Archive hi-spectral products can't show fast pulsars.** tsamp ~1–17 s
+  caps detection at ~0.03–0.5 Hz; a 173 Hz MSP is physically invisible no
+  matter the span. Match the calibrator to the product or state the abstention.
+- **A line at exactly fs/4 is the digitizer, not the sky.** ADC-interleaving
+  spurs sit at fs/4 (732,422 Hz at the 2.93 MHz GUPPI rate) across dozens of
+  channels at up to 277×. The corpus noise-watch named it (`--noise-watch`);
+  multichannel + exact-fs/4 coincidence is the fingerprint. Never promote an
+  fs/4 (or fs/2) line without explaining the converter first.
 
 ---
 
@@ -331,6 +406,16 @@ See `README.md` for the full scorecard. Summary:
 - **Thresholds are calibration numbers, dispositions are theorems.** Prove
   the floor with gap receipts; prove the *logic consuming it* with Z3.
   Never the reverse.
+- **The corpus proposes, the proves dispose.** `corpus.py --suggest` reports
+distributions, trigger margins and flag rates with HOLDS/REVIEW verdicts —
+never numeric auto-proposals (clean distributions are truncated at the
+trigger, so p999×margin measures the trigger's own shadow; full-distribution
+extrema are contaminants). A REVIEW goes to a human with a prove harness,
+never to a config. No silent auto-tuning, ever.
+- **Corpus ingest is pinned and idempotent.** Flags join (block,chan,pol)
+  within the SCORED hits file (veto logs omit pol; filename or `--veto-pol`
+  supplies it) — never target-wide. Re-ingest replaces (UNIQUE + wipes),
+  never duplicates. Resume-dups in old CSVs resolve last-wins, loudly.
 - **Naming:** raw files follow
   `blc<N>_<2bit|8bit>_guppi_<MJD>_<TARGET>_<SCAN>.<NNNN>.raw`. `blcN` = a
   different 187.5 MHz node on the *same* observation; same MJD+TARGET = same

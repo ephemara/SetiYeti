@@ -1,0 +1,6 @@
+[auto] autopilot start Mon Sep 21 06:20:23 UTC 2026
+/tmp/autopilot.sh: line 50: runs/s20_p0.csv: No such file or directory
+[auto] p1 DONE -> structure+veto triage
+[auto] launching HIP fleet
+[auto] launching t17 p2
+/tmp/autopilot.sh: line 50: runs/s20_p0.csv: No such file or directory

@@ -2,7 +2,9 @@
 ; (python/rfi_veto.py score_slice tail logic).
 ;
 ; net = E - S. hard_block (recurring unstructured local) forces BLOCK.
-;   disp = BLOCK     iff hard_block OR net >= 0.50
+;   disp = BLOCK     iff hard_block OR (net >= 0.50 AND NOT engineered)
+;   engineered slices with net >= 0.50 go to WATCH + analyst review
+;   (never auto-block structure - the ratchet repair).
 ;   disp = WATCH     iff not BLOCK and (net >= 0.15 or candidacy-cap applies)
 ;   disp = CANDIDATE iff not BLOCK and net < 0.15 AND persist AND (engineered OR multi)
 ;
@@ -10,16 +12,18 @@
 ;   P1: hard_block => BLOCK.  P2: CANDIDATE => persist & (engineered | multi).
 ;   P3: engineered common-mode is NEVER hard-blocked (monument protection).
 ;   P4: BLOCK and CANDIDATE are mutually exclusive.
+;   P6: engineered & high-net => NOT auto-blocked (score path guard).
 
 (set-logic QF_LRA)
 (declare-const E Real) (declare-const S Real)
 (declare-const persist Bool) (declare-const engineered Bool) (declare-const multi Bool)
-(declare-const n_seen Int) (declare-const hard_block Bool)
-(assert (>= E 0.0)) (assert (>= S 0.0)) (assert (<= S 1.0)) (assert (>= n_seen 0))
-; catalog rule transcription: hard_block <=> (n_seen>=3 AND NOT engineered)
-(assert (= hard_block (and (>= n_seen 3) (not engineered))))
+(declare-const n_runs Int) (declare-const hard_block Bool)
+(assert (>= E 0.0)) (assert (>= S 0.0)) (assert (<= S 1.0)) (assert (>= n_runs 0))
+; catalog rule transcription: hard_block <=> (n_runs>=3 AND NOT engineered)
+; (v2: recurrence counts independent runs, never slices or reprocessings)
+(assert (= hard_block (and (>= n_runs 3) (not engineered))))
 (define-fun net () Real (- E S))
-(define-fun is_block () Bool (or hard_block (>= net 0.5)))
+(define-fun is_block () Bool (or hard_block (and (>= net 0.5) (not engineered))))
 (define-fun may_cand () Bool (and (not is_block) (< net 0.15) persist (or engineered multi)))
 
 ; P1: hard_block => is_block (violation must be UNSAT)
@@ -37,13 +41,19 @@
 ; P3: engineered & recurring => NOT hard_block (violation UNSAT)
 ; expect UNSAT
 (push)
-(assert (and engineered (>= n_seen 3) hard_block))
+(assert (and engineered (>= n_runs 3) hard_block))
 (check-sat)
 (pop)
 ; P4: is_block & may_cand mutually exclusive (violation UNSAT)
 ; expect UNSAT
 (push)
 (assert (and is_block may_cand))
+(check-sat)
+(pop)
+; P6: engineered & high-net => NOT auto-blocked (violation UNSAT)
+; expect UNSAT
+(push)
+(assert (and engineered (>= net 0.5) is_block))
 (check-sat)
 (pop)
 ; P5: spec is livable — each disposition reachable (all SAT)

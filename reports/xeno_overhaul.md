@@ -44,7 +44,7 @@ promote anything.**
   engineers) — 13/13 (one draft property caught missing `flagged` by Z3).
 - `verify_xeno.py`: model-vs-code 5000/5000, X1/X2/X3/X5 zero violations.
 - `verify_veto.py` extended with `lines10` fuzz; still 3000/3000.
-- Full suite: **22/22 proves + 38/38 SMT2 + ties green.**
+- Full suite: **34/34 proves + 44/44 SMT2 + ties green.**
 
 ### Bugs real data caught (fixed with receipts, all in-code documented)
 
@@ -197,7 +197,103 @@ the GUPPI-clock hook resolves Kepler b21 to 2020-09-11T00:33:08 UTC
 (SMJD-consistent), with a staleness guard refusing silent misuse of
 2026 elements at 2020 timestamps. See `UNIVERSAL_INGEST.md`.
 
-## 8. Follow-ups (priority order)
+## 8. The corpus library (2026-09-21: MASS-DATA memory)
+
+Every slice, flag, noise floor and prove receipt now lives in ONE queryable
+SQLite file (`corpus/setiyeti.db`, stdlib only, derived + regenerable via
+`python/corpus.py --auto`, never committed): 82 observations, **258,167
+slices, 1,521 signature classes (+9 hand-built carrier seeds), 90 veto
+dispositions with reasons** (54 BLOCK / 36 WATCH).
+
+```bash
+python corpus.py --stats                        # census
+python corpus.py --top 20                       # review queue (grade>=I2 or WATCH+)
+python corpus.py --family 626 --family-tol 100  # signature history
+python corpus.py --suggest                      # HOLDS/REVIEW threshold watch
+python corpus.py --query "SELECT * FROM v_recurrence LIMIT 10"
+```
+
+First yields: the review queue surfaces the I2 + ch25 WATCH forest with
+correct file-pinned joins (two join bugs caught en route: target-wide
+matching pasted flags onto wrong-pol clean rows); the family query tracks
+the 626/536/715 classes across targets; `--suggest` flagged `mvp_fam` as
+REVIEW (clean-max 2.99 vs trigger 3.0, margin 0.3% — reproduced at 208k
+clean slices, so the trigger sits on the noise tail's edge, stably) while
+`mvp_spec` HOLDS at 50% margin. Corpus flag rate: 27.6 per 1k slices
+(drift baseline for all future runs). No threshold was changed: a REVIEW
+goes to a human with a prove harness, never to a config (the clean
+distribution is truncated at the trigger, so numeric auto-proposals would
+measure the trigger's own shadow — documented and refused by design).
+The `--noise-watch` census named a NEW contaminant the deep dives never
+noticed: a 732,422 Hz line at up to 277× in 51 channels of TRAPPIST data —
+exactly fs/4, the classic ADC-interleaving spur (new AGENTS.md lesson).
+The full 179-family ladder (179 Hz → 7 kHz) plus the spur exported as a
+76-line known-noise filter (`runs/xeno/noise_filter.json`, human-gated,
+never auto-wired). Invariants machine-checked (`corpus_invariants.smt2`)
+and enforced live on all 258k rows (`verify_corpus.py`, 0 violations).
+
+## 9. Jackpot hunt 2026-09-21 (fresh data + full stares)
+
+**Proxima Centauri, BLC1 epoch (Parkes UWL, 2019-04-29, D:/raw).** Five
+134 MB single-spectrum sub-bands (896–1664 MHz) + two 14 GB 30-minute
+time-domain stares (1408 + 1024 bands, 107×16.8 s spectra at 3.8 Hz).
+New module `drift_hunt.py` (memmap shift-and-add de-Doppler, 3/3 prove)
+built for exactly this data:
+
+- **BLC1 982.002 MHz: null twice.** Single 16.8 s spectrum: 0.94×, nothing
+  within ±2 kHz above 1.33×. 30-minute drift-integrated stare: no line at
+  982.002 at any drift rate ±2 Hz/s (nearest: 983.02 MHz drift −0.15 at
+  32σ, 1 MHz away with the wrong drift). A BLC1-strength steady drifter
+  would scream at 1000σ+. Same-day Parkes silence independently supports
+  the RFI verdict (caveats: different telescope/backend; a transient could
+  have faded; GBT saw it through low-elevation sidelobes).
+- 1408 band: one radar complex (1380.6–1381.4 MHz, 34,900 tracks, sigma
+  44k) hid everything until complex-clustering + sub-band stratification
+  were added (a live detector fix, proven 3/3). Remainder: radar family +
+  a 1420.6 MHz pair drifting −1.6/−1.25 Hz/s at ~13σ in the protected band
+  (LEO-rate? follow-up: recurrence).
+- 1024 band: aviation forest (1018 MHz 22M×, 1086 MHz SSR complex,
+  962 MHz −0.9 Hz/s at 374σ = aircraft/satellite transponder class).
+  All steady carriers, all terrestrial-adjacent.
+
+**TRAPPIST-1 full 128-block stares (local 17 GB pair, 32,768 slices).**
+ON p0 670 flags / p1 241 / OFF p0 787 / p1 736. ch12 active all stare
+(b2–b80, alpha wandering 536→2950 Hz — intermittent switching events, no
+continuous Viterbi track, sidereal OK). ch57 burst RECURS at b68 (1431 Hz
+@42× both pols, 12 s after b1) but 23-second frame_hunt finds no rhythm
+and fold finds no period → aperiodic local transients, monument and
+traffic hypotheses both dead for ch57. Full-stare grades: 0 above I1;
+veto 146 BLOCK / 12 WATCH / 0 CANDIDATE. Corpus now 323,703 slices.
+
+**Jackpot verdict: not tonight.** Zero I3+, zero CANDIDATE, zero unexplained
+drifters. The night's real bounties are defensive: a same-day Parkes null
+at BLC1's frequency, a named fs/4 spur, and a drift hunter that survived
+contact with a 44k-sigma radar.
+
+## 10. Famous-signals gauntlet 2026-09-21 (does the pipeline WORK?)
+
+The doubt was rational: everything caught so far was Earth junk. So the
+pipeline was thrown at famous strange signals with known answers:
+
+| test | data | result |
+|---|---|---|
+| BLC1 null | Parkes UWL 2019-04-29, 982.002 MHz (single + 30-min drift ±2 Hz/s) | NULL twice (0.94×; nearest line 1 MHz off, wrong drift). Same-day southern null |
+| BLC1 recovery | BLC1-analog (+0.14 Hz/s at 982.002, realistic strength) in the real null background | RECOVERED exact (982.0020, +0.140, 25σ). Null where null is true, detection where signal is present |
+| Voyager 1 carrier | GBT X-band 17 GB file covering 8.415 GHz, both pols, 0.35 Hz coherence, 22.6 s | NULL (nothing >8×). Upper-limit receipt, not a hallucination of the 20× transient hash nearby |
+| Tabby's Star ON+OFF | GBT S-band HDF5 pair, drift-integrated | same MSS lines (2186–2197 MHz) ON≡OFF, all steady. Quiet sky + satcom |
+| 'Oumuamua 0011+0012 | GBT S-band HDF5 pair | identical MSS family, stronger (satellite geometry). Nothing target-associated |
+| GPS L1 region | Parkes 1536 band | inconclusive smudge (28×, 75 kHz wide) — reported, not claimed |
+| Pulsar on sky | J0437 HDF5 (tsamp 1.07 s) | BLOCKED by physics: 5.76 ms period needs ms sampling. Archive hi-spectral products can't show MSPs; stated, not fudged |
+
+Gauntlet score: detection proven (BLC1-analog), specificity proven (BLC1/Voyager
+nulls with floors), engagement proven (Tabby/Oumuamua characterized), two
+honest abstentions (GPS, pulsar — with the exact reason and what would close
+each). New modules earned: `drift_hunt.py` (+HDF5, tie-prefer-zero rates,
+resolution warnings), `hdf5plugin` dependency documented in ingest. Bugs caught
+live: sub-bin grid edge artifacts, an MHz-vs-Hz injection unit error (the
+injection was invisible until fixed — the gauntlet catching the harness).
+
+## 11. Follow-ups (priority order)
 
 1. Recurrence search for the b1/ch57 burst signature across full 17 GB
    TRAPPIST files (frame/channel matcher = M9, still unbuilt).
@@ -212,3 +308,6 @@ the GUPPI-clock hook resolves Kepler b21 to 2020-09-11T00:33:08 UTC
    Kepler ch25/ch52; complex-native C detectors (use Q, not just I);
    PSRFITS folded-archive reader; chunked HDF5 streaming for GB-scale
    filterbanks (current ingest windows them).
+7. drift_hunt → veto wiring: drift tracks need a disposition rule (steady
+   bright carriers vs fast weak drifters) + SMT mirror; currently reported,
+   never dispositioned. Includes the 1420.6 MHz −1.6 Hz/s pair recurrence check.

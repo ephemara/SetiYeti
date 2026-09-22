@@ -285,9 +285,15 @@ def read_filterbank_fil(path, t0=0.0, dur=None):
 def _need_h5py():
     try:
         import h5py
-        return h5py
     except ImportError:
         raise RuntimeError('h5py not installed: pip install h5py (see requirements-science.txt)')
+    try:
+        import hdf5plugin  # noqa: F401 - registers Blosc/LZ4/Zstd filters;
+        # BL archive files use Blosc and fail with 'can't open directory'
+        # without it (measured on Parkes mid + GBT spliced products)
+    except ImportError:
+        pass
+    return h5py
 
 
 def read_filterbank_h5(path, t0=0.0, dur=None):

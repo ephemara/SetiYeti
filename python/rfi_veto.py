@@ -37,6 +37,13 @@ Other fixes in this file:
     delete exactly the thing we are looking for
   * catalog dedupes at class level (alpha bucket x band), not per (block,chan)
 
+v2 catalog doctrine (the self-blinding ratchet repair, 2026-09): keys are
+target-agnostic and exact (SIG:int-MHz:int-Hz) with a documented tolerance
+matcher; recurrence counts independent (raw, pointing) runs; engineered
+slices never auto-block on either path (WATCH + analyst review queue);
+null/zero alpha never files (5,492 bogus alpha-0 rows quarantined to health
+telemetry). See migrate_catalog.py for the v1->v2 rewrite with receipts.
+
 Inputs
   --hits      hits CSV (required)
   --evidence  optional evidence.csv (persist, multichan)
@@ -51,6 +58,17 @@ Optional per-slice STRUCTURE columns in the hits CSV (absent = 0):
   frame       frame period / repetition detected
   nongauss    non-Gaussian tail excess vs matched noise
   pol         polarisation coherence across pols
+  skflag/cohflag/ladderq/dm_sign
+              XENO microscopic markers (c/xeno_scan), also accepted under
+              their xeno_pass output aliases x_skflag/x_cohflag/x_ladderq/
+              x_dm_sign.
+  scint_class COMMON/SCINT/QUIET
+              ISM scintillation verdict (python/scint_pol via xeno_pass):
+              COMMON adds EARTH (gain wander), SCINT subtracts it (sky).
+              Chain: scan -> structure_pass -> xeno_pass -> veto,
+              so one CSV carries every detector. impuls is DELIBERATELY
+              excluded: impulsivity alone (shots, pops, discharges) is not
+              engineering - it needs persistence to matter (criteria doc).
   (vm_sign / vm_diff already carry the VM sandbox verdict)
 
 Usage:
@@ -60,7 +78,21 @@ Usage:
 import argparse, csv, hashlib, json, os, re, shutil, sys, time
 
 CAT_DEFAULT = 'rfi_catalog.json'
+CAT_VERSION = 2
 ALPHA_MATCH_TOL = 180.0      # Hz: ~2 FAM bins (SEG=32768 grid is 89.4 Hz).
+# --- v2 catalog doctrine (2026-09: the self-blinding ratchet repair) ---------
+# Keys are target-agnostic and exact: SIG:integer-channel-MHz:integer-alpha-Hz
+# (e.g. Y4:1371:626). Matching uses catalog_tol() below, documented in Hz.
+# Recurrence counts INDEPENDENT (raw-file, pointing) runs, never slices and
+# never reprocessings of the same data. Engineered slices never auto-block:
+# they go to WATCH + the analyst review queue on either the score or the
+# recurrence path. Null/zero alpha never files (missing-data guard).
+ALPHA_TOL_LO = 45.0             # Hz floor: splits 179/268 (89 Hz apart)
+ALPHA_TOL_REL = 0.003           # 0.3% of alpha
+ALPHA_TOL_HI = 500.0            # Hz cap: splits the 1.44 MHz trio (6.7 kHz apart)
+FREQ_MATCH_TOL = 2.0            # MHz: same-channel spill only (2.93 MHz spacing)
+HARD_N_RUNS = 3                 # independent runs required to hard-block
+REVIEW_CAP = 500
 
 # ---------------------------------------------------------------- band table --
 # (f_lo MHz, f_hi MHz, label, kind)
@@ -186,9 +218,10 @@ def load_catalog(path):
             if not m:
                 continue
             tag, a = m.group(1), float(m.group(2))
-            key = f"{tag}:{alpha_bucket(a)}"
+            key = catalog_key(tag, e.get('freq_mhz'), a)
             d = merged.setdefault(key, {'sig': f'{tag}:{a:.0f}Hz', 'alpha': a,
-                                        'n_seen': 0, 'structured': False,
+                                        'n_seen': 0, 'n_runs': 0, 'seen_in': [],
+                                        'targets': [], 'structured': False,
                                         'freq_mhz': e.get('freq_mhz'), 'disp': e.get('disp')})
             d['n_seen'] += 1
         c['features'] = merged
@@ -196,7 +229,9 @@ def load_catalog(path):
 
 
 def save_catalog(c, path):
-    json.dump(c, open(path, 'w'), indent=1)
+    tmp = path + '.tmp'          # atomic: concurrent readers never see half a catalog
+    json.dump(c, open(tmp, 'w'), indent=1)
+    os.replace(tmp, path)
 
 
 def is_signal_row(row):
@@ -205,8 +240,136 @@ def is_signal_row(row):
 
 
 def alpha_bucket(a):
-    """3 significant figures = one 'class' of cyclic frequency."""
+    """LEGACY v1 bucket (%.3g). Kept for reading old records only - v2 uses
+    catalog_key() + catalog_tol(). Do not use for new matching."""
     return f'{a:.3g}'
+
+
+def catalog_tol(alpha):
+    """Match tolerance in Hz, documented: min(max(45 Hz, 0.3% of alpha),
+    500 Hz). At 626 Hz -> 45 Hz (splits nothing real, merges grid halves);
+    at 1.44 MHz -> 500 Hz (the 1.44e+06 trio sits 6.7 kHz apart: split)."""
+    try:
+        a = float(alpha)
+    except (TypeError, ValueError):
+        return ALPHA_TOL_LO
+    if a <= 0:
+        return ALPHA_TOL_LO
+    return min(max(ALPHA_TOL_LO, ALPHA_TOL_REL * a), ALPHA_TOL_HI)
+
+
+def catalog_key(tag, freq_mhz, alpha):
+    """v2 key: SIG:integer-channel-MHz:integer-alpha-Hz. No target name, no
+    band-prior suffix - RFI is local to the telescope, and per-target /
+    per-band suffixes fragmented one oscillator into a dozen 'classes'.
+    Unknown geometry files as -1 (matches only -1)."""
+    try:
+        f = int(round(float(freq_mhz)))
+    except (TypeError, ValueError):
+        f = -1
+    try:
+        al = int(round(float(alpha)))
+    except (TypeError, ValueError):
+        al = -1
+    return f"{tag}:{f}:{al}"
+
+
+def catalog_lookup(features, tag, freq_mhz, alpha):
+    """Tolerance match on (tag, channel-freq, alpha). Returns (key, entry)
+    or (exact_new_key, None). Null/zero alpha never matches and never
+    files (missing-data guard: empty fam_hz used to file as alpha 0)."""
+    try:
+        fq = float(freq_mhz)
+        al = float(alpha)
+    except (TypeError, ValueError):
+        return catalog_key(tag, freq_mhz, alpha), None
+    if al <= 0:
+        return catalog_key(tag, freq_mhz, alpha), None
+    tol = catalog_tol(al)
+    best_key, best_d = None, None
+    for key, _e in features.items():
+        try:
+            parts = key.split(':')
+            if len(parts) != 3:
+                continue                    # v1 key: migration owns it, not matching
+            ktag, kfq, kal = parts[0], float(parts[1]), float(parts[2])
+        except ValueError:
+            continue
+        if ktag != tag:
+            continue
+        if abs(kfq - fq) <= FREQ_MATCH_TOL and abs(kal - al) <= tol:
+            if best_d is None or abs(kal - al) < best_d:
+                best_key, best_d = key, abs(kal - al)
+    if best_key is None:
+        return catalog_key(tag, round(fq), round(al)), None
+    return best_key, features[best_key]
+
+
+def file_review(ctx, key, row, tag, freq_mhz, alpha, S, E, why):
+    """Analyst queue: engineered slices any rule wanted dead. Dedupe by
+    (key, run); capped. This is the escalation-track substrate (promotion
+    machinery stays future work; nothing engineered vanishes silently)."""
+    try:
+        q = ctx['catalog'].setdefault('review', [])
+        if len(q) >= REVIEW_CAP:
+            return
+        run = ctx.get('run_id', '')
+        if any(d.get('key') == key and d.get('run') == run for d in q):
+            return
+        q.append({'key': key, 'sig': f"{tag}:{float(alpha):.0f}Hz",
+                  'alpha': float(alpha), 'freq_mhz': freq_mhz,
+                  'target': ctx.get('target', ''), 'run': run,
+                  'S': round(S, 2), 'E': round(E, 2), 'why': why})
+    except (TypeError, ValueError, AttributeError):
+        pass
+
+
+def catalog_file(cat, tag, freq_mhz, alpha, S, disp, target, run_id):
+    """File one slice. Returns (key, n_runs, filed). Null/zero alpha is
+    refused (returns filed=False): unmodulated-DC and empty-field rows used
+    to file 5,492 bogus alpha-0 'detections'."""
+    try:
+        al = float(alpha)
+    except (TypeError, ValueError):
+        return catalog_key(tag, freq_mhz, alpha), 0, False
+    if al <= 0:
+        return catalog_key(tag, freq_mhz, alpha), 0, False
+    key, _prev = catalog_lookup(cat['features'], tag, freq_mhz, al)
+    fe = cat['features'].setdefault(key, {
+        'sig': f"{tag}:{al:.0f}Hz", 'alpha': al, 'freq_mhz': freq_mhz,
+        'n_seen': 0, 'n_runs': 0, 'seen_in': [], 'targets': [],
+        'structured': False, 'disp': disp})
+    fe.setdefault('seen_in', [])       # migrate-on-read for v1 entries
+    fe.setdefault('targets', [])
+    fe['n_seen'] = int(fe.get('n_seen', 0)) + 1
+    if run_id and run_id not in fe['seen_in']:
+        fe['seen_in'] = (fe['seen_in'] + [run_id])[-64:]
+    fe['n_runs'] = len(set(fe['seen_in']))
+    if target and target not in fe['targets']:
+        fe['targets'].append(target)
+    fe['structured'] = bool(fe.get('structured', False)) or (S >= 0.25)
+    fe['disp'] = disp
+    return key, fe['n_runs'], True
+
+
+def make_run_id(hits_path, raw_path, target):
+    """Data-fingerprinted idempotency. The old key hashed the hits-CSV
+    path, so reprocessing the SAME raw data from a new outdir counted as an
+    independent sighting (the burst filed n=8 across reprocessings). Same
+    raw + same target now counts ONCE, forever."""
+    if raw_path and os.path.exists(raw_path):
+        try:
+            st = os.stat(raw_path)
+            base = f'{os.path.abspath(raw_path)}|{st.st_mtime_ns}|{target}'
+            return hashlib.sha1(base.encode()).hexdigest()[:12]
+        except OSError:
+            pass
+    try:
+        st = os.stat(hits_path)
+        base = f'{os.path.abspath(hits_path)}|{st.st_mtime_ns}|{target}'
+    except OSError:
+        base = f'manual-{int(time.time())}'
+    return hashlib.sha1(base.encode()).hexdigest()[:12]
 
 
 # ------------------------------------------------------------------- cadence --
@@ -263,7 +426,23 @@ def structure_score(row):
         s += 0.15; why.append('+0.15 non-Gaussian tail vs matched noise')
     if flag(row, 'pol'):
         s += 0.15; why.append('+0.15 polarisation coherence')
-    return min(s, 1.0), why
+    # XENO microscopic battery (c/xeno_scan via xeno_pass; x_ aliases are
+    # the xeno_pass output column names - absent columns read as 0).
+    # These are the markers the overhaul made GRADE-GIVING; the veto now
+    # scores them instead of ignoring them (b76/ch44's skflag is why).
+    if flag(row, 'skflag') or flag(row, 'x_skflag'):
+        s += 0.15; why.append('+0.15 spectral-kurtosis packet structure')
+    if flag(row, 'cohflag') or flag(row, 'x_cohflag'):
+        s += 0.10; why.append('+0.10 clock-grade coherence')
+    if flag(row, 'ladderq') or flag(row, 'x_ladderq'):
+        s += 0.15; why.append('+0.15 cepstral comb (engineering until proven otherwise)')
+    dm = str(row.get('dm_sign', '') or row.get('x_dm_sign', '') or '0')
+    if dm.strip() in ('-1', '+1', '1'):
+        s += 0.15; why.append('+0.15 dispersion-order sign (normal or EXOTIC)')
+    # Scores are 0.05-granular by construction; round so verdict boundaries
+    # (0.50/0.15) never flip on float dust (caught live: net=0.1499... at the
+    # WATCH/CANDIDATE seam promoted a held slice - prove SC1).
+    return round(min(s, 1.0), 2), why
 
 
 def score_slice(row, ctx):
@@ -336,6 +515,16 @@ def score_slice(row, ctx):
     else:
         E -= 0.20; e_why.append('-0.20 persistent across span')
 
+    # Scintillation medium-test (python/scint_pol via xeno_pass scint_class).
+    # This wires the analyst hold INTO the machine: COMMON (gain wander moves
+    # every band together) is the backend fingerprint; SCINT (decorrelated
+    # ISM breathing) is the sky fingerprint. Absent column reads as 0.
+    sc = str(row.get('scint_class', '') or '').strip().upper()
+    if sc == 'COMMON':
+        E += 0.30; e_why.append('+0.30 common gain-wander scintillation (backend, all bands together)')
+    elif sc == 'SCINT':
+        E -= 0.20; e_why.append('-0.20 ISM-signed decorrelated scintillation (sky marker)')
+
     # THICKET (XENO overhaul): a dense intermod line forest games the comb
     # rule - with a line in every bin, accidental harmonic alignments are
     # certain and the mean member ratio stays high (proven in-prove:
@@ -357,26 +546,42 @@ def score_slice(row, ctx):
 
     E = max(E, 0.0)
 
-    # --- recurrence ------------------------------------------------------
-    class_key = f"{ctx['target']}:{alpha_bucket(alpha)}:{kind}"
-    prev = ctx['catalog']['features'].get(class_key, {})
+    # --- recurrence (v2: independent runs, never slices; structured exempt) -
+    tag = str(row.get('fam_tag') or '-').strip() or '-'
+    class_key, prev = catalog_lookup(ctx['catalog']['features'], tag, f, alpha)
+    prev = prev or {}
+    n_runs = len(set(prev.get('seen_in', [])))
     n_seen = int(prev.get('n_seen', 0))
     hard_block = False
-    if n_seen >= 3:
+    if n_runs >= HARD_N_RUNS:
         if engineered:
             E = max(E - 0.10, 0.0)
-            e_why.append(f'-0.10 recurring x{n_seen} AND structured -> monument-like, NOT auto-blocked')
+            e_why.append(f'-0.10 recurring x{n_runs} runs AND structured -> monument-like, NOT auto-blocked')
+            file_review(ctx, class_key, row, tag, f, alpha, S, E,
+                        'recurring structured (monument watch)')
         else:
             hard_block = True
-            e_why.append(f'HARD-BLOCK recurring known-local signature (seen x{n_seen})')
+            e_why.append(f'HARD-BLOCK recurring known-local signature ({n_runs} independent runs, {n_seen} slices)')
 
-    net = E - S
+    E = round(E, 2)              # boundary-exact dispositions (see structure_score)
+    net = round(E - S, 2)
     reasons = list(s_why) + e_why
 
     if hard_block:
         disp = 'BLOCK:earth-likely'
     elif net >= 0.50:
-        disp = 'BLOCK:earth-likely'
+        if engineered:
+            # Score-BLOCK is where structured signals actually died (e.g.
+            # KEPLER160:626:terr, structured:true + BLOCK). Engineered
+            # slices never score-BLOCK: WATCH + analyst queue instead.
+            # (First-sight UNSTRUCTURED junk still score-BLOCKs - the veto
+            # must delete obvious RFI immediately or every run floods WATCH.)
+            disp = 'WATCH'
+            reasons.append('score-block suppressed: engineered -> analyst review (never auto-block structure)')
+            file_review(ctx, class_key, row, tag, f, alpha, S, E,
+                        'engineered, score would block')
+        else:
+            disp = 'BLOCK:earth-likely'
     elif net >= 0.15:
         disp = 'WATCH'
     else:
@@ -433,17 +638,14 @@ def main():
     cat = load_catalog(a.catalog)
     cat.setdefault('runs', {})
     if not a.run_id:
-        try:
-            st = os.stat(a.hits)
-            a.run_id = hashlib.sha1(
-                f'{os.path.abspath(a.hits)}|{st.st_mtime_ns}|{a.target}'
-                .encode()).hexdigest()[:12]
-        except OSError:
-            a.run_id = f'manual-{int(time.time())}'
+        rawpath = a.raw if (a.raw and os.path.exists(a.raw)) else None
+        a.run_id = make_run_id(a.hits, rawpath, a.target)
     recount = a.run_id not in cat['runs']
-    n_block = n_watch = n_cand = n_skip = 0
+    n_block = n_watch = n_cand = n_skip = n_null = 0
+    n_rev0 = len(cat.get('review', []))
     ctx = {'chan_freq': chan_freq, 'evidence': ev, 'catalog': cat,
-           'target': a.target, 'on_idx': on_idx, 'off_idx': off_idx}
+           'target': a.target, 'on_idx': on_idx, 'off_idx': off_idx,
+           'run_id': a.run_id}
 
     for row in csv.DictReader(open(a.hits)):
         if not is_signal_row(row):
@@ -462,14 +664,15 @@ def main():
             n_watch += 1
         else:
             n_cand += 1
-        fe = cat['features'].setdefault(class_key, {
-            'sig': sig, 'alpha': float(row.get('fam_hz') or 0),
-            'n_seen': 0, 'structured': False, 'freq_mhz': chan_freq(int(row['chan'])),
-            'disp': disp})
         if recount:
-            fe['n_seen'] += 1
-            fe['structured'] = fe['structured'] or (S >= 0.25)
-            fe['disp'] = disp
+            # v2 filing: null/zero alpha refused (missing-data guard); the
+            # health line below reports how many rows were telemetry, not signal.
+            tag = str(row.get('fam_tag') or '-').strip() or '-'
+            _key, _nruns, filed = catalog_file(
+                cat, tag, chan_freq(int(row['chan'])), row.get('fam_hz'),
+                S, disp, a.target, a.run_id)
+            if not filed:
+                n_null += 1
     if a.dry_run:
         print(f'[veto] DRY-RUN run_id={a.run_id}: catalog untouched')
     else:
@@ -485,10 +688,17 @@ def main():
                 'time': time.strftime('%Y-%m-%d %H:%M:%S'),
                 'hits': a.hits, 'target': a.target}
             save_catalog(cat, a.catalog)
+    n_rev1 = len(cat.get('review', []))
     print(f'[veto] BLOCK={n_block} WATCH={n_watch} CANDIDATE={n_cand} '
           f'skipped_nonflag={n_skip} | catalog={len(cat["features"])} classes '
           f'| run_id={a.run_id}'
           + ('' if recount else ' (recount skipped: id seen)'))
+    if n_null:
+        print(f'[veto] health: {n_null} signal rows with null/zero alpha '
+              f'(telemetry, not signal - not filed)')
+    if n_rev1 > n_rev0:
+        print(f'[veto] review: +{n_rev1 - n_rev0} analyst-queue items '
+              f'({n_rev1} total - engineered slices no rule may auto-block)')
 
 
 if __name__ == '__main__':

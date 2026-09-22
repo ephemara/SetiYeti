@@ -185,7 +185,7 @@ def _pulses(env, sigma=6.0, min_sep=3):
     return [float(np.mean(g)) for g in groups]
 
 
-def primes(x):
+def primes(x, fs=None):
     blk = 256
     n = (len(x) // blk) * blk
     env = np.abs(x[:n].astype(np.float64)).reshape(-1, blk).mean(axis=1)
@@ -212,6 +212,26 @@ def primes(x):
         s = locked / len(iv)
         if s > best_score:
             best_score, best_base = s, base
+    # PRIME-GUARD (hum-locked numerology confounder, filed 2026-09-21):
+    # pulse pickers trace hum cycles, so intervals come out as multiples of
+    # the hum period and base=min/k manufactures a prime lock (measured:
+    # 31.5-bin intervals x 87us = 2.75ms ~= half the 179 Hz period, 9/9 lock
+    # on pure hum). If the winning base frequency sits within 4% of a small
+    # integer multiple of 89.5 Hz, the lock is hum numerology, not code:
+    # reported, never escalated.
+    hum_lock = False
+    # base is in envelope blocks (256 samples); convert to Hz with fs.
+    # Without a sample rate the guard cannot evaluate and is skipped.
+    if best_score >= 0.8 and best_base > 0 and fs:
+        base_freq = fs / (best_base * blk)
+        for mult in range(1, 9):
+            if abs(base_freq - mult * 89.5) / (mult * 89.5) < 0.04:
+                hum_lock = True
+                break
+    if hum_lock:
+        return {'flag': 0, 'kind': 'PRIME-HUM-LOCK', 'score': float(best_score),
+                'n_pulses': len(c), 'intervals': [float(v) for v in iv],
+                'base': float(best_base)}
     flag = 1 if best_score >= 0.8 else 0
     return {'flag': flag,
             'kind': 'PRIME-TRAIN' if flag else 'quiet',
@@ -245,7 +265,7 @@ def analyze(x, fs=FS_DEFAULT, f0_mhz=1407.7):
     out = {'negdm': negdm(x, fs, f0_mhz),
            'clock': clock(x, fs),
            'ladder': ladder(x),
-           'primes': primes(x),
+           'primes': primes(x, fs),
            'precursor': precursor(x)}
     out['exotic_score'] = sum(1 for k in out if out[k].get('flag'))
     return out
@@ -314,6 +334,12 @@ def prove():
     ap = analyze(train([2, 3, 5, 7, 11], P=15000))
     check('prime train 2-3-5-7-11 fires', ap['primes']['flag'] == 1,
           f"score={ap['primes']['score']:.2f}")
+    # hum-locked numerology must NOT escalate: base 8192 samples @2.93 MHz
+    # = 2.80 ms ~= half the 179 Hz period -> manufactured prime lock.
+    ah = analyze(train([2, 3, 5, 7, 11], P=8192))
+    check('hum-period train held (PRIME-HUM-LOCK)',
+          ah['primes']['flag'] == 0 and ah['primes']['kind'] == 'PRIME-HUM-LOCK',
+          f"kind={ah['primes']['kind']} score={ah['primes']['score']:.2f}")
     am = analyze(train([2, 4, 8, 16]))
     check('machinery 2-4-8-16 quiet', am['primes']['flag'] == 0,
           f"score={am['primes']['score']:.2f}")
